@@ -1,26 +1,7 @@
-# ~/.irbrc
-#
 # setup: sudo gem install pp hirb wirble what_methods
-
-require 'rubygems'
-
-# prettier printing
-require 'pp'
 
 # tab completion
 require 'irb/completion'
-
-# neat method finder
-require 'what_methods'
-
-# loading hirb
-require 'hirb'
-Hirb.enable
-
-# loading wirble
-require 'wirble'
-Wirble.init
-Wirble.colorize
 
 # save history between irb sessions
 require 'irb/ext/save-history'
@@ -29,6 +10,28 @@ IRB.conf[:HISTORY_FILE] = "#{ENV['HOME']}/.irb_history"
 
 # minimalist command prompt
 IRB.conf[:PROMPT_MODE] = :SIMPLE
+
+# load rubygems, pretty print and a neat method finder
+%w[rubygems pp what_methods].each do |gem|
+  begin
+    require gem
+  rescue LoadError
+  end
+end
+
+# loading hirb
+begin
+  require 'hirb'
+  Hirb.enable
+rescue LoadError
+end
+
+# loading wirble
+begin
+  require 'wirble'
+  %w[init colorize].each { |m| Wirble.send(m) }
+rescue LoadError
+end
 
 # method to clear the screen
 def clear
