@@ -22,15 +22,17 @@ end
 # loading hirb
 begin
   require 'hirb'
-  Hirb.enable
 rescue LoadError
+else
+  Hirb.enable
 end
 
 # loading wirble
 begin
   require 'wirble'
-  %w[init colorize].each { |m| Wirble.send(m) }
 rescue LoadError
+else
+  %w[init colorize].each { |m| Wirble.send(m) }
 end
 
 # method to clear the screen
@@ -42,3 +44,10 @@ def clear
 end
 
 alias c clear
+
+class Object
+  # list methods that aren't in the superclass
+  def local_methods(obj = self)
+    (obj.methods - obj.class.superclass.instance_methods).sort
+  end
+end
