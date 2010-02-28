@@ -1,0 +1,7 @@
+[user]
+  name = murilasso
+  email = murilo.soares3@gmail.com
+[color]
+  ui = auto
+[merge]
+  verbosity = 5

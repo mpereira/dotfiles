@@ -1,0 +1,5 @@
+# Write your default config options here!
+
+
+[gnome-mplayer]
+msglevel=all=5

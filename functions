@@ -1,0 +1,230 @@
+# ~/.functions
+
+# pacman #######################################################################
+pacsearch() {
+  echo -e "$(pacman -Ss $@ | sed \
+  -e 's#core/.*#\\e[0;31m&\\e[m#' \
+  -e 's#extra/.*#\\e[0;32m&\\e[m#' \
+  -e 's#community/.*#\\e[0;33m&\\e[m#' \
+  -e 's#^.*/.* [0-9].*#\\e[0;35m&\\e[m#' )"
+}
+
+paclocalsearch() {
+  echo -e "$(pacman -Qs $@ | sed \
+  -e 's#core/.*#\\e[0;31m&\\e[m#' \
+  -e 's#extra/.*#\\e[0;32m&\\e[m#' \
+  -e 's#community/.*#\\e[0;33m&\\e[m#' \
+  -e 's#^.*/.* [0-9].*#\\e[0;35m&\\e[m#' )"
+}
+
+# misc #########################################################################
+extract () {
+  if [ -f $1 ] ; then
+    case $1 in
+      *.tar.bz2)   tar xvjf $1    ;;
+      *.tar.gz)    tar xvzf $1    ;;
+      *.bz2)       bunzip2 $1     ;;
+      *.rar)       rar x $1       ;;
+      *.gz)        gunzip $1      ;;
+      *.tar)       tar xvf $1     ;;
+      *.tbz2)      tar xvjf $1    ;;
+      *.tgz)       tar xvzf $1    ;;
+      *.zip)       unzip $1       ;;
+      *.Z)         uncompress $1  ;;
+      *.7z)        7z x $1        ;;
+      *)           echo "don't know how to extract '$1'..." ;;
+    esac
+  else
+    echo "'$1' is not a valid file!"
+  fi
+}
+
+# Makes directory then moves into it
+function mkcdr {
+  mkdir -p -v $1
+  cd $1
+}
+
+# showcolors
+function showcolors() {
+  T='gYw'
+
+  echo -e "\n            \
+     40m     41m     42m     43m\
+     44m     45m     46m     47m";
+
+  for FGs in '    m' '   1m' '  30m' '1;30m' '  31m' '1;31m' '  32m' \
+  '1;32m' '  33m' '1;33m' '  34m' '1;34m' '  35m' '1;35m' \
+  '  36m' '1;36m' '  37m' '1;37m';
+  do FG=${FGs// /}
+    echo -en " $FGs \033[$FG  $T  "
+    for BG in 40m 41m 42m 43m 44m 45m 46m 47m;
+    do echo -en "$EINS \033[$FG\033[$BG  $T  \033[0m";
+    done
+    echo;
+  done
+  echo
+}
+
+# creates an archive from given directory
+mktar() { tar cvf  "${1%%/}.tar"     "${1%%/}/"; }
+mktgz() { tar cvzf "${1%%/}.tar.gz"  "${1%%/}/"; }
+mktbz() { tar cvjf "${1%%/}.tar.bz2" "${1%%/}/"; }
+
+# search the vim reference manual for a keyword
+# usage: :h <keyword>
+function :h() {  vim --cmd ":silent help $@" --cmd "only"; }
+
+# mkmine - recursively change ownership to $USER:$USER
+# usage:  mkmine, or
+#         mkmine <filename | dirname>
+function mkmine() { sudo chown -R ${USER} ${1:-.}; }
+
+# remindme - a simple reminder
+# usage: remindme 10m omg, the pizza
+function remindme() {
+  delay=$1
+  shift
+  sleep $delay ; zenity --info --text "$*" > /dev/null & 
+}
+
+# s - gnu screen function
+# usage: lists screen sessions, otherwise
+#        s <name> reattaches to <name>, otherwise
+#        s <name> creates a new session <name>.
+s () {
+  if [[ $1 ]]; then
+    screen -dRR -S $HOSTNAME.$1
+  else
+    screen -ls
+  fi
+}
+
+services() {
+  echo "All daemons"
+  ls --ignore=functions* /etc/rc.d/
+  echo "Running daemons"
+  ls /var/run/daemons
+}
+
+shrink() {
+  [ "$1" == "" ] && echo "Usage: tinify url" && exit
+  url=$1;
+  tinyurl=$(curl http://tinyurl.com/api-create.php?url=${url} 2> /dev/null)
+  echo $tinyurl;
+}
+
+# recursively fix dir/file permissions on a given directory
+fix() {
+  if [ -d $1 ]; then
+    find $1 -type d -exec chmod 755 {} \;
+    find $1 -type f -exec chmod 644 {} \;
+  else
+    echo "$1 is not a directory."
+  fi
+}
+
+# go to google for a definition
+g() {
+  local LNG=$(echo $LANG | cut -d '_' -f 1)
+  local CHARSET=$(echo $LANG | cut -d '.' -f 2)
+  lynx -accept_all_cookies -dump -hiddenlinks=ignore -nonumbers -assume_charset="$CHARSET" -display_charset="$CHARSET" "http://www.google.com/search?hl=${LNG}&q=define%3A+${1}&btnG=Google+Search" | grep -m 5 -C 2 -A 5 -w "*" > /tmp/deleteme
+  if [ ! -s /tmp/deleteme ]; then
+    echo "Sorry, google doesn't know this one..."
+  else
+    cat /tmp/deleteme | grep -v Search
+    echo ""
+  fi
+  rm -f /tmp/deleteme
+}
+
+# absbuild - quickly build and upgrade a pkg from ABS
+# usage: absbuild <pkgname>
+absbuild() {
+  ABSPATH=`find /var/abs -type d -name $1`
+  mkdir -p ~/.abs/$1
+  cp -R $ABSPATH/* ~/.abs/$1
+  cd ~/.abs/$1
+  $EDITOR PKGBUILD
+}
+
+# absfind - quickly locate and cat an ABS PKGBUILD
+# usage: absfind <pkgname>
+absfind() {
+  ABSPATH=`find /var/abs -type d -name $1`
+  ls $ABSPATH
+  cat $ABSPATH/PKGBUILD
+}
+
+
+# send public key to remote server
+# usage: sendkey <user@remotehost>
+sendkey() {
+  if [ $# -ne 1 ]; then
+    ssh $1 'cat >> ~/.ssh/authorized_keys' < ~/.ssh/id_dsa.pub
+  fi
+}
+
+# start, stop, restart, reload - simple daemon management
+# usage: start <daemon-name>
+start() {
+  for arg in $*; do
+    sudo /etc/rc.d/$arg start
+  done
+}
+
+stop() {
+  for arg in $*; do
+    sudo /etc/rc.d/$arg stop
+  done
+}
+
+restart() {
+  for arg in $*; do
+    sudo /etc/rc.d/$arg restart
+  done
+}
+
+reload() {
+  for arg in $*; do
+    sudo /etc/rc.d/$arg reload
+  done
+}
+
+# works like locate + cd combined
+# goes to the directory where the file/directory is located
+cdf() { cd "$(dirname "$(locate "$1" | head -n 1)")" ; }
+
+# find a file, given its content
+findcontent() {
+  if [ -n "$2" ]; then
+    find "$1" -type f -exec grep -qI "$2" {} \; -print
+  else
+    find "./" -type f -exec grep -qI "$1" {} \; -print
+  fi
+}
+
+VGA() {
+  CONKY=`pidof conky`
+  PYPANEL=`pidof -x pypanel`
+  kill $CONKY
+  kill $PYPANEL
+  sed -i 's/minimum_size\ 1024/minimum_size\ 1280/' $HOME/.conkyrc
+  xrandr --newmode "1280x1024"  109.00  1280 1368 1496 1712  1024 1027 1034 1063 -hsync +vsync
+  xrandr --addmode VGA1 "1280x1024"
+  xrandr --output VGA1 --mode "1280x1024" --output LVDS1 --off
+  conky &>/dev/null &
+  pypanel &>/dev/null &
+}
+
+LVDS() {
+  CONKY=`pidof conky`
+  PYPANEL=`pidof -x pypanel`
+  kill $CONKY
+  kill $PYPANEL
+  sed -i 's/minimum_size\ 1280/minimum_size\ 1024/' $HOME/.conkyrc
+  xrandr --output LVDS1 --mode "1024x600" --output LVDS1
+  xrandr --output VGA1 --off
+  conky &>/dev/null &
+  pypanel &>/dev/null &
+}

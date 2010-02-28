@@ -1,0 +1,49 @@
+URxvt*title: tiny
+
+URxvt*urlLauncher: chromium
+
+# no scrollbar
+URxvt*scrollBar: false
+
+# geometry and font
+URxvt*geometry: 80×25
+URxvt*font: xft:terminus:pixelsize=12
+URxvt*boldfont: xft:terminus:pixelsize=12
+
+URxvt*loginShell:true
+
+# change default colors
+URxvt*background: #080808
+URxvt*foreground: #A8A8A8
+
+# Black
+URxvt*color0:  #262626
+URxvt*color8:  #252525
+
+# Red
+URxvt*color1:  #C12121
+URxvt*color9:  #E50E0E
+
+# Green
+URxvt*color2:  #597b20
+URxvt*color10: #89b83f
+
+# Yellow
+URxvt*color3:  #Ded838
+URxvt*color11: #efef60
+
+# Blue
+URxvt*color4:  #265997
+URxvt*color12: #3F6FD0
+
+# Magenta
+URxvt*color5:  #706c9a
+URxvt*color13: #826ab1
+
+# Cyan
+URxvt*color6:  #69a2b0
+URxvt*color14: #a1cdcd
+
+# White
+URxvt*color7:  #BBBBBB
+URxvt*color15: #EEEEEF

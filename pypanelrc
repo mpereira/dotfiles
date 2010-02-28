@@ -1,0 +1,86 @@
+VERSION = 2.4
+
+BG_COLOR    = "0x222222"
+TASK_COLOR      = "0xf8f8ff"
+FOCUSED_COLOR   = "0x99ccff"
+SHADED_COLOR    = "0xf8f8ff"
+MINIMIZED_COLOR = "0xf8f8ff"
+DESKTOP_COLOR   = "0x33ff00"
+CLOCK_COLOR    = "0xf8f8ff"
+LINE_COLOR    = "0x000000"
+
+TASK_SHADOW_COLOR    = "0xFFFFFF"
+FOCUSED_SHADOW_COLOR    = "0xFFFFFF"
+SHADED_SHADOW_COLOR    = "0xFFFFFF"
+MINIMIZED_SHADOW_COLOR    = "0xFFFFFF" 
+DESKTOP_SHADOW_COLOR    = "0xFFFFFF"
+CLOCK_SHADOW_COLOR    = "0xFFFFFF"
+
+P_LOCATION    = 0        # panel placement: 0 = top, 1 = bottom
+P_WIDTH        = 0        # panel width: 0 = full screen width
+P_START        = 0        # starting X coordinate of the panel
+P_SPACER    = 10        # spacing between panel objects
+P_HEIGHT    = 16
+P_L_BUFF        = 2
+P_R_BUFF        = 2
+P_T_BUFF        = 4
+P_B_BUFF        = 4
+
+I_HEIGHT    = 14        # application icon height
+I_WIDTH        = 14        # application icon Width 
+APPL_I_HEIGHT    = 14        # application launcher icon height
+APPL_I_WIDTH    = 14        # application launcher icon width
+TRAY_I_HEIGHT    = 14        # system tray icon height
+TRAY_I_WIDTH    = 14        # system tray icon width
+
+CLOCK_FORMAT    = "%a %d de %b, %l:%M %p"
+CLOCK_DELAY    = 20
+
+HIDE_LIST    = [""]
+HIDDEN_SIZE     = 2
+
+FONT        = "terminus-6"
+
+
+SHOWALL        = 0        # show windows from all desktops
+SHOWMINIMIZED    = 0        # only show minimized windows
+SHADE        = 255
+
+ABOVE        = 1        # panel is always above other apps
+APPICONS    = 1        # show application icons
+AUTOHIDE    = 0        # autohide uses the CLOCK_DELAY timer above
+SHADOWS        = 0        # show text shadows
+SHOWLINES    = 0        # show object seperation lines
+SHOWBORDER    = 1        # show a border around the panel
+
+DESKTOP_NAMES    = ["[foo]", "[bar]", "[baz]"]
+
+# Order
+
+DESKTOP        = 1
+TASKS        = 2
+CLOCK        = 5
+TRAY        = 4
+LAUNCHER    = 0
+
+def desktopButtonEvent(pp, button):
+    pass
+
+def taskButtonEvent(pp, button, task):
+    if button == 1:
+        pp.taskFocus(task)
+    elif button == 2:
+        task.obj.destroy()
+    elif button == 3:
+        pp.toggleShade(task)
+    elif button == 4:
+        pp.taskRaise(task, focus=1)
+    elif button == 5:
+        pp.taskLower(task, focus=0)
+
+def clockButtonEvent(pp, button):
+		pass
+#    pp.showDesktop()
+
+def panelButtonEvent(pp, button):
+    pass

@@ -1,0 +1,57 @@
+# ~/.conkyrc
+
+color0 F8F8FF  # Ghost white
+color1 99ccff  # azul claro
+color2 33ff00  # verde claro
+color3 ff3300  # vermelho claro
+color4 8B0000  # Dark red
+color5 008080  # Teal
+color6 333333  #
+color7 C8C8FF  #  (COOL)
+color8 FFFFCC  #  (WARM)
+color9 FCCCCC  #  (HOT)
+
+background no
+use_xft yes
+xftfont terminus:size=6
+
+xftalpha 0.5
+
+mpd_host localhost
+mpd_port 6600
+#mpd_password tinker_bell
+
+update_interval 1
+total_run_times 0
+own_window no
+own_window_type desktop
+own_window_transparent no
+own_window_colour 222222
+own_window_hints undecorated,above,sticky,skip_taskbar,skip_pager
+
+double_buffer yes
+maximum_width 1280
+minimum_size 1280 16
+draw_shades no
+draw_outline no
+draw_borders no
+draw_graph_borders yes
+border_inner_margin 0
+border_width 0
+
+default_color f8f8ff
+
+alignment bottom_left
+
+gap_x 0
+gap_y 0
+
+no_buffers yes
+uppercase no
+cpu_avg_samples 2
+net_avg_samples 2
+override_utf8_locale yes
+use_spacer left
+
+TEXT
+  ${color1}[cpu]${color} $cpu% ${color1}[ram]${color} $mem ${color1}[bat]${color} ${battery BAT1} ${color1}[ssd]${color} ${fs_used_perc /}% ${if_mounted /media/disk}${color1}[flash]${color} ${fs_used_perc /media/disk}% ${endif}${if_up eth0}${color1}[eth0]${color} ${addr eth0} ${color3}${downspeedf eth0}k/s ${color}${color2}${upspeedf eth0}k/s${color} ${endif}${if_up wlan0}${color1}[wlan0]${color} ${addr wlan0} ${color3}${downspeedf wlan0}k/s${color}${color2}${upspeedf wlan0}k/s${color}${endif} ${alignr} $uptime $processes processes #${if_mpd_playing} $mpd_smart ${endif}
