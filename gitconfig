@@ -1,7 +1,13 @@
 [user]
-  name = murilasso
-  email = murilo.soares3@gmail.com
-[color]
-  ui = auto
+	name = murilasso
+	email = murilo.soares3@gmail.com
+[core]
+	editor = vim
 [merge]
-  verbosity = 5
+	tool=vimdiff
+[color]
+	ui = true
+	diff = auto
+	status = auto
+	branch = auto
+	interactive = auto
