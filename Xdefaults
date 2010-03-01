@@ -1,49 +1,61 @@
-URxvt*title: tiny
+# sets $TERM
+URxvt*termname: rxvt-unicode
+# terminal title
+URxvt*title:    Terminal
 
-URxvt*urlLauncher: chromium
-
-# no scrollbar
-URxvt*scrollBar: false
+URxvt*internalBorder: 2
+URxvt*scrollBar:      false
+URxvt*saveLines:      10000
+URxvt*visualBell:     false
+URxvt*loginShell:     true
 
 # geometry and font
 URxvt*geometry: 80×25
-URxvt*font: xft:terminus:pixelsize=12
+URxvt*font:     xft:terminus:pixelsize=12
 URxvt*boldfont: xft:terminus:pixelsize=12
 
-URxvt*loginShell:true
+# enabling clickable urls on the terminal
+URxvt*perl-ext-common: default,matcher
+URxvt*matcher.button:  1
+URxvt*urlLauncher:     chromium
+URxvt*colorUL:         #86a2be
+
+# don't jump to the bottom when tty gets new lines or output
+urxvt*scrollWithBuffer: true
+urxvt*scrollTtyOutput:  true
 
 # change default colors
-URxvt*background: #080808
-URxvt*foreground: #A8A8A8
+URxvt*background: #000000
+URxvt*foreground: #b2b2b2
 
-# Black
+# black
 URxvt*color0:  #262626
 URxvt*color8:  #252525
 
-# Red
+# red
 URxvt*color1:  #C12121
 URxvt*color9:  #E50E0E
 
-# Green
+# green
 URxvt*color2:  #597b20
 URxvt*color10: #89b83f
 
-# Yellow
+# yellow
 URxvt*color3:  #Ded838
 URxvt*color11: #efef60
 
-# Blue
+# blue
 URxvt*color4:  #265997
 URxvt*color12: #3F6FD0
 
-# Magenta
+# magenta
 URxvt*color5:  #706c9a
 URxvt*color13: #826ab1
 
-# Cyan
+# cyan
 URxvt*color6:  #69a2b0
 URxvt*color14: #a1cdcd
 
-# White
+# white
 URxvt*color7:  #BBBBBB
 URxvt*color15: #EEEEEF
