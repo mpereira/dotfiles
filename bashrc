@@ -1,5 +1,3 @@
-# ~/.bashrc
-
 export EDITOR=vim
 export HISTSIZE=10000
 export HISTCONTROL=ignoredups

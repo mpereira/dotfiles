@@ -1,5 +1,3 @@
-# ~/.bash_profile
-
 test -f $HOME/.bashrc && . $HOME/.bashrc
 test -f $HOME/.profile && . $HOME/.profile
 
