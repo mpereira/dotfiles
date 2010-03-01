@@ -1,15 +1,13 @@
-# ~/.conkyrc
-
-color0 F8F8FF  # Ghost white
-color1 99ccff  # azul claro
-color2 33ff00  # verde claro
-color3 ff3300  # vermelho claro
-color4 8B0000  # Dark red
-color5 008080  # Teal
-color6 333333  #
-color7 C8C8FF  #  (COOL)
-color8 FFFFCC  #  (WARM)
-color9 FCCCCC  #  (HOT)
+color0 F8F8FF
+color1 99ccff
+color2 33ff00
+color3 ff3300
+color4 8B0000
+color5 008080
+color6 333333
+color7 C8C8FF
+color8 FFFFCC
+color9 FCCCCC
 
 background no
 use_xft yes
