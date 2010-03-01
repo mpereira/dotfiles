@@ -185,13 +185,6 @@ settings = {
     nick = "murilasso";
   };
 
-  "fe-common/core" = {
-    autolog = "yes";
-    autolog_path = "~/irclogs/$tag/$0-%m%y.log";
-    show_nickmode_empty = "yes";
-    theme = "default";
-  };
-
   "fe-text" = {
     colors = "yes";
     autostick_split_windows = "yes";
