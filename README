@@ -1,8 +1,1 @@
 My personal dotfiles, made of pure awesome.
-
-Installation
-git clone git://github.com/murilasso/dotfiles ~/.dotfiles
-cd ~/.dotfiles
-rake install
-
-This will ask before overwriting your files.
