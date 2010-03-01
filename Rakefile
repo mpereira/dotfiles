@@ -1,5 +1,4 @@
 require 'rake'
-require 'erb'
 
 desc "install the dot files into user's home directory"
 task :install do
@@ -7,44 +6,38 @@ task :install do
   Dir['*'].each do |file|
     next if %w[Rakefile README].include? file
 
-    if File.exist?(File.join(ENV['HOME'], ".#{file.sub('.erb', '')}"))
+    if File.exist?(File.join(ENV['HOME'], ".#{file}"))
       if replace_all
-        replace_file(file)
+        install_file(file)
       else
-        print "overwrite ~/.#{file.sub('.erb', '')}? [ynaq] "
+        print "overwrite ~/.#{file}? [yNaq] "
         case $stdin.gets.chomp
         when 'a'
           replace_all = true
-          replace_file(file)
+          install_file(file)
         when 'y'
-          replace_file(file)
+          install_file(file)
         when 'q'
           exit
         else
-          puts "skipping ~/.#{file.sub('.erb', '')}"
+          puts "skipping ~/.#{file}"
         end
       end
     else
-      link_file(file)
+      install_file(file)
     end
   end
 end
 
-def replace_file(file)
-  system %Q{rm "$HOME/.#{file.sub('.erb', '')}"}
-  link_file(file)
-end
-
-def link_file(file)
-  if file =~ /.erb$/
-    puts "generating ~/.#{file.sub('.erb', '')}"
-    File.open(
-      File.join(ENV['HOME'], ".#{file.sub('.erb', '')}"), 'w'
-    ) do |new_file|
-      new_file.write ERB.new(File.read(file)).result(binding)
+def install_file(file)
+  if File.directory?(file)
+    if File.exists?("#{ENV['HOME']}/.#{file}")
+      system %Q{cp -r #{file}/* "$HOME/.#{file}"}
+    else
+      system %Q{cp -r #{file} "$HOME/.#{file}"}
     end
   else
-    puts "linking ~/.#{file}"
-    system %Q{ln -s "$PWD/#{file}" "$HOME/.#{file}"}
+    system %Q{cp #{file} "$HOME/.#{file}"}
   end
+  puts "installing ~/.#{file}"
 end
