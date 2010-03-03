@@ -11,3 +11,6 @@
 	status = auto
 	branch = auto
 	interactive = auto
+[github]
+	user = murilasso
+	token = deadbeefdeadbeefdeadbeefdeadbeefdeadbeef
