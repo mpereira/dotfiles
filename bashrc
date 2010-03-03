@@ -58,7 +58,7 @@ WHITE_BACKGROUND='\e[47m'
 COLORS_RESET='\e[0m'
 
 git_branch() {
-  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\ (\1)/'
 }
 
-export PS1="\[$BLUE\]\W \[$RED\]\$( git_branch) \[$GREEN\]\$\[$COLORS_RESET\] "
+export PS1="\[$BLUE\]\W\[$RED\]\$(git_branch) \[$GREEN\]\$\[$COLORS_RESET\] "
