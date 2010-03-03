@@ -1,5 +1,7 @@
-URxvt*termname: rxvt        ! sets $TERM
-URxvt*title:    Terminal    ! terminal title
+! sets $TERM
+URxvt*termname: rxvt
+! terminal title
+URxvt*title:    Terminal
 
 URxvt*internalBorder: 2
 URxvt*scrollBar:      false
