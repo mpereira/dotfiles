@@ -1,11 +1,11 @@
 vo=xv
 double="yes"
-monitoraspect="16:9"    # keeps 4:3 content from stretching
+#monitoraspect="16:9"    # keeps 4:3 content from stretching
 geometry=50%:50%        # video window opens in the center of the screen
 xy=800                  # rezise the video to 800px wide, keeping aspect ratio
 
 ao="alsa"
 
-really-quiet="1"        # very very little console output
+#really-quiet="1"        # very very little console output
 framedrop="1"           # for slow machines
 stop-xscreensaver="yes"
