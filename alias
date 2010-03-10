@@ -57,6 +57,8 @@ alias yao="yaourt"
 
 alias comp="ssh murilo@ssh.comp.ufscar.br"
 alias salmon="ssh murilo@dev.sa2s.us -A"
+alias friskies="ssh murilo@qa.sa2s.us -A"
+alias alpo="ssh murilo@ua.sa2s.us -A"
 
 # work #########################################################################
 
