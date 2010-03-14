@@ -2,7 +2,7 @@ require 'rake'
 
 desc "Install the dotfiles into the home directory"
 task :install do
-  $dest_dir = File.join(ENV['HOME'], 'ego', 'dotfiles', 'foo')
+  $dest_dir = File.join(ENV['HOME'])
 
   Dir['*'].each do |entry|
     next if %w[Rakefile foo README].include? entry
