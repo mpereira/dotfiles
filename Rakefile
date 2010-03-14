@@ -3,6 +3,7 @@ require 'rake'
 desc "Install the dotfiles into the home directory"
 task :install do
   $dest_dir = File.join(ENV['HOME'])
+  $replace_all = false
 
   Dir['*'].each do |entry|
     next if %w[Rakefile foo README].include? entry
@@ -15,8 +16,11 @@ task :install do
 end
 
 def ask_input(entry, dot_required = false)
-  print "overwrite ~/.#{entry}? [ynq] "
+  print "overwrite ~/.#{entry}? [ynaq] "
   case $stdin.gets.chomp
+  when 'a'
+    $replace_all = true
+    replace(entry, dot_required)
   when 'y'
     replace(entry, dot_required)
   when 'q'
@@ -49,9 +53,9 @@ end
 def handle_replace(entry)
   if File.directory?(entry)
     Dir["#{entry}/*"].each do |sub_entry|
-      ask_input(sub_entry, true)
+      $replace_all ? replace(sub_entry, true) : ask_input(sub_entry, true)
     end
   else
-    ask_input(entry, true)
+    $replace_all ? replace(entry, true) : ask_input(entry, true)
   end
 end
