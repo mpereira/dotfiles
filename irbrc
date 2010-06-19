@@ -1,4 +1,4 @@
-# setup: sudo gem install pp hirb wirble what_methods
+# setup: gem install awesome_print hirb wirble what_methods
 
 # tab completion
 require 'irb/completion'
