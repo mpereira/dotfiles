@@ -1,1 +1,1 @@
-exec openbox-session
+exec ck-launch-session openbox-session
