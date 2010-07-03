@@ -83,7 +83,7 @@ function mkmine() { sudo chown -R ${USER} ${1:-.}; }
 function remindme() {
   delay=$1
   shift
-  sleep $delay ; zenity --info --text "$*" > /dev/null & 
+  sleep $delay ; zenity --info --text "$*" > /dev/null &
 }
 
 # s - gnu screen function
