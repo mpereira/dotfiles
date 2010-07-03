@@ -51,7 +51,17 @@ alias pacs="pacman -Sl | cut -d' ' -f2 | grep "
 alias pac="pacsearch"
 alias pacq="paclocalsearch"
 alias pacinfo="pacman -Si"
-alias yao="yaourt"
+
+# yaourt #######################################################################
+
+alias yaoup="yaourt -Syyu --aur"
+alias yaow="yaourt -Qu"
+alias yaoin="yaourt -S --noconfirm"
+alias yaout="yaourt -Rcsn"
+alias yaos="yaourt -Sl | cut -d' ' -f1 | grep "
+alias yao="yaourt -Ss"
+alias yaoq="yaourt -Qs"
+alias yaoinfo="yaourt -Si"
 
 # remote boxes #################################################################
 
