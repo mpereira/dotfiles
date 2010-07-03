@@ -18,7 +18,7 @@ alias c="clear"
 alias sps="ps aux | grep -v grep | grep"
 alias grep="grep --color=auto --exclude-dir=\.git"
 alias egrep="egrep --color=auto"
-alias fixres="xrandr --size $1"
+alias res="xrandr --size $1"
 alias getip="echo `wget www.whatismyip.com/automation/n09230945.asp -O - -q`"
 alias psm="echo '%CPU %MEM   PID COMMAND' && ps hgaxo %cpu,%mem,pid,comm | sort -nrk1 | head -n 10 | sed -e 's/-bin//' | sed -e 's/-media-play//'"
 alias timer='time read -p "Press enter to stop"'
