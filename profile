@@ -1,2 +1,1 @@
-export PATH=$PATH:$HOME/.bin
-export INTEL_BATCH=1
+export PATH=$PATH:$HOME/bin:/usr/local/bin
