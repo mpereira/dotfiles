@@ -17,8 +17,8 @@ own_window_colour 222222
 own_window_hints undecorated,above,sticky,skip_taskbar,skip_pager
 
 double_buffer yes
-maximum_width 1280
-minimum_size 1280 16
+maximum_width 1260
+minimum_size 1260 16
 draw_shades no
 draw_outline no
 draw_borders no
@@ -30,7 +30,7 @@ default_color f8f8ff
 
 alignment bottom_left
 
-gap_x 0
+gap_x 10
 gap_y 0
 
 no_buffers yes
@@ -41,7 +41,7 @@ override_utf8_locale yes
 use_spacer left
 
 TEXT
- ${color0}cpu:${color} ${cpu}% \
+${color0}cpu:${color} ${cpu}% \
 ${color0}ram:${color} ${mem} \
 ${color0}bat:${color} ${battery_bar 8,20 BAT0} ${battery_time BAT0} \
 ${color0}root:${color} ${fs_used_perc /}% \
