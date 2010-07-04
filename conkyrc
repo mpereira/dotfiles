@@ -52,4 +52,32 @@ override_utf8_locale yes
 use_spacer left
 
 TEXT
-  ${color1}[cpu]${color} ${cpu}% ${color1}[ram]${color} ${mem} ${color1}[bat]${color} ${battery_bar 8,20 BAT0} ${battery_time BAT0} ${color1}[root]${color} ${fs_used_perc /}% ${color1}[home]${color} ${fs_used_perc /home}% ${if_mounted /media/disk}${color1}[flash]${color} ${fs_used_perc /media/disk}% ${endif}${if_existing /sys/class/net/eth0/operstate down}${color1}[eth0]${color} ${addr eth0} ${color3}${downspeedf eth0}k/s ${color}${color2}${upspeedf eth0}k/s${color} ${endif}${if_existing /sys/class/net/wlan0/operstate down}${color1}[${wireless_essid wlan0}]${color} ${addr wlan0} ${color3}${downspeedf wlan0}k/s${color}${color2}${upspeedf wlan0}k/s${color}${endif} ${alignr}${uptime} ${if_mpd_playing} ${mpd_smart} ${endif}
+ ${color1}[cpu]${color} ${cpu}% \
+${color1}[ram]${color} ${mem} \
+${color1}[bat]${color} ${battery_bar 8,20 BAT0} ${battery_time BAT0} \
+${color1}[root]${color} ${fs_used_perc /}% \
+${color1}[home]${color} ${fs_used_perc /home}% \
+${if_mounted /media/disk}\
+${color1}[disk0]${color} ${fs_used_perc /media/disk}% \
+${endif}\
+${if_mounted /media/disk-1}\
+${color1}[disk1]${color} ${fs_used_perc /media/disk-1}% \
+${endif}\
+${if_mounted /media/disk-2}\
+${color1}[disk2]${color} ${fs_used_perc /media/disk-2}% \
+${endif}\
+${if_mounted /media/disk-3}\
+${color1}[disk3]${color} ${fs_used_perc /media/disk-3}% \
+${endif}\
+${if_existing /proc/net/route wlan0}\
+${color1}[eth0]${color} ${addr eth0} ${color3}${downspeedf eth0}kB/s ${color}${color2}${upspeedf eth0}kB/s${color} \
+${endif}\
+${if_existing /proc/net/route eth0}\
+${color1}[${wireless_essid wlan0}]${color} ${addrs wlan0} ${color3}${downspeedf wlan0}k/s${color}${color2}${upspeedf wlan0}k/s${color} \
+${endif}\
+${color1}[up]${color} ${uptime_short} \
+${color1}[avg]${color} ${loadavg} \
+${alignr}\
+${if_mpd_playing}\
+${mpd_smart 50} (${mpd_elapsed}/${mpd_length}) \
+${endif}
