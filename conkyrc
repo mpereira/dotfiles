@@ -2,42 +2,35 @@ color0 666666 # dark grey
 color1 33ff00 # green
 color2 ff3300 # red
 
+default_color white
+
+# avoid screen flicker
+double_buffer
+
+# font
+use_xft
+xftfont terminus:size=9
+xftalpha 1
+
+# fork it to background when starting
 background yes
-font terminus:size=9
 
-mpd_host localhost
-mpd_port 6600
+# update stats every half of second
+update_interval 0.5
 
-update_interval 1
-total_run_times 0
-own_window no
-own_window_type desktop
-own_window_transparent no
-own_window_colour 222222
-own_window_hints undecorated,above,sticky,skip_taskbar,skip_pager
-
-double_buffer yes
+# width, height and positioning
 maximum_width 1260
 minimum_size 1260 16
-draw_shades no
-draw_outline no
-draw_borders no
-draw_graph_borders yes
-border_inner_margin 0
-border_width 0
-
-default_color f8f8ff
-
-alignment bottom_left
-
 gap_x 10
 gap_y 0
 
-no_buffers yes
-uppercase no
-cpu_avg_samples 2
-net_avg_samples 2
-override_utf8_locale yes
+# only shows 'if_up' block if its binded to an address
+if_up_strictness address
+
+# MiB -> M, GiB -> G, etc.
+short_units
+
+# adds space around some objects to avoid them to move things around
 use_spacer left
 
 TEXT
@@ -58,15 +51,15 @@ ${endif}\
 ${if_mounted /media/disk-3}\
 ${color0}disk3:${color} ${fs_used_perc /media/disk-3}% \
 ${endif}\
-${if_existing /proc/net/route wlan0}\
+${if_up eth0}\
 ${color0}eth0:${color} ${addr eth0} ${color2}${downspeedf eth0}kB/s ${color}${color1}${upspeedf eth0}kB/s${color} \
 ${endif}\
-${if_existing /proc/net/route eth0}\
+${if_up wlan0}\
 ${color0}${wireless_essid wlan0}:${color} ${addrs wlan0} ${color2}${downspeedf wlan0}k/s${color}${color1}${upspeedf wlan0}k/s${color} \
 ${endif}\
 ${color0}up:${color} ${uptime_short} \
 ${color0}avg:${color} ${loadavg} \
 ${alignr}\
 ${if_mpd_playing}\
-${mpd_smart 50} (${mpd_elapsed}/${mpd_length}) \
+${mpd_smart 50} (${mpd_elapsed}/${mpd_length})\
 ${endif}
