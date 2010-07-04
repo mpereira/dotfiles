@@ -2,11 +2,8 @@ color0 666666 # dark grey
 color1 33ff00 # green
 color2 ff3300 # red
 
-background no
-use_xft yes
-xftfont terminus:size=6
-
-xftalpha 0.5
+background yes
+font terminus:size=9
 
 mpd_host localhost
 mpd_port 6600
