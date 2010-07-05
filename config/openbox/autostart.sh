@@ -2,6 +2,9 @@
 conky &> /dev/null &
 pypanel &> /dev/null &
 
+# set wallpaper
+feh --bg-scale /home/murilo/wallpaper/cubes.jpg &> /dev/null &
+
 # set keyboard layout to us international
 setxkbmap us -variant altgr-intl &> /dev/null &
 
