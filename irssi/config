@@ -18,12 +18,7 @@ channels = (
   { name = "#archlinux-br"; chatnet = "freenode"; autojoin = "Yes"; },
   { name = "##c"; chatnet = "freenode"; autojoin = "Yes"; },
   { name = "#ruby"; chatnet = "freenode"; autojoin = "Yes"; },
-  { name = "#erlang"; chatnet = "freenode"; autojoin = "Yes"; },
-  { name = "##javascript"; chatnet = "freenode"; autojoin = "Yes"; },
-  { name = "#RubyOnRails"; chatnet = "freenode"; autojoin = "Yes"; },
-  { name = "#rspec"; chatnet = "freenode"; autojoin = "Yes"; },
-  { name = "#cucumber"; chatnet = "freenode"; autojoin = "Yes"; },
-
+  { name = "#sonian"; chatnet = "freenode"; autojoin = "Yes"; },
 );
 
 aliases = {
