@@ -5,7 +5,7 @@ TASK_COLOR      = "0xffffff"
 FOCUSED_COLOR   = "0x99ccff"
 SHADED_COLOR    = "0xffffff"
 MINIMIZED_COLOR = "0xffffff"
-DESKTOP_COLOR   = "0xffffff"
+DESKTOP_COLOR   = "0x33ff00"
 CLOCK_COLOR     = "0xffffff"
 LINE_COLOR      = "0xffffff"
 
