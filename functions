@@ -202,12 +202,11 @@ findcontent() {
   fi
 }
 
-VGA() {
+vga () {
   CONKY=`pidof conky`
   PYPANEL=`pidof -x pypanel`
   kill $CONKY
   kill $PYPANEL
-  sed -i 's/minimum_size\ 1024/minimum_size\ 1280/' $HOME/.conkyrc
   xrandr --newmode "1280x1024"  109.00  1280 1368 1496 1712  1024 1027 1034 1063 -hsync +vsync
   xrandr --addmode VGA1 "1280x1024"
   xrandr --output VGA1 --mode "1280x1024" --output LVDS1 --off
@@ -215,13 +214,12 @@ VGA() {
   pypanel &>/dev/null &
 }
 
-LVDS() {
+lvds () {
   CONKY=`pidof conky`
   PYPANEL=`pidof -x pypanel`
   kill $CONKY
   kill $PYPANEL
-  sed -i 's/minimum_size\ 1280/minimum_size\ 1024/' $HOME/.conkyrc
-  xrandr --output LVDS1 --mode "1024x600" --output LVDS1
+  xrandr --output LVDS1 --mode "1280x800" --output LVDS1
   xrandr --output VGA1 --off
   conky &>/dev/null &
   pypanel &>/dev/null &
