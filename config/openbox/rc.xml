@@ -281,12 +281,7 @@
     </keybind>
     <keybind key="C-A-C">
       <action name="execute">
-        <execute>cheese</execute>
-      </action>
-    </keybind>
-    <keybind key="C-A-T">
-      <action name="execute">
-        <execute>urxvt</execute>
+        <execute>chromium</execute>
       </action>
     </keybind>
     <keybind key="C-A-E">
@@ -294,14 +289,9 @@
         <execute>emesene</execute>
       </action>
     </keybind>
-    <keybind key="C-A-M">
+    <keybind key="C-A-G">
       <action name="execute">
-        <execute>midori</execute>
-      </action>
-    </keybind>
-    <keybind key="C-A-P">
-      <action name="execute">
-        <execute>pcmanfm</execute>
+        <execute>gvim</execute>
       </action>
     </keybind>
     <keybind key="C-A-I">
@@ -309,24 +299,24 @@
         <execute>picasa</execute>
       </action>
     </keybind>
-    <keybind key="C-A-O">
+    <keybind key="C-A-K">
       <action name="execute">
-        <execute>wine /home/murilo/.bin/oneclick.exe</execute>
+        <execute>skype</execute>
       </action>
     </keybind>
-    <keybind key="C-A-F">
+    <keybind key="C-A-P">
       <action name="execute">
-        <execute>firefox</execute>
-      </action>
-    </keybind>
-    <keybind key="C-A-G">
-      <action name="execute">
-        <execute>gvim</execute>
+        <execute>pcmanfm</execute>
       </action>
     </keybind>
     <keybind key="C-A-S">
       <action name="execute">
         <execute>sonata</execute>
+      </action>
+    </keybind>
+    <keybind key="C-A-T">
+      <action name="execute">
+        <execute>urxvt</execute>
       </action>
     </keybind>
     <keybind key="A-Print">
