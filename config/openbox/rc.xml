@@ -403,11 +403,11 @@
         <action name="FocusToBottom"/>
         <action name="Unfocus"/>
       </mousebind>
-      <!--	
+      <!--
       <mousebind button="A-Up" action="Click">
         <action name="DesktopPrevious"/>
       </mousebind>
-			<mousebind button="A-Down" action="Click">
+      <mousebind button="A-Down" action="Click">
         <action name="DesktopNext"/>
       </mousebind>
       <mousebind button="C-A-Up" action="Click">
@@ -421,8 +421,8 @@
       </mousebind>
       <mousebind button="A-S-Down" action="Click">
         <action name="SendToDesktopNext"/>
-			</mousebind>
-			-->
+      </mousebind>
+      -->
     </context>
     <context name="Titlebar">
       <mousebind button="Left" action="Press">
@@ -649,8 +649,8 @@
       </mousebind>
     </context>
     <context name="Desktop">
-      <!--	
-			<mousebind button="Up" action="Click">
+      <!--
+      <mousebind button="Up" action="Click">
         <action name="DesktopPrevious"/>
       </mousebind>
       <mousebind button="Down" action="Click">
@@ -668,7 +668,7 @@
       <mousebind button="C-A-Down" action="Click">
         <action name="DesktopNext"/>
       </mousebind>
-			-->
+      -->
       <mousebind button="Left" action="Press">
         <action name="Focus"/>
         <action name="Raise"/>
@@ -748,7 +748,7 @@
   # order that they appear in this list
 
 
-    # each element can be left out or set to 'default' to specify to not 
+    # each element can be left out or set to 'default' to specify to not
     # change that attribute of the window
 
     <decor>yes</decor>
