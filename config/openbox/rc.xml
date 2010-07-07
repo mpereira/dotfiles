@@ -359,6 +359,11 @@
         <execute>amixer -q sset Master toggle</execute>
       </action>
     </keybind>
+    <keybind key="C-S-M">
+      <action name="execute">
+        <execute>amixer -q sset Master toggle</execute>
+      </action>
+    </keybind>
   </keyboard>
   <mouse>
     <dragThreshold>0</dragThreshold>
