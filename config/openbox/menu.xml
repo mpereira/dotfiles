@@ -1,198 +1,198 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openbox_menu xmlns="http://openbox.org/3.4/menu">
-	<menu id="system-menu" label="system">
-		<item label="obconf">
-			<action name="Execute">
-				<command>
-					obconf
-				</command>
-				<startupnotify>
-					<enabled>
-						yes
-					</enabled>
-				</startupnotify>
-			</action>
-		</item>
-		<item label="obmenu">
-			<action name="Execute">
-				<command>
-					obmenu	
-				</command>
-				<startupnotify>
-					<enabled>
-						yes
-					</enabled>
-				</startupnotify>
-			</action>
-		</item>
-		<item label="obkeymap">
-			<action name="Execute">
-				<execute>
-					urxvt -e xev
-				</execute>
-			</action>
-		</item>
-		<item label="lxappearance">
-			<action name="Execute">
-				<execute>
-					lxappearance
-				</execute>
-			</action>
-		</item>
-		<item label="wicd client">
-			<action name="Execute">
-				<execute>
-					wicd-client
-				</execute>
-			</action>
-		</item>
-		<item label="ossxmix">
-			<action name="Execute">
-				<execute>
-					ossxmix
-				</execute>
-			</action>
-		</item>
-		<separator/>
-		<item label="reconfigure">
-			<action name="Execute">
-				<execute>
-					openbox --reconfigure
-				</execute>
-			</action>
-		</item>
-	</menu>
-	<menu id="root-menu" label="openbox">
-		<separator label="Applications"/>
-		<item label="pcmanfm">
-			<action name="Execute">
-				<execute>
-					pcmanfm
-				</execute>
-			</action>
-		</item>
-		<item label="urxvt">
-			<action name="Execute">
-				<decor>
-					no
-				</decor>
-				<execute>
-					urxvt-unicode
-				</execute>
-			</action>
-		</item>
-		<item label="sonata">
-			<action name="Execute">
-				<execute>
-					sonata
-				</execute>
-			</action>
-		</item>
-		<item label="firefox">
-			<action name="Execute">
-				<execute>
-					firefox
-				</execute>
-			</action>
-		</item>
-		<item label="midori">
-			<action name="Execute">
-				<execute>
-					midori
-				</execute>
-			</action>
-		</item>
-		<item label="emesene">
-			<action name="Execute">
-				<execute>
-					emesene
-				</execute>
-			</action>
-		</item>
-		<item label="1clickmusic">
-			<action name="Execute">
-				<execute>
-					wine /home/murilo/scripts/oneclick.exe
-				</execute>
-			</action>
-		</item>
-		<item label="skype">
-			<action name="Execute">
-				<execute>
-					skype
-				</execute>
-			</action>
-		</item>
-		<item label="gvim">
-			<action name="Execute">
-				<execute>
-					gvim
-				</execute>
-			</action>
-		</item>
-		<item label="gimp">
-			<action name="Execute">
-				<execute>
-					gimp
-				</execute>
-			</action>
-		</item>
-		<item label="dia">
-			<action name="Execute">
-				<execute>
-					dia
-				</execute>
-			</action>
-		</item>
-		<item label="tuxguitar">
-			<action name="Execute">
-				<execute>
-					tuxguitar
-				</execute>
-			</action>
-		</item>
-		<item label="cheese">
-			<action name="Execute">
-				<execute>
-					cheese
-				</execute>
-			</action>
-		</item>
-		<separator label="System"/>
-		<menu id="configuration files" label="conf files">
-			<item label="rc.xml">
-				<action name="Execute">
-					<execute>
-						gvim ~/.config/openbox/rc.xml
-					</execute>
-				</action>
-			</item>
-			<item label="menu.xml">
-				<action name="Execute">
-					<execute>
-						gvim ~/.config/openbox/menu.xml
-					</execute>
-				</action>
-			</item>
-			<item label="autostart.sh">
-				<action name="Execute">
-					<execute>
-						gvim ~/.config/openbox/autostart.sh
-					</execute>
-				</action>
-			</item>
-		</menu>
-		<menu id="system-menu"/>
-		<separator/>
-		<item label="reboot">
-			<action name="Execute">
-				<execute>
-					sudo reboot
-				</execute>
-			</action>
-		</item>
-		<item label="logout">
-			<action name="SessionLogout"/>
-		</item>
-	</menu>
+  <menu id="system-menu" label="system">
+    <item label="obconf">
+      <action name="Execute">
+        <command>
+          obconf
+        </command>
+        <startupnotify>
+          <enabled>
+            yes
+          </enabled>
+        </startupnotify>
+      </action>
+    </item>
+    <item label="obmenu">
+      <action name="Execute">
+        <command>
+          obmenu
+        </command>
+        <startupnotify>
+          <enabled>
+            yes
+          </enabled>
+        </startupnotify>
+      </action>
+    </item>
+    <item label="obkeymap">
+      <action name="Execute">
+        <execute>
+          urxvt -e xev
+        </execute>
+      </action>
+    </item>
+    <item label="lxappearance">
+      <action name="Execute">
+        <execute>
+          lxappearance
+        </execute>
+      </action>
+    </item>
+    <item label="wicd client">
+      <action name="Execute">
+        <execute>
+          wicd-client
+        </execute>
+      </action>
+    </item>
+    <item label="ossxmix">
+      <action name="Execute">
+        <execute>
+          ossxmix
+        </execute>
+      </action>
+    </item>
+    <separator/>
+    <item label="reconfigure">
+      <action name="Execute">
+        <execute>
+          openbox --reconfigure
+        </execute>
+      </action>
+    </item>
+  </menu>
+  <menu id="root-menu" label="openbox">
+    <separator label="Applications"/>
+    <item label="pcmanfm">
+      <action name="Execute">
+        <execute>
+          pcmanfm
+        </execute>
+      </action>
+    </item>
+    <item label="urxvt">
+      <action name="Execute">
+        <decor>
+          no
+        </decor>
+        <execute>
+          urxvt-unicode
+        </execute>
+      </action>
+    </item>
+    <item label="sonata">
+      <action name="Execute">
+        <execute>
+          sonata
+        </execute>
+      </action>
+    </item>
+    <item label="firefox">
+      <action name="Execute">
+        <execute>
+          firefox
+        </execute>
+      </action>
+    </item>
+    <item label="midori">
+      <action name="Execute">
+        <execute>
+          midori
+        </execute>
+      </action>
+    </item>
+    <item label="emesene">
+      <action name="Execute">
+        <execute>
+          emesene
+        </execute>
+      </action>
+    </item>
+    <item label="1clickmusic">
+      <action name="Execute">
+        <execute>
+          wine /home/murilo/scripts/oneclick.exe
+        </execute>
+      </action>
+    </item>
+    <item label="skype">
+      <action name="Execute">
+        <execute>
+          skype
+        </execute>
+      </action>
+    </item>
+    <item label="gvim">
+      <action name="Execute">
+        <execute>
+          gvim
+        </execute>
+      </action>
+    </item>
+    <item label="gimp">
+      <action name="Execute">
+        <execute>
+          gimp
+        </execute>
+      </action>
+    </item>
+    <item label="dia">
+      <action name="Execute">
+        <execute>
+          dia
+        </execute>
+      </action>
+    </item>
+    <item label="tuxguitar">
+      <action name="Execute">
+        <execute>
+          tuxguitar
+        </execute>
+      </action>
+    </item>
+    <item label="cheese">
+      <action name="Execute">
+        <execute>
+          cheese
+        </execute>
+      </action>
+    </item>
+    <separator label="System"/>
+    <menu id="configuration files" label="conf files">
+      <item label="rc.xml">
+        <action name="Execute">
+          <execute>
+            gvim ~/.config/openbox/rc.xml
+          </execute>
+        </action>
+      </item>
+      <item label="menu.xml">
+        <action name="Execute">
+          <execute>
+            gvim ~/.config/openbox/menu.xml
+          </execute>
+        </action>
+      </item>
+      <item label="autostart.sh">
+        <action name="Execute">
+          <execute>
+            gvim ~/.config/openbox/autostart.sh
+          </execute>
+        </action>
+      </item>
+    </menu>
+    <menu id="system-menu"/>
+    <separator/>
+    <item label="reboot">
+      <action name="Execute">
+        <execute>
+          sudo reboot
+        </execute>
+      </action>
+    </item>
+    <item label="logout">
+      <action name="SessionLogout"/>
+    </item>
+  </menu>
 </openbox_menu>
