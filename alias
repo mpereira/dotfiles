@@ -53,12 +53,14 @@ alias pacq="paclocalsearch"
 alias pacinfo="pacman -Si"
 alias yao="yaourt"
 
-# ssh ##########################################################################
+# remote boxes #################################################################
 
-alias comp="ssh murilo@ssh.comp.ufscar.br"
-alias salmon="ssh murilo@dev.sa2s.us -A"
-alias friskies="ssh murilo@qa.sa2s.us -A"
 alias alpo="ssh murilo@ua.sa2s.us -A"
+alias comp="ssh murilo@ssh.comp.ufscar.br"
+alias dev="ssh murilo@dev.sa2s.us -A"
+alias friskies="ssh murilo@qa.sa2s.us -A"
+alias gliese="ssh murilo@69.164.194.202 -A"
+alias salmon="ssh murilo@salmon.sa2s.us -A"
 
 # work #########################################################################
 
