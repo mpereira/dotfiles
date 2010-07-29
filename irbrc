@@ -12,7 +12,7 @@ IRB.conf[:HISTORY_FILE] = "#{ENV['HOME']}/.irb_history"
 IRB.conf[:PROMPT_MODE] = :SIMPLE
 
 # load rubygems, awesome_print and a neat method finder
-%w[rubygems ap what_methods].each do |gem|
+%w[rubygems ap interactive_editor what_methods].each do |gem|
   begin
     require gem
   rescue LoadError
