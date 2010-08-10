@@ -1,4 +1,4 @@
-# setup: gem install awesome_print hirb wirble what_methods
+# gem install awesome_print interactive_editor hirb wirble what_methods
 
 # tab completion
 require 'irb/completion'
@@ -44,6 +44,7 @@ def clear
 end
 
 alias c clear
+alias q quit
 
 class Object
   # list methods that aren't in the superclass
