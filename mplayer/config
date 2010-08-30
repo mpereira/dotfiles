@@ -6,6 +6,5 @@ xy=800                  # rezise the video to 800px wide, keeping aspect ratio
 
 ao="alsa"
 
-#really-quiet="1"        # very very little console output
-framedrop="1"           # for slow machines
+really-quiet="1"        # very very little console output
 stop-xscreensaver="yes"
