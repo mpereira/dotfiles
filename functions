@@ -16,6 +16,8 @@ paclocalsearch() {
 }
 
 # misc #########################################################################
+# Extract various types of compressed files
+# Usage: extract <compressed file>
 extract () {
   if [ -f $1 ] ; then
     case $1 in
@@ -30,20 +32,21 @@ extract () {
       *.zip)       unzip $1       ;;
       *.Z)         uncompress $1  ;;
       *.7z)        7z x $1        ;;
-      *)           echo "don't know how to extract '$1'..." ;;
+      *)           echo "Don't know how to extract '$1'..." ;;
     esac
   else
-    echo "'$1' is not a valid file!"
+    echo "'$1' is not a valid file."
   fi
 }
 
 # Makes directory then moves into it
+# Usage: mkcdr <directory>
 function mkcdr {
   mkdir -p -v $1
   cd $1
 }
 
-# showcolors
+# Shows terminal colors
 function showcolors() {
   T='gYw'
 
@@ -64,55 +67,39 @@ function showcolors() {
   echo
 }
 
-# creates an archive from given directory
+# Creates an archive from given directory
+# Usage: mkt{ar,gz,bz} <directory>
 mktar() { tar cvf  "${1%%/}.tar"     "${1%%/}/"; }
 mktgz() { tar cvzf "${1%%/}.tar.gz"  "${1%%/}/"; }
 mktbz() { tar cvjf "${1%%/}.tar.bz2" "${1%%/}/"; }
 
-# search the vim reference manual for a keyword
-# usage: :h <keyword>
+# Search the vim reference manual for a keyword
+# Usage: :h <keyword>
 function :h() {  vim --cmd ":silent help $@" --cmd "only"; }
 
-# mkmine - recursively change ownership to $USER:$USER
-# usage:  mkmine, or
-#         mkmine <filename | dirname>
+# Recursively change ownership to $USER:$USER
+# Usage:  mkmine [filename | dirname]
 function mkmine() { sudo chown -R ${USER} ${1:-.}; }
 
-# remindme - a simple reminder
-# usage: remindme 10m omg, the pizza
+# A simple reminder
+# Usage: remindme <time> <text>
+# Example: remindme 10m omg, the pizza
 function remindme() {
   delay=$1
   shift
   sleep $delay ; zenity --info --text "$*" > /dev/null &
 }
 
-# s - gnu screen function
-# usage: lists screen sessions, otherwise
-#        s <name> reattaches to <name>, otherwise
-#        s <name> creates a new session <name>.
-s () {
-  if [[ $1 ]]; then
-    screen -dRR -S $HOSTNAME.$1
-  else
-    screen -ls
-  fi
-}
-
+# Shows available and running services
 services() {
   echo "All daemons"
-  ls --ignore=functions* /etc/rc.d/
-  echo "Running daemons"
+  ls /etc/rc.d/
+  echo "\nRunning daemons"
   ls /var/run/daemons
 }
 
-shrink() {
-  [ "$1" == "" ] && echo "Usage: tinify url" && exit
-  url=$1;
-  tinyurl=$(curl http://tinyurl.com/api-create.php?url=${url} 2> /dev/null)
-  echo $tinyurl;
-}
-
-# recursively fix dir/file permissions on a given directory
+# Recursively fix directory and file permissions on given directory
+# Usage: fix <directory>
 fix() {
   if [ -d $1 ]; then
     find $1 -type d -exec chmod 755 {} \;
@@ -122,8 +109,9 @@ fix() {
   fi
 }
 
-# go to google for a definition
-g() {
+# Google definitions
+# Usage: goo <word>
+goo() {
   local LNG=$(echo $LANG | cut -d '_' -f 1)
   local CHARSET=$(echo $LANG | cut -d '.' -f 2)
   lynx -accept_all_cookies -dump -hiddenlinks=ignore -nonumbers -assume_charset="$CHARSET" -display_charset="$CHARSET" "http://www.google.com/search?hl=${LNG}&q=define%3A+${1}&btnG=Google+Search" | grep -m 5 -C 2 -A 5 -w "*" > /tmp/deleteme
@@ -136,35 +124,16 @@ g() {
   rm -f /tmp/deleteme
 }
 
-# absbuild - quickly build and upgrade a pkg from ABS
-# usage: absbuild <pkgname>
-absbuild() {
-  ABSPATH=`find /var/abs -type d -name $1`
-  mkdir -p ~/.abs/$1
-  cp -R $ABSPATH/* ~/.abs/$1
-  cd ~/.abs/$1
-  $EDITOR PKGBUILD
-}
-
-# absfind - quickly locate and cat an ABS PKGBUILD
-# usage: absfind <pkgname>
-absfind() {
-  ABSPATH=`find /var/abs -type d -name $1`
-  ls $ABSPATH
-  cat $ABSPATH/PKGBUILD
-}
-
-
-# send public key to remote server
-# usage: sendkey <user@remotehost>
+# Send public key to remote server
+# Usage: sendkey <user@remotehost>
 sendkey() {
   if [ $# -ne 1 ]; then
     ssh $1 'cat >> ~/.ssh/authorized_keys' < ~/.ssh/id_dsa.pub
   fi
 }
 
-# start, stop, restart, reload - simple daemon management
-# usage: start <daemon-name>
+# Start, stop, restart, reload - simple service management
+# USAGE: {start,stop,restart,reload} <service>
 start() {
   for arg in $*; do
     sudo /etc/rc.d/$arg start
@@ -189,12 +158,13 @@ reload() {
   done
 }
 
-# works like locate + cd combined
-# goes to the directory where the file/directory is located
-cdf() { cd "$(dirname "$(locate "$1" | head -n 1)")" ; }
+# Goes to the directory where the file/directory is located
+# Usage: cdf <file | directory>
+cdf() { cd "$(dirname "$(locate -b "\\$1" | head -n 1)")" ; }
 
-# find a file, given its content
-findcontent() {
+# Find file names with given content
+# Usage: findc <directory> <content>
+findc() {
   if [ -n "$2" ]; then
     find "$1" -type f -exec grep -qI "$2" {} \; -print
   else
@@ -202,25 +172,25 @@ findcontent() {
   fi
 }
 
+# Redirects video output to the VGA display
 vga () {
-  CONKY=`pidof conky`
-  PYPANEL=`pidof -x pypanel`
-  kill $CONKY
-  kill $PYPANEL
-  xrandr --newmode "1280x1024"  109.00  1280 1368 1496 1712  1024 1027 1034 1063 -hsync +vsync
-  xrandr --addmode VGA1 "1280x1024"
-  xrandr --output VGA1 --mode "1280x1024" --output LVDS1 --off
-  conky &>/dev/null &
-  pypanel &>/dev/null &
+  {
+    killall conky pypanel &
+    xrandr --newmode "1280x1024"  109.00  1280 1368 1496 1712  1024 1027 1034 1063 -hsync +vsync
+    xrandr --addmode VGA1 "1280x1024"
+    xrandr --output VGA1 --mode "1280x1024" --output LVDS1 --off &
+    pypanel &
+    conky &
+  } &> /dev/null &
 }
 
+# Redirects video output to the LVDS display
 lvds () {
-  CONKY=`pidof conky`
-  PYPANEL=`pidof -x pypanel`
-  kill $CONKY
-  kill $PYPANEL
-  xrandr --output LVDS1 --mode "1280x800" --output LVDS1
-  xrandr --output VGA1 --off
-  conky &>/dev/null &
-  pypanel &>/dev/null &
+  {
+    killall conky pypanel &
+    xrandr --output LVDS1 --mode "1280x800" &
+    xrandr --output VGA1 --off &
+    pypanel &
+    conky &
+  } &> /dev/null &
 }
