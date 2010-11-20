@@ -38,7 +38,7 @@ alias rm="rm -i"
 alias mv="mv -i"
 alias cp="cp -ri"
 alias mkdir="mkdir -p"
-alias ducks='du -cksh * | sort -rn | head -11'
+alias ducks='du -cksh * | sort -rh | head -11'
 
 # pacman #######################################################################
 
@@ -65,14 +65,11 @@ alias yaoinfo="yaourt -Si"
 
 # remote boxes #################################################################
 
-alias alpo="ssh murilo@ua.sa2s.us -A"
 alias comp="ssh murilo@ssh.comp.ufscar.br"
-alias dev="ssh murilo@dev.sa2s.us -A"
-alias friskies="ssh murilo@qa.sa2s.us -A"
-alias gliese="ssh murilo@69.164.194.202 -A"
-alias salmon="ssh murilo@salmon.sa2s.us -A"
+alias x="ssh murilo@x.sa2s.us -A"
 
 # work #########################################################################
 
-alias deploy="rake db:drop db:create db:migrate spec:db:fixtures:load db:test:prepare; rm -rf log/development.log"
-alias solr="cd /opt/apache-solr-1.4.0/example/ && java -Dsolr.solr.home=/home/murilo/sonian/sa-website/spec/fixtures/solr -jar start.jar"
+alias teardown="rake db:drop db:create db:migrate spec:db:fixtures:load db:test:prepare; rm -rf log/development.log"
+alias tmux_shared="tmux -S /tmp/${USER} attach || tmux -S /tmp/${USER} new-session 'chown ${USER}:$(if [ -z '$(groups|grep sysadmin)' ]; then echo users; else echo sysadmin; fi) /tmp/${USER} && chmod g+rw /tmp/${\
+USER} && ${SHELL}'"
