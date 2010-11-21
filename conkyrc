@@ -2,8 +2,6 @@ color0 666666 # dark grey
 color1 33ff00 # green
 color2 ff3300 # red
 
-default_color white
-
 # avoid screen flicker
 double_buffer
 
@@ -19,10 +17,14 @@ background yes
 update_interval 0.5
 
 # width, height and positioning
-maximum_width 1260
-minimum_size 1260 16
-gap_x 10
+minimum_size 1280
+gap_x 0
 gap_y 0
+
+# spawn its own window, black background, appear on top and in all desktops
+own_window yes
+own_window_colour black
+own_window_hints undecorated,above,sticky,skip_taskbar,skip_pager
 
 # only shows 'if_up' block if its binded to an address
 if_up_strictness address
@@ -34,7 +36,7 @@ short_units
 use_spacer left
 
 TEXT
-${color0}cpu:${color} ${cpu}% \
+ ${color0}cpu:${color} ${cpu}% \
 ${color0}ram:${color} ${mem} \
 ${color0}bat:${color} ${battery_bar 8,20 BAT0} ${battery_time BAT0} \
 ${color0}root:${color} ${fs_used_perc /}% \
@@ -61,5 +63,5 @@ ${color0}up:${color} ${uptime_short} \
 ${color0}avg:${color} ${loadavg} \
 ${alignr}\
 ${if_mpd_playing}\
-${mpd_smart 50} (${mpd_elapsed}/${mpd_length})\
+${mpd_smart 50} (${mpd_elapsed}/${mpd_length}) \
 ${endif}
