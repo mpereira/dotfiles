@@ -19,7 +19,7 @@ alias res="xrandr --size $1"
 alias psm="echo '%CPU %MEM   PID COMMAND' && ps hgaxo %cpu,%mem,pid,comm | sort -nrk1 | head -n 10 | sed -e 's/-bin//' | sed -e 's/-media-play//'"
 alias timer='time read -p "Press enter to stop"'
 alias profileme="history | awk '{print \$2}' | awk 'BEGIN{FS=\"|\"}{print \$1}' | sort | uniq -c | sort -n | tail -n 20 | sort -nr"
-alias tmux='tmux -2'
+alias t='tmux -2'
 
 # file management ##############################################################
 
