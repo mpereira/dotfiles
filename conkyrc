@@ -39,29 +39,17 @@ TEXT
  ${color0}cpu:${color} ${cpu}% \
 ${color0}ram:${color} ${mem} \
 ${color0}bat:${color} ${battery_bar 8,20 BAT0} ${battery_time BAT0} \
-${color0}root:${color} ${fs_used_perc /}% \
-${color0}home:${color} ${fs_used_perc /home}% \
-${if_mounted /media/disk}\
-${color0}disk0:${color} ${fs_used_perc /media/disk}% \
-${endif}\
-${if_mounted /media/disk-1}\
-${color0}disk1:${color} ${fs_used_perc /media/disk-1}% \
-${endif}\
-${if_mounted /media/disk-2}\
-${color0}disk2:${color} ${fs_used_perc /media/disk-2}% \
-${endif}\
-${if_mounted /media/disk-3}\
-${color0}disk3:${color} ${fs_used_perc /media/disk-3}% \
-${endif}\
+${color0}/${color} ${fs_used_perc /}% \
+${color0}/home${color} ${fs_used_perc /home}% \
 ${if_up eth0}\
 ${color0}eth0:${color} ${addr eth0} ${color2}${downspeedf eth0}kB/s ${color}${color1}${upspeedf eth0}kB/s${color} \
 ${endif}\
 ${if_up wlan0}\
-${color0}${wireless_essid wlan0}:${color} ${addrs wlan0} ${color2}${downspeedf wlan0}k/s${color}${color1}${upspeedf wlan0}k/s${color} \
+${color0}wlan0:${color} ${color2}${downspeedf wlan0}kB/s${color}${color1}${upspeedf wlan0}kB/s${color} \
 ${endif}\
 ${color0}up:${color} ${uptime_short} \
-${color0}avg:${color} ${loadavg} \
+${color0}load:${color} ${loadavg} \
 ${alignr}\
 ${if_mpd_playing}\
-${mpd_smart 50} (${mpd_elapsed}/${mpd_length}) \
+${mpd_smart 60} (${mpd_elapsed}/${mpd_length}) \
 ${endif}
