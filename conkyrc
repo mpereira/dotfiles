@@ -35,7 +35,7 @@ use_spacer left
 TEXT
  ${color0}cpu${color} ${cpu}% \
 ${color0}ram${color} ${mem} \
-${color0}bat${color} ${battery_bar 8,20 BAT0} ${battery_time BAT0} \
+${color0}bat${color} ${battery_bar 8,20} ${battery_time} \
 ${color0}/${color} ${fs_used_perc /}% \
 ${color0}/home${color} ${fs_used_perc /home}% \
 ${if_up eth0}\
