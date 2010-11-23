@@ -1,5 +1,5 @@
-setxkbmap us -variant altgr-intl &> /dev/null &
-setxkbmap -option terminate:ctrl_alt_bksp &> /dev/null &
+setxkbmap us -variant altgr-intl
+setxkbmap -option terminate:ctrl_alt_bksp
 
 sleep 0.5
 
@@ -8,4 +8,5 @@ sleep 0.5
 {
   pypanel &
   conky &
+  unclutter &
 } &> /dev/null &
