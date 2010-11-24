@@ -16,15 +16,13 @@ background yes
 # update stats every half of second
 update_interval 0.5
 
-# width, height and positioning
+# width
 minimum_size 1280
-gap_x 0
-gap_y 0
 
-# spawn its own window, black background, appear on top and in all desktops
+# spawn its own window with black background and as a dock
 own_window yes
 own_window_colour black
-own_window_hints undecorated,above,sticky,skip_taskbar,skip_pager
+own_window_type dock
 
 # only shows 'if_up' block if its binded to an address
 if_up_strictness address
@@ -39,10 +37,10 @@ ${color0}bat${color} ${battery_bar 8,20} ${battery_time} \
 ${color0}/${color} ${fs_used_perc /}% \
 ${color0}/home${color} ${fs_used_perc /home}% \
 ${if_up eth0}\
-${color0}eth0${color} ${addr eth0} ${color2}${downspeedf eth0} KiB/s ${color}${color1}${upspeedf eth0} KiB/s${color} \
+${color0}eth0${color} ${addr eth0} ${color2}${downspeedf eth0}KiB/s ${color}${color1}${upspeedf eth0}KiB/s${color} \
 ${endif}\
 ${if_up wlan0}\
-${color0}wlan0${color} ${color2}${downspeedf wlan0} KiB/s${color}${color1}${upspeedf wlan0} KiB/s${color} \
+${color0}wlan0${color} ${color2}${downspeedf wlan0}KiB/s${color}${color1}${upspeedf wlan0}KiB/s${color} \
 ${endif}\
 ${color0}up${color} ${uptime_short} \
 ${color0}load${color} ${loadavg} \
