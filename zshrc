@@ -18,5 +18,5 @@ setopt noclobber
 
 bindkey -v
 
-[[ -s "$HOME/.alias" ]] && . "$HOME/.alias"
+[[ -s "$HOME/.aliases" ]] && . "$HOME/.aliases"
 [[ -s "$HOME/.functions" ]] && . "$HOME/.functions"
