@@ -1,18 +1,25 @@
-! sets $TERM
-URxvt*termname: rxvt
-! terminal title
-URxvt*title:    Terminal
+! Xft
+Xft.dpi:        96
+Xft.antialias:  true
+Xft.rgba:       rgb
+Xft.hinting:    true
+Xft.hintstyle:  hintslight
 
+! URxvt
 URxvt*internalBorder: 2
 URxvt*scrollBar:      false
 URxvt*saveLines:      10000
 URxvt*visualBell:     false
 URxvt*loginShell:     true
 
+! sets $TERM
+URxvt*termName: rxvt
+! terminal title
+URxvt*title:    Terminal
+
 ! geometry and font
 URxvt*geometry: 80×25
-URxvt*font:     xft:terminus:pixelsize=12
-URxvt*boldfont: xft:terminus:pixelsize=12
+URxvt*font:     xft:Monaco:pixelsize=11
 
 ! enabling clickable urls on the terminal
 URxvt*perl-ext-common: default,matcher
@@ -21,12 +28,12 @@ URxvt*urlLauncher:     chromium
 URxvt*colorUL:         #86a2be
 
 ! dont jump to the bottom when tty gets new lines or output
-urxvt*scrollWithBuffer: true
-urxvt*scrollTtyOutput:  true
+URxvt*scrollWithBuffer: true
+URxvt*scrollTtyOutput:  true
 
 ! change default colors
 URxvt*background: #000000
-URxvt*foreground: #b2b2b2
+URxvt*foreground: #ffffff
 
 ! black
 URxvt*color0:  #262626
