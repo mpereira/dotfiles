@@ -1,61 +1,65 @@
-# gem install awesome_print interactive_editor hirb wirble what_methods
-
-# tab completion
+# Tab completion
 require 'irb/completion'
 
-# save history between irb sessions
+# Save history between irb sessions
 require 'irb/ext/save-history'
-IRB.conf[:SAVE_HISTORY] = 100
+IRB.conf[:SAVE_HISTORY] = 1000
 IRB.conf[:HISTORY_FILE] = "#{ENV['HOME']}/.irb_history"
 
-# minimalist command prompt
+# Minimalist command prompt
 IRB.conf[:PROMPT_MODE] = :SIMPLE
 
-# load rubygems, awesome_print and a neat method finder
-%w[rubygems ap interactive_editor what_methods].each do |gem|
+%w[rubygems interactive_editor what_methods].each do |gem|
   begin
     require gem
   rescue LoadError
+    STDERR.puts $!
   end
 end
 
-# loading wirble
+# Loading awesome print
+begin
+  require 'ap'
+rescue LoadError
+  STDERR.puts $!
+else
+  IRB::Irb.class_eval do
+    # Making awesome_print the default outputter
+    def output_value
+      ap @context.last_value
+    end
+  end
+end
+
+# Loading wirble
 begin
   require 'wirble'
 rescue LoadError
+  STDERR.puts $!
 else
   %w[init colorize].each { |m| Wirble.send(m) }
 end
 
-# loading hirb
+# Loading hirb
 begin
   require 'hirb'
 rescue LoadError
+  STDERR.puts $!
 else
   Hirb.enable
 end
 
-# method to clear the screen
-def clear
-  system 'clear'
-  if ENV['RAILS_ENV']
-    return "Rails environment: " + ENV['RAILS_ENV']
-  end
-end
-
+# Method to clear the screen
+def clear; system 'clear'; end
 alias c clear
-alias q quit
 
 class Object
-  # list methods that aren't in the superclass
-  def local_methods(obj = self)
-    (obj.methods - obj.class.superclass.instance_methods).sort
+  # Lists all methods that are exclusive to the object
+  def local_methods
+    self.methods - (self.class.superclass.instance_methods + Object.methods)
   end
 end
 
-# making awesome_print the default formatter
-IRB::Irb.class_eval do
-  def output_value
-    ap @context.last_value
-  end
+module IRB::ExtendCommandBundle
+  alias q irb_exit
 end
