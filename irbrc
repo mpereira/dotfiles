@@ -31,6 +31,15 @@ else
   end
 end
 
+# Loading bond
+begin
+  require 'bond'
+rescue LoadError
+  STDERR.puts $!
+else
+  Bond.start
+end
+
 # Loading wirble
 begin
   require 'wirble'
