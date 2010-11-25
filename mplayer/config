@@ -1,10 +1,38 @@
+# Video output
 vo=xv
-double="yes"
-#monitoraspect="16:9"    # keeps 4:3 content from stretching
-geometry=50%:50%        # video window opens in the center of the screen
-xy=800                  # rezise the video to 800px wide, keeping aspect ratio
 
+# Audio output
 ao="alsa"
 
-really-quiet="1"        # very very little console output
-stop-xscreensaver="yes"
+# Double buffering
+double="yes"
+
+# Video window opens in the center of the screen
+geometry=50%:50%
+
+# Resize the video window to 800px wide, keeping aspect ratio
+xy=800
+
+# Little console output
+really-quiet="1"
+
+# eq2[=gamma:contrast:brightness:saturation:rg:gg:bg:weight]
+# default:1.0:1.0:0.0:1.0:1.0:1.0:1.0:1.0
+vf=hue=0.0:1.0,eq2=1.0:1.0:0.1:1.0:1.0:1.0:1.0:1.0
+
+# Subtitles
+
+# Black outline
+ffactor="5"
+
+# Font size, with truetype scaling
+subfont-text-scale="3.0"
+
+# Slight blur
+subfont-blur="1"
+
+subpos="95"
+
+# Unicode for fonts
+unicode=yes
+utf8=yes
