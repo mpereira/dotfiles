@@ -25,9 +25,9 @@
        mouse into it, also raise the window -->
   </focus>
   <placement>
-    <policy>Smart</policy>
+    <policy>UnderMouse</policy>
     <!-- 'Smart' or 'UnderMouse' -->
-    <center>yes</center>
+    <center>no</center>
     <!-- whether to place windows in the center of the free area found or
        the top left corner -->
     <monitor>Any</monitor>
@@ -36,7 +36,7 @@
        the active window is -->
   </placement>
   <theme>
-    <name>Natura</name>
+    <name>Simple</name>
     <titleLayout>NLIMC</titleLayout>
     <!--
       available characters are NDSLIMC, each can occur at most once.
@@ -48,20 +48,20 @@
       S: shade (roll up/down)
       D: omnipresent (on all desktops).
   -->
-    <keepBorder>yes</keepBorder>
-    <animateIconify>yes</animateIconify>
+    <keepBorder>no</keepBorder>
+    <animateIconify>no</animateIconify>
     <font place="ActiveWindow">
       <name>Terminus</name>
-      <size>6</size>
+      <size>9</size>
       <!-- font size in points -->
-      <weight>Bold</weight>
+      <weight>Normal</weight>
       <!-- 'bold' or 'normal' -->
       <slant>Normal</slant>
       <!-- 'italic' or 'normal' -->
     </font>
     <font place="InactiveWindow">
       <name>Terminus</name>
-      <size>6</size>
+      <size>9</size>
       <!-- font size in points -->
       <weight>Bold</weight>
       <!-- 'bold' or 'normal' -->
@@ -70,7 +70,7 @@
     </font>
     <font place="MenuHeader">
       <name>Terminus</name>
-      <size>6</size>
+      <size>9</size>
       <!-- font size in points -->
       <weight>Bold</weight>
       <!-- 'bold' or 'normal' -->
@@ -79,7 +79,7 @@
     </font>
     <font place="MenuItem">
       <name>Terminus</name>
-      <size>6</size>
+      <size>9</size>
       <!-- font size in points -->
       <weight>Normal</weight>
       <!-- 'bold' or 'normal' -->
@@ -88,7 +88,7 @@
     </font>
     <font place="OnScreenDisplay">
       <name>Terminus</name>
-      <size>6</size>
+      <size>9</size>
       <!-- font size in points -->
       <weight>Normal</weight>
       <!-- 'bold' or 'normal' -->
@@ -105,12 +105,13 @@
 
        use obconf if you want to change these without having to log out
        and back in -->
-    <number>3</number>
+    <number>4</number>
     <firstdesk>1</firstdesk>
     <names>
       <name>[foo]</name>
       <name>[bar]</name>
       <name>[baz]</name>
+      <name>[qux]</name>
     </names>
     <popupTime>0</popupTime>
     <!-- The number of milliseconds to show the popup for when switching
@@ -118,7 +119,7 @@
   </desktops>
   <resize>
     <drawContents>yes</drawContents>
-    <popupShow>Nonpixel</popupShow>
+    <popupShow>Never</popupShow>
     <!-- 'Always', 'Never', or 'Nonpixel' (xterms and such) -->
     <popupPosition>Center</popupPosition>
     <!-- 'Center', 'Top', or 'Fixed' -->
@@ -137,20 +138,20 @@
      Many programs reserve space automatically, but you can use this in other
      cases. -->
   <margins>
-    <top>18</top>
-    <bottom>18</bottom>
+    <top>0</top>
+    <bottom>0</bottom>
     <left>0</left>
     <right>0</right>
   </margins>
   <dock>
     <position>Bottom</position>
     <!-- (Top|Bottom)(Left|Right|)|Top|Bottom|Left|Right|Floating -->
-    <floatingX>0</floatingX>
-    <floatingY>0</floatingY>
+    <floatingX>140</floatingX>
+    <floatingY>777</floatingY>
     <noStrut>no</noStrut>
     <stacking>Above</stacking>
     <!-- 'Above', 'Normal', or 'Below' -->
-    <direction>Vertical</direction>
+    <direction>Horizontal</direction>
     <!-- 'Vertical' or 'Horizontal' -->
     <autoHide>no</autoHide>
     <hideDelay>300</hideDelay>
@@ -162,7 +163,7 @@
   </dock>
   <keyboard>
     <chainQuitKey>C-g</chainQuitKey>
-    <!-- Keybindings for desktop switching -->
+    <!-- Desktop control keybindings -->
     <keybind key="C-A-Left">
       <action name="DesktopLeft">
         <dialog>no</dialog>
@@ -264,19 +265,13 @@
         <desktop>yes</desktop>
       </action>
     </keybind>
-    <!-- Keybindings for running applications -->
-    <!-- My keybinds -->
     <keybind key="W-D">
       <action name="ToggleShowDesktop"/>
     </keybind>
+    <!-- Application keybindings -->
     <keybind key="W-S">
       <action name="execute">
         <execute>slock</execute>
-      </action>
-    </keybind>
-    <keybind key="A-F2">
-      <action name="execute">
-        <execute>bashrun</execute>
       </action>
     </keybind>
     <keybind key="C-A-C">
@@ -299,11 +294,6 @@
         <execute>picasa</execute>
       </action>
     </keybind>
-    <keybind key="C-A-K">
-      <action name="execute">
-        <execute>skype</execute>
-      </action>
-    </keybind>
     <keybind key="C-A-P">
       <action name="execute">
         <execute>pcmanfm</execute>
@@ -311,7 +301,7 @@
     </keybind>
     <keybind key="C-A-S">
       <action name="execute">
-        <execute>sonata</execute>
+        <execute>skype</execute>
       </action>
     </keybind>
     <keybind key="C-A-T">
@@ -364,13 +354,33 @@
         <execute>amixer -q sset Master toggle</execute>
       </action>
     </keybind>
+    <keybind key="XF86AudioStop">
+      <action name="execute">
+        <execute>mpc stop</execute>
+      </action>
+    </keybind>
+    <keybind key="XF86AudioPlay">
+      <action name="execute">
+        <execute>mpc toggle</execute>
+      </action>
+    </keybind>
+    <keybind key="XF86AudioPrev">
+      <action name="execute">
+        <execute>mpc prev</execute>
+      </action>
+    </keybind>
+    <keybind key="XF86AudioNext">
+      <action name="execute">
+        <execute>mpc next</execute>
+      </action>
+    </keybind>
   </keyboard>
   <mouse>
     <dragThreshold>0</dragThreshold>
     <!-- number of pixels the mouse must move before a drag begins -->
     <doubleClickTime>1000</doubleClickTime>
     <!-- in milliseconds (1000 = 1 second) -->
-    <screenEdgeWarpTime>0</screenEdgeWarpTime>
+    <screenEdgeWarpTime>500</screenEdgeWarpTime>
     <!-- Time before changing desktops when the pointer touches the edge of the
        screen while moving a window, in milliseconds (1000 = 1 second).
        Set this to 0 to disable warping -->
