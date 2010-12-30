@@ -15,7 +15,7 @@ URxvt*loginShell:     true
 ! no window decoration
 URxvt*borderLess:     true
 ! sets $TERM
-URxvt*termName: rxvt-256color
+URxvt*termName: screen-256color
 
 ! geometry and font
 URxvt*geometry: 80×25
