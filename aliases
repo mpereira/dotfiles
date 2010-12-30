@@ -2,10 +2,8 @@
 
 alias halt="sudo halt"
 alias reboot="sudo reboot"
-alias httpdump='sudo tcpdump -i eth0 -n -s 0 -w - | grep -a -o -E "Host\: .*|GET \/.*"'
 alias daemons="ls /var/run/daemons"
 alias wallpaper="feh --bg-scale"
-alias free="free -m"
 alias q="exit"
 alias :q="exit"
 alias :wq="exit"
@@ -24,8 +22,6 @@ alias t='tmux -2'
 # file management ##############################################################
 
 alias ..="cd .."
-alias df="df -h"
-alias du="du -h"
 alias ls="ls --color=auto -F --group-directories-first"
 alias f="find | grep"
 alias rm="rm -i"
