@@ -1,7 +1,7 @@
 # General settings
 
 # The ip address the listening socket and outgoing connections is bound to
-bind = 127.0.0.1
+bind = 0.0.0.0
 
 # Port range to use for listening
 port_range = 6000-6000
@@ -25,7 +25,7 @@ encryption = allow_incoming,enable_retry,prefer_plaintext
 peer_exchange = yes
 
 # Watch for new torrents
-schedule = watch_directory,10,10,load_start=session = /media/120c5598-f157-4af9-9ed2-d25db1a2d277/murilo/torrents/.session
+schedule = watch_directory,10,10,load_start=/media/120c5598-f157-4af9-9ed2-d25db1a2d277/murilo/torrents/.session/\*.torrent
 
 # Stop torrents whose files were deleted
 schedule = untied_directory,5,5,stop_untied=
