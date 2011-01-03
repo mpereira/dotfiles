@@ -1,5 +1,5 @@
 export ZSH=$HOME/.oh-my-zsh
-export ZSH_THEME="murilo"
+export ZSH_THEME="murilasso"
 
 plugins=(git rails)
 
