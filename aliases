@@ -46,7 +46,7 @@ alias pacinfo="pacman -Si"
 
 alias yaoup="yaourt -Syyu --aur"
 alias yaow="yaourt -Qu"
-alias yaoin="yaourt -S --noconfirm"
+alias yaoin="yaourt -S"
 alias yaout="yaourt -Rcsn"
 alias yaos="yaourt -Sl | cut -d' ' -f1 | grep "
 alias yao="yaourt -Ss"
