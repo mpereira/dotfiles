@@ -9,4 +9,6 @@ sleep 0.5
   pypanel &
   conky &
   unclutter &
+  thunar --daemon &
+  dropbox &
 } &> /dev/null &
