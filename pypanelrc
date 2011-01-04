@@ -52,7 +52,7 @@ SHADOWS    = 0        # show text shadows
 SHOWLINES  = 0        # show object seperation lines
 SHOWBORDER = 0        # show a border around the panel
 
-DESKTOP_NAMES = ["[foo]", "[bar]", "[baz]"]
+DESKTOP_NAMES = ["[foo]", "[bar]", "[baz]", "[qux]"]
 
 # order
 DESKTOP  = 1
