@@ -192,7 +192,19 @@
         <wrap>no</wrap>
       </action>
     </keybind>
+    <keybind key="C-A-h">
+      <action name="DesktopLeft">
+        <dialog>no</dialog>
+        <wrap>no</wrap>
+      </action>
+    </keybind>
     <keybind key="C-A-Right">
+      <action name="DesktopRight">
+        <dialog>no</dialog>
+        <wrap>no</wrap>
+      </action>
+    </keybind>
+    <keybind key="C-A-l">
       <action name="DesktopRight">
         <dialog>no</dialog>
         <wrap>no</wrap>
@@ -204,7 +216,19 @@
         <wrap>no</wrap>
       </action>
     </keybind>
+    <keybind key="C-A-k">
+      <action name="DesktopUp">
+        <dialog>no</dialog>
+        <wrap>no</wrap>
+      </action>
+    </keybind>
     <keybind key="C-A-Down">
+      <action name="DesktopDown">
+        <dialog>no</dialog>
+        <wrap>no</wrap>
+      </action>
+    </keybind>
+    <keybind key="C-A-j">
       <action name="DesktopDown">
         <dialog>no</dialog>
         <wrap>no</wrap>
@@ -216,7 +240,19 @@
         <wrap>no</wrap>
       </action>
     </keybind>
+    <keybind key="S-A-h">
+      <action name="SendToDesktopLeft">
+        <dialog>no</dialog>
+        <wrap>no</wrap>
+      </action>
+    </keybind>
     <keybind key="S-A-Right">
+      <action name="SendToDesktopRight">
+        <dialog>no</dialog>
+        <wrap>no</wrap>
+      </action>
+    </keybind>
+    <keybind key="S-A-l">
       <action name="SendToDesktopRight">
         <dialog>no</dialog>
         <wrap>no</wrap>
@@ -228,7 +264,19 @@
         <wrap>no</wrap>
       </action>
     </keybind>
+    <keybind key="S-A-k">
+      <action name="SendToDesktopUp">
+        <dialog>no</dialog>
+        <wrap>no</wrap>
+      </action>
+    </keybind>
     <keybind key="S-A-Down">
+      <action name="SendToDesktopDown">
+        <dialog>no</dialog>
+        <wrap>no</wrap>
+      </action>
+    </keybind>
+    <keybind key="S-A-j">
       <action name="SendToDesktopDown">
         <dialog>no</dialog>
         <wrap>no</wrap>
@@ -314,7 +362,7 @@
     <keybind key="W-P">
       <action name="execute"><execute>thunar</execute></action>
     </keybind>
-    <keybind key="W-s"><action name="execute"><execute>skype</execute>
+    <keybind key="W-k"><action name="execute"><execute>skype</execute>
       </action>
     </keybind>
     <keybind key="W-t">
