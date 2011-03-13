@@ -19,7 +19,7 @@ channels = (
   { name = "#ruby"; chatnet = "freenode"; autojoin = "Yes"; },
   { name = "#RubyOnRails"; chatnet = "freenode"; autojoin = "Yes"; },
   { name = "##javascript"; chatnet = "freenode"; autojoin = "Yes"; },
-  { name = "##jquery"; chatnet = "freenode"; autojoin = "Yes"; },
+  { name = "#jquery"; chatnet = "freenode"; autojoin = "Yes"; },
   { name = "#erlang"; chatnet = "freenode"; autojoin = "Yes"; },
   { name = "#lisp"; chatnet = "freenode"; autojoin = "Yes"; },
   { name = "#clojure"; chatnet = "freenode"; autojoin = "Yes"; }
