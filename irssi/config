@@ -1,10 +1,10 @@
 servers = (
   {
-    address     = "irc.freenode.net";
-    chatnet     = "freenode";
-    port        = "6667";
-    nick        = "murilasso";
-    password    = "my_super_secret_password";
+    address = "irc.freenode.net";
+    chatnet = "freenode";
+    port = "6667";
+    nick = "mpereira";
+    password = "deadbeef";
     autoconnect = "yes";
   }
 );
@@ -12,22 +12,23 @@ servers = (
 chatnets = { freenode = { type = "IRC"; }; };
 
 channels = (
-  { name = "##linux";       chatnet = "freenode"; autojoin = "Yes"; },
-  { name = "#archlinux";    chatnet = "freenode"; autojoin = "Yes"; },
-  { name = "#archlinux-br"; chatnet = "freenode"; autojoin = "Yes"; },
-  { name = "##c";           chatnet = "freenode"; autojoin = "Yes"; },
-  { name = "#ruby";         chatnet = "freenode"; autojoin = "Yes"; },
-  { name = "##javascript";  chatnet = "freenode"; autojoin = "Yes"; },
-  { name = "#lisp";         chatnet = "freenode"; autojoin = "Yes"; },
-  { name = "#clojure";      chatnet = "freenode"; autojoin = "Yes"; },
-  { name = "#erlang";       chatnet = "freenode"; autojoin = "Yes"; },
-  { name = "#sonian";       chatnet = "freenode"; autojoin = "Yes"; }
+  { name = "##linux"; chatnet = "freenode"; autojoin = "Yes"; },
+  { name = "#archlinux"; chatnet = "freenode"; autojoin = "Yes"; },
+  { name = "##c"; chatnet = "freenode"; autojoin = "Yes"; },
+  { name = "#gdb"; chatnet = "freenode"; autojoin = "Yes"; },
+  { name = "#ruby"; chatnet = "freenode"; autojoin = "Yes"; },
+  { name = "#RubyOnRails"; chatnet = "freenode"; autojoin = "Yes"; },
+  { name = "##javascript"; chatnet = "freenode"; autojoin = "Yes"; },
+  { name = "##jquery"; chatnet = "freenode"; autojoin = "Yes"; },
+  { name = "#erlang"; chatnet = "freenode"; autojoin = "Yes"; },
+  { name = "#lisp"; chatnet = "freenode"; autojoin = "Yes"; },
+  { name = "#clojure"; chatnet = "freenode"; autojoin = "Yes"; }
 );
 
 settings = {
   core = {
-    real_name = "Murilo Soares Pereira";
-    user_name = "murilasso";
-    nick      = "murilasso";
+    real_name = "Murilo Pereira";
+    user_name = "mpereira";
+    nick = "mpereira";
   };
 };
