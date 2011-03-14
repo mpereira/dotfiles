@@ -1,12 +1,12 @@
 setxkbmap us -variant altgr-intl
 setxkbmap -option terminate:ctrl_alt_bksp
 xmodmap $HOME/.Xmodmap
-
-sleep 0.5
+xset b off
 
 [[ -s "$HOME/.wallpaper" ]] && feh --bg-scale $HOME/.wallpaper &> /dev/null &
 
 {
+  sleep 0.5
   pypanel &
   sleep 0.5
   conky &
