@@ -1,7 +1,3 @@
-setxkbmap us -variant altgr-intl
-setxkbmap -option terminate:ctrl_alt_bksp
-setxkbmap -option ctrl:nocaps
-
 [[ -s "$HOME/.wallpaper" ]] && feh --bg-scale $HOME/.wallpaper &> /dev/null &
 
 (sleep 0.5 && pypanel) &
