@@ -1,0 +1,14 @@
+set gui=tabs
+
+let g:mapleader = ','
+
+nnoremap <leader>m :tabmove<Space>
+nnoremap <silent> <leader>d :tabduplicate<CR>
+nnoremap <silent> <leader>J :tabmove -1<CR>
+nnoremap <silent> <leader>K :tabmove +1<CR>
+
+nmap J <C-p>
+nmap K <C-n>
+
+nnoremap j 3j
+nnoremap k 3k
