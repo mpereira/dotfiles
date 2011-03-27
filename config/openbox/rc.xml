@@ -350,6 +350,9 @@
     <keybind key="W-c">
       <action name="execute"><execute>chromium</execute></action>
     </keybind>
+    <keybind key="W-f">
+      <action name="execute"><execute>firefox</execute></action>
+    </keybind>
     <keybind key="W-e">
       <action name="execute"><execute>emesene</execute></action>
     </keybind>
@@ -359,10 +362,11 @@
     <keybind key="W-i">
       <action name="execute"><execute>picasa</execute></action>
     </keybind>
-    <keybind key="W-P">
+    <keybind key="W-p">
       <action name="execute"><execute>thunar</execute></action>
     </keybind>
-    <keybind key="W-k"><action name="execute"><execute>skype</execute>
+    <keybind key="W-k">
+      <action name="execute"><execute>skype</execute>
       </action>
     </keybind>
     <keybind key="W-t">
