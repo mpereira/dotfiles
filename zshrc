@@ -15,6 +15,7 @@ fi
 setopt histignoredups
 setopt histignorespace
 setopt noclobber
+setopt share_history
 
 bindkey -v
 
