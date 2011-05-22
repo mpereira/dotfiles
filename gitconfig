@@ -12,7 +12,7 @@
 	branch = auto
 	interactive = auto
 [github]
-	user = murilasso
+	user = mpereira
 	token = deadbeefdeadbeefdeadbeefdeadbeefdeadbeef
 [alias]
 	st = status
