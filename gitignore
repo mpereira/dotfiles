@@ -1,7 +1,0 @@
-*.o
-*.a
-*.so
-*~
-*.sw?
-.DS_Store
-.svn
