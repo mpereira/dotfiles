@@ -1,19 +1,29 @@
 servers = (
   {
     address = "irc.freenode.net";
-    chatnet = "freenode";
     port = "6667";
+    chatnet = "freenode";
     nick = "mpereira";
     password = "deadbeef";
     autoconnect = "yes";
+  },
+  {
+    address = "irc.sa2s.us";
+    port = "6667";
+    chatnet = "sonian";
+    nick = "mpereira";
+    password = "deadbeef";
+    use_ssl = "yes";
+    ssl_verify = "yes";
+    ssl_capath = "/etc/ssl/certs";
   }
 );
 
-chatnets = { freenode = { type = "IRC"; }; };
-
 channels = (
   { name = "##linux"; chatnet = "freenode"; autojoin = "Yes"; },
+  { name = "##posix"; chatnet = "freenode"; autojoin = "Yes"; },
   { name = "#archlinux"; chatnet = "freenode"; autojoin = "Yes"; },
+  { name = "#vim"; chatnet = "freenode"; autojoin = "Yes"; },
   { name = "##c"; chatnet = "freenode"; autojoin = "Yes"; },
   { name = "#gdb"; chatnet = "freenode"; autojoin = "Yes"; },
   { name = "#ruby"; chatnet = "freenode"; autojoin = "Yes"; },
@@ -22,13 +32,15 @@ channels = (
   { name = "#jquery"; chatnet = "freenode"; autojoin = "Yes"; },
   { name = "#erlang"; chatnet = "freenode"; autojoin = "Yes"; },
   { name = "#lisp"; chatnet = "freenode"; autojoin = "Yes"; },
-  { name = "#clojure"; chatnet = "freenode"; autojoin = "Yes"; }
+  { name = "#clojure"; chatnet = "freenode"; autojoin = "Yes"; },
+  { name = "#devs"; chatnet = "sonian"; autojoin = "Yes"; },
+  { name = "#website"; chatnet = "sonian"; autojoin = "Yes"; },
+  { name = "#safe"; chatnet = "sonian"; autojoin = "Yes"; }
 );
 
 settings = {
-  core = {
-    real_name = "Murilo Pereira";
-    user_name = "mpereira";
-    nick = "mpereira";
-  };
+  core = { real_name = "Murilo Pereira"; user_name = "mpereira"; nick = "mpereira"; };
+  "fe-text" = { actlist_sort = "refnum"; };
 };
+
+chatnets = { freenode = { type = "IRC"; }; sonian = { type = "IRC"; }; };
