@@ -13,10 +13,10 @@ port_random = no
 check_hash = yes
 
 # Download directory
-directory = /media/disk/murilo/torrents
+directory = /media/120c5598-f157-4af9-9ed2-d25db1a2d277/torrents
 
 # Session directory
-session = /media/disk/murilo/torrents/.session
+session = /media/120c5598-f157-4af9-9ed2-d25db1a2d277/torrents/.session
 
 # Encryption
 encryption = allow_incoming,enable_retry,prefer_plaintext
@@ -25,7 +25,7 @@ encryption = allow_incoming,enable_retry,prefer_plaintext
 peer_exchange = yes
 
 # Watch for new torrents
-schedule = watch_directory,10,10,load_start=/media/disk/murilo/torrents/.session/\*.torrent
+schedule = watch_directory,10,10,load_start=/media/120c5598-f157-4af9-9ed2-d25db1a2d277/torrents/.session/\*.torrent
 
 # Stop torrents whose files were deleted
 schedule = untied_directory,5,5,stop_untied=
