@@ -19,12 +19,12 @@ URxvt*termName: screen-256color
 
 ! geometry and font
 URxvt*geometry: 80×25
-URxvt*font:     xft:Monaco:pixelsize=11
+URxvt*font:     xft:Monaco:pixelsize=15
 
 ! enabling clickable urls on the terminal
 URxvt*perl-ext-common: default,matcher
 URxvt*matcher.button:  1
-URxvt*urlLauncher:     chromium
+URxvt*urlLauncher:     firefox
 URxvt*colorUL:         #86a2be
 
 ! dont jump to the bottom when tty gets new lines or output
