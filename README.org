@@ -1,0 +1,12 @@
+* dotfiles
+
+** Installation
+#+BEGIN_SRC
+$ git clone git://github.com/mpereira/dotfiles ~/.dotfiles
+$ cd ~/.dotfiles
+$ rake install [BACKUP=yes|no]
+#+END_SRC
+
+   If you pass BACKUP=no your dotfiles will be overwritten. Anything other than
+   'no' will create a '.dotfiles.bak' directory with your dotfiles under your
+   home directory.
