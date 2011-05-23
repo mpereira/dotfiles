@@ -57,7 +57,7 @@ def install_dotfiles
   create_subdirectories(entries, :path => ENV['HOME'])
   entries.each do |entry|
     if File.extname(entry) == '.erb'
-      compiled_template_path = File.join(ENV['HOME'], File.join(File.dirname(entry), File.basename(entry, '.erb')))
+      compiled_template_path = File.join(ENV['HOME'], File.dirname(entry), File.basename(entry, '.erb'))
       $stderr.puts "generating #{compiled_template_path} from template"
       File.open(compiled_template_path, 'w') do |file|
         file.write(ERB.new(File.read(entry), nil, '<>').result)
