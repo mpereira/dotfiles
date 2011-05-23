@@ -1,5 +1,6 @@
 require 'rake'
 require 'fileutils'
+require 'erb'
 
 desc "Copy dotfiles to your home directory"
 task :install do
@@ -8,14 +9,19 @@ task :install do
   install_dotfiles
 end
 
-task :default => :install
-
 def backup?
   ENV['BACKUP'] ? !(ENV['BACKUP'].downcase == 'no') : true
 end
 
-def entries
-  `git ls-files`.split("\n") - %w[.gitignore Rakefile README.org]
+def entries(options = {})
+  entries = `git ls-files`.split("\n") - %w[.gitignore Rakefile README.org]
+  if options[:remove_erb_suffix]
+    entries.map do |entry|
+      File.join(File.dirname(entry), File.basename(entry, '.erb'))
+    end
+  else
+    entries
+  end
 end
 
 def create_subdirectories(entries, options)
@@ -30,8 +36,8 @@ def backup_old_dotfiles
   $stderr.puts "mkdir #{backup_dir_path}"
   FileUtils.mkdir(backup_dir_path)
   create_subdirectories(entries, :path => backup_dir_path)
-  entries.each do |entry|
-    old_entry_path = "#{ENV['HOME']}/#{entry}"
+  entries(:remove_erb_suffix => true).each do |entry|
+    old_entry_path = File.join(ENV['HOME'], entry)
     if File.exist?(old_entry_path)
       $stderr.puts "cp -r #{old_entry_path} #{File.join(backup_dir_path, File.split(entry))}"
       FileUtils.cp_r(old_entry_path, File.join(backup_dir_path, File.split(entry)))
@@ -40,8 +46,8 @@ def backup_old_dotfiles
 end
 
 def remove_old_dotfiles
-  entries.each do |entry|
-    old_entry_path = "#{ENV['HOME']}/#{entry}"
+  entries(:remove_erb_suffix => true).each do |entry|
+    old_entry_path = File.join(ENV['HOME'], File.split(entry))
     $stderr.puts "rm -rf #{old_entry_path}"
     FileUtils.rm_rf(old_entry_path)
   end
@@ -50,7 +56,16 @@ end
 def install_dotfiles
   create_subdirectories(entries, :path => ENV['HOME'])
   entries.each do |entry|
-    $stderr.puts "cp -r #{entry} #{ENV['HOME']}"
-    FileUtils.cp_r(entry, ENV['HOME'])
+    if File.extname(entry) == '.erb'
+      compiled_template_path = File.join(ENV['HOME'], File.join(File.dirname(entry), File.basename(entry, '.erb')))
+      $stderr.puts "generating #{compiled_template_path} from template"
+      File.open(compiled_template_path, 'w') do |file|
+        file.write(ERB.new(File.read(entry), nil, '<>').result)
+      end
+    else
+      destination = File.join(ENV['HOME'], File.split(entry).first)
+      $stderr.puts "cp -r #{entry} #{destination}"
+      FileUtils.cp_r(entry, destination)
+    end
   end
 end

@@ -13,7 +13,7 @@
 	interactive = auto
 [github]
 	user = mpereira
-	token = deadbeefdeadbeefdeadbeefdeadbeefdeadbeef
+	token = <%= ENV['GITHUB_TOKEN'] || 'deadbeef' %>
 [alias]
 	st = status
 	ci = commit

@@ -4,7 +4,7 @@ servers = (
     port = "6667";
     chatnet = "freenode";
     nick = "mpereira";
-    password = "deadbeef";
+    password = "<%= ENV['IRC_FREENODE_PASSWORD'] || 'deadbeef' %>";
     autoconnect = "yes";
   },
   {
@@ -12,7 +12,7 @@ servers = (
     port = "6667";
     chatnet = "sonian";
     nick = "mpereira";
-    password = "deadbeef";
+    password = "<%= ENV['IRC_SONIAN_PASSWORD'] || 'deadbeef' %>";
     use_ssl = "yes";
     ssl_verify = "yes";
     ssl_capath = "/etc/ssl/certs";
