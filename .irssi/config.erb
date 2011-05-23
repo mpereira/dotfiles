@@ -14,8 +14,7 @@ servers = (
     nick = "mpereira";
     password = "<%= ENV['IRC_SONIAN_PASSWORD'] || 'deadbeef' %>";
     use_ssl = "yes";
-    ssl_verify = "yes";
-    ssl_capath = "/etc/ssl/certs";
+    autoconnect = "yes";
   }
 );
 
