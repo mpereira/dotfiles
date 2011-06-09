@@ -372,6 +372,9 @@
     <keybind key="W-t">
       <action name="execute"><execute>urxvt</execute></action>
     </keybind>
+    <keybind key="W-u">
+      <action name="execute"><execute>uzbl-browser</execute></action>
+    </keybind>
 
     <!-- Screenshots -->
     <keybind key="A-Print">
