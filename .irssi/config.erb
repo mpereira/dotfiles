@@ -1,10 +1,11 @@
 servers = (
   {
     address = "irc.freenode.net";
-    port = "6667";
+    port = "7000";
     chatnet = "freenode";
     nick = "mpereira";
     password = "<%= ENV['IRC_FREENODE_PASSWORD'] || 'deadbeef' %>";
+    use_ssl = "yes";
     autoconnect = "yes";
   },
   {
@@ -23,18 +24,12 @@ channels = (
   { name = "##posix"; chatnet = "freenode"; autojoin = "Yes"; },
   { name = "#archlinux"; chatnet = "freenode"; autojoin = "Yes"; },
   { name = "#vim"; chatnet = "freenode"; autojoin = "Yes"; },
-  { name = "##c"; chatnet = "freenode"; autojoin = "Yes"; },
+  { name = "#security"; chatnet = "freenode"; autojoin = "Yes"; },
   { name = "#gdb"; chatnet = "freenode"; autojoin = "Yes"; },
-  { name = "#ruby"; chatnet = "freenode"; autojoin = "Yes"; },
-  { name = "#RubyOnRails"; chatnet = "freenode"; autojoin = "Yes"; },
-  { name = "##javascript"; chatnet = "freenode"; autojoin = "Yes"; },
-  { name = "#jquery"; chatnet = "freenode"; autojoin = "Yes"; },
-  { name = "#erlang"; chatnet = "freenode"; autojoin = "Yes"; },
-  { name = "#lisp"; chatnet = "freenode"; autojoin = "Yes"; },
-  { name = "#clojure"; chatnet = "freenode"; autojoin = "Yes"; },
-  { name = "#devs"; chatnet = "sonian"; autojoin = "Yes"; },
-  { name = "#website"; chatnet = "sonian"; autojoin = "Yes"; },
-  { name = "#safe"; chatnet = "sonian"; autojoin = "Yes"; }
+  { name = "##c"; chatnet = "freenode"; autojoin = "Yes"; },
+  { name = "##asm"; chatnet = "freenode"; autojoin = "Yes"; },
+  { name = "#ruby"; chatnet = "freenode"; autojoin = "Yes"; }
+  { name = "#sql"; chatnet = "freenode"; autojoin = "Yes"; },
 );
 
 settings = {
