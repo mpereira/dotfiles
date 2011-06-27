@@ -370,7 +370,7 @@
       </action>
     </keybind>
     <keybind key="W-t">
-      <action name="execute"><execute>urxvt</execute></action>
+      <action name="execute"><execute>urxvtc</execute></action>
     </keybind>
     <keybind key="W-u">
       <action name="execute"><execute>uzbl-browser</execute></action>
