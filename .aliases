@@ -26,7 +26,7 @@ alias ls="ls --color=auto -F --group-directories-first"
 alias f="find | grep"
 alias rm="rm -i"
 alias mv="mv -i"
-alias cp="cp -ri"
+alias cp="cp -ria"
 alias mkdir="mkdir -p"
 alias ducks='du -cksh * | sort -rh | head -11'
 
