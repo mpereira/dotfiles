@@ -22,7 +22,7 @@ alias t='tmux -2'
 # file management ##############################################################
 
 alias ..="cd .."
-alias ls="ls --color=auto -F --group-directories-first"
+alias ls="ls -FG"
 alias f="find | grep"
 alias rm="rm -i"
 alias mv="mv -i"
