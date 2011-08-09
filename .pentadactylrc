@@ -1,5 +1,3 @@
-set gui=tabs
-
 let g:mapleader = ','
 
 nnoremap <leader>m :tabmove<Space>
