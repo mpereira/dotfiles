@@ -17,11 +17,13 @@ background yes
 update_interval 0.5
 
 # width
-minimum_size 1280
+minimum_size 1366
+
+# no gay border
+border_inner_margin 0
 
 # spawn its own window with black background and as a dock
 own_window yes
-own_window_colour black
 own_window_type dock
 
 # only shows 'if_up' block if its binded to an address
@@ -31,11 +33,11 @@ if_up_strictness address
 use_spacer left
 
 TEXT
- ${color0}cpu${color} ${cpu}% \
+ \
+${color0}cpu${color} ${cpu}% \
 ${color0}ram${color} ${mem} \
-${color0}bat${color} ${battery_bar 8,20} ${battery_time} \
+${color0}bat${color} ${battery_bar 9,20} ${battery_time} \
 ${color0}/${color} ${fs_used_perc /}% \
-${color0}/home${color} ${fs_used_perc /home}% \
 ${if_up eth0}\
 ${color0}eth0${color} ${addr eth0} ${color2}${downspeedf eth0}KiB/s ${color}${color1}${upspeedf eth0}KiB/s${color} \
 ${endif}\
