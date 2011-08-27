@@ -2,7 +2,7 @@
 
 sleep 0.5 && (pypanel) &
 sleep 0.5 && (conky) &
-sleep 0.5 && (unclutter -i 3 -noevents) &
+sleep 0.5 && (unclutter -idle 3 -noevents) &
 sleep 0.5 && (thunar --daemon) &
 sleep 0.5 && (pytyle) &
 sleep 0.5 && (dropboxd) &
