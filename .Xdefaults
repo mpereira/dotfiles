@@ -66,3 +66,11 @@ URxvt*color14: #a1cdcd
 ! white
 URxvt*color7:  #BBBBBB
 URxvt*color15: #EEEEEF
+
+! Yeahconsole.
+yeahconsole*term:          urxvtc
+yeahconsole*screenWidth:   1366
+yeahconsole*handleWidth:   4
+yeahconsole*consoleHeight: 38
+yeahconsole*stepSize:      0
+yeahconsole*toggleKey:     None+F1
