@@ -8,4 +8,5 @@
 (dropboxd &)
 (urxvtd -q -o -f &)
 (yeahconsole &)
+(synapse -s &)
 (cd /opt/gmote/ && ./GmoteServer.sh &)
