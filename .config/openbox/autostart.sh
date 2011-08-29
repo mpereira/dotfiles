@@ -1,10 +1,11 @@
 [[ -s "$HOME/.wallpaper" ]] && feh --bg-scale $HOME/.wallpaper &> /dev/null &
 
-sleep 0.5 && (pypanel) &
-sleep 0.5 && (conky) &
-sleep 0.5 && (unclutter -idle 3 -noevents) &
-sleep 0.5 && (thunar --daemon) &
-sleep 0.5 && (pytyle) &
-sleep 0.5 && (dropboxd) &
-sleep 0.5 && (urxvtd -q -o -f) &
-sleep 0.5 && (cd /opt/gmote/ && ./GmoteServer.sh) &
+(pypanel &)
+(conky &)
+(unclutter -idle 3 -noevents &)
+(thunar --daemon &)
+(pytyle &)
+(dropboxd &)
+(urxvtd -q -o -f &)
+(yeahconsole &)
+(cd /opt/gmote/ && ./GmoteServer.sh &)
