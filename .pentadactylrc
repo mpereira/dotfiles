@@ -1,12 +1,7 @@
-let g:mapleader = ','
+set guioptions=s
 
-nnoremap <leader>m :tabmove<Space>
-nnoremap <silent> <leader>d :tabduplicate<CR>
-nnoremap <silent> <leader>J :tabmove -1<CR>
-nnoremap <silent> <leader>K :tabmove +1<CR>
+nnoremap J <C-p>
+nnoremap K <C-n>
 
-nmap J <C-p>
-nmap K <C-n>
-
-nnoremap j 3j
-nnoremap k 3k
+nnoremap j 3<C-e>
+nnoremap k 3<C-y>
