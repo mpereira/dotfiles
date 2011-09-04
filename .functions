@@ -172,12 +172,6 @@ findc() {
   fi
 }
 
-# Shows the current machine's IP address
-# Usage: myip
-myip() {
-  echo `wget www.whatismyip.com/automation/n09230945.asp -O - -q`
-}
-
 # Redirects video output to the VGA display
 vga () {
   {
