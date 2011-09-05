@@ -1,3 +1,5 @@
+# TODO: Ditch oh-my-zsh.
+
 export ZSH="$HOME/.oh-my-zsh"
 if [ -d "$ZSH" ]; then
   export ZSH_THEME="mpereira"
@@ -12,10 +14,15 @@ else
   BROWSER=lynx
 fi
 
-setopt histignoredups
-setopt histignorespace
-setopt noclobber
-setopt share_history
+# History.
+setopt APPEND_HISTORY
+setopt EXTENDED_HISTORY
+setopt HIST_NO_STORE
+setopt HIST_REDUCE_BLANKS
+setopt INC_APPEND_HISTORY
+setopt SHARE_HISTORY
+
+unsetopt CLOBBER
 
 [[ -s "$HOME/.aliases" ]] && . "$HOME/.aliases"
 [[ -s "$HOME/.functions" ]] && . "$HOME/.functions"
