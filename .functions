@@ -84,7 +84,7 @@ function :h() {
 function remindme() {
   local delay=$1
   shift
-  sleep $delay; (zenity --info --text "$*" &> /dev/null &)
+  ( { sleep $delay; zenity --info --text "$*" &> /dev/null } & )
 }
 
 # Shows running daemons.
