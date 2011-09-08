@@ -1,65 +1,49 @@
-# system #######################################################################
+# System.
+alias :q='exit'
+alias :wq='exit'
+alias q='exit'
+alias quit='exit'
+alias c='clear'
+alias halt='sudo halt'
+alias reboot='sudo reboot'
+alias grep='grep --color=auto'
+alias psc="echo '%CPU %MEM   PID COMMAND' && ps hgaxo %cpu,%mem,pid,comm | sort -nrk1 | head -n 10"
+alias psm="echo '%CPU %MEM   PID COMMAND' && ps hgaxo %cpu,%mem,pid,comm | sort -nrk2 | head -n 10"
+alias sps='ps aux | grep -v grep | grep -i'
+alias h='history | grep -i'
+alias t='tmux'
+alias vim='mvim -v'
+alias v='mvim -v'
+alias wallpaper='feh --bg-scale'
 
-alias halt="sudo halt"
-alias reboot="sudo reboot"
-alias daemons="ls /var/run/daemons"
-alias wallpaper="feh --bg-scale"
-alias q="exit"
-alias :q="exit"
-alias :wq="exit"
-alias quit="exit"
-alias h="history | grep $1"
-alias c="clear"
-alias sps="ps aux | grep -v grep | grep"
-alias grep="grep --color=auto"
-alias egrep="egrep --color=auto"
-alias res="xrandr --size $1"
-alias psm="echo '%CPU %MEM   PID COMMAND' && ps hgaxo %cpu,%mem,pid,comm | sort -nrk1 | head -n 10 | sed -e 's/-bin//' | sed -e 's/-media-play//'"
-alias timer='time read -p "Press enter to stop"'
-alias profileme="history | awk '{print \$2}' | awk 'BEGIN{FS=\"|\"}{print \$1}' | sort | uniq -c | sort -n | tail -n 20 | sort -nr"
-alias t='tmux -2'
-
-# file management ##############################################################
-
-alias ..="cd .."
-alias ls="ls -FG"
-alias f="find | grep"
-alias rm="rm -i"
-alias mv="mv -i"
-alias cp="cp -ai"
-alias mkdir="mkdir -p"
+# File management.
+alias ..='cd ..'
+alias ls='ls --color=auto -F --group-directories-first'
+alias la='ls -A'
+alias ll='ls -l'
+alias rm='rm -i'
+alias mv='mv -i'
+alias cp='cp -ria'
+alias mkdir='mkdir -p'
 alias ducks='du -cksh * | sort -rh | head -11'
 
-# pacman #######################################################################
+# Pacman.
+alias pacman='sudo pacman'
+alias pacup='pacman -Syu'
+alias pacw='pacman -Qu'
+alias pacin='pacman -S'
+alias pacout='pacman -Rcsn'
+alias pacs="pacman -Sl | cut -d ' ' -f 2 | grep"
+alias pac='pacsearch'
+alias pacq='paclocalsearch'
+alias pacinfo='pacman -Si'
 
-alias pacman="sudo pacman"
-alias pacup="pacman -Syu"
-alias pacw="pacman -Qu"
-alias pacin="pacman -S"
-alias pacout="pacman -Rcsn"
-alias pacs="pacman -Sl | cut -d' ' -f2 | grep "
-alias pac="pacsearch"
-alias pacq="paclocalsearch"
-alias pacinfo="pacman -Si"
-
-# yaourt #######################################################################
-
-alias yaoup="yaourt -Syyu --aur"
-alias yaow="yaourt -Qu"
-alias yaoin="yaourt -S"
-alias yaout="yaourt -Rcsn"
-alias yaos="yaourt -Sl | cut -d' ' -f1 | grep "
-alias yao="yaourt -Ss"
-alias yaoq="yaourt -Qs"
-alias yaoinfo="yaourt -Si"
-
-# remote boxes #################################################################
-
-alias comp="ssh murilo@ssh.comp.ufscar.br"
-alias x="ssh murilo@x.sa2s.us -A"
-
-# work #########################################################################
-
-alias teardown="rake db:drop db:create db:migrate spec:db:fixtures:load db:test:prepare; rm -rf log/development.log"
-alias tmux_shared="tmux -S /tmp/${USER} attach || tmux -S /tmp/${USER} new-session 'chown ${USER}:$(if [ -z '$(groups|grep sysadmin)' ]; then echo users; else echo sysadmin; fi) /tmp/${USER} && chmod g+rw /tmp/${\
-USER} && ${SHELL}'"
+# Yaourt.
+alias yaoup='yaourt -Syyu --aur'
+alias yaow='yaourt -Qu'
+alias yaoin='yaourt -S'
+alias yaout='yaourt -Rcsn'
+alias yaos="yaourt -Sl | cut -d ' ' -f 1 | grep"
+alias yao='yaourt -Ss'
+alias yaoq='yaourt -Qs'
+alias yaoinfo='yaourt -Si'
