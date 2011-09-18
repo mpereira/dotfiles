@@ -39,7 +39,7 @@ ${color0}ram${color} ${mem} \
 ${color0}bat${color} ${battery_bar 9,20} ${battery_time} \
 ${color0}/${color} ${fs_used_perc /}% \
 ${if_up eth0}\
-${color0}eth0${color} ${addr eth0} ${color2}${downspeedf eth0}KiB/s ${color}${color1}${upspeedf eth0}KiB/s${color} \
+${color0}eth0${color} ${color2}${downspeedf eth0}KiB/s ${color}${color1}${upspeedf eth0}KiB/s${color} \
 ${endif}\
 ${if_up wlan0}\
 ${color0}wlan0${color} ${color2}${downspeedf wlan0}KiB/s${color}${color1}${upspeedf wlan0}KiB/s${color} \
