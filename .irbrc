@@ -1,3 +1,15 @@
+# Add all gems in the global gemset to the $LOAD_PATH so they can be used even
+# in places like 'rails console'.
+if defined?(::Bundler)
+  global_gemset_path = ENV['GEM_PATH'].split(':').grep(/ruby.*@global/).first
+  unless global_gemset_path.to_s.empty?
+    global_gem_paths = Dir.glob("#{global_gemset_path}/gems/*")
+    global_gem_paths.each do |gem_path|
+      $LOAD_PATH << "#{gem_path}/lib"
+    end
+  end
+end
+
 # Tab completion
 require 'irb/completion'
 
