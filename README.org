@@ -4,7 +4,13 @@
 #+BEGIN_SRC
 $ git clone git://github.com/mpereira/dotfiles ~/.dotfiles
 $ cd ~/.dotfiles
-$ rake install [BACKUP=yes|no] [IRC_FREENODE_PASSWORD='pwd'] [IRC_SONIAN_PASSWORD='pwd']
+$ rake install \
+  [BACKUP=yes|no] \
+  [GITHUB_TOKEN='token'] \
+  [IRC_FREENODE_PASSWORD='pwd'] \
+  [LASTFM_PASSWORD='pwd'] \
+  [LIBREFM_PASSWORD='pwd'] \
+  [EXTERNAL_DRIVE_PATH='/path/to/external/drive']
 #+END_SRC
 
    If you pass BACKUP=no your dotfiles will be overwritten. Anything other than
