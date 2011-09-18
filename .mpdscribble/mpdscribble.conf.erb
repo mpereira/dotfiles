@@ -1,0 +1,13 @@
+log = syslog
+
+[last.fm]
+url = http://post.audioscrobbler.com/
+username = sweet_potatoes
+password = <%= ENV['LASTFM_PASSWORD'] %>
+journal = ~/.mpdscribble/lastfm.journal
+
+[libre.fm]
+url = http://turtle.libre.fm/
+username = mpereira
+password = <%= ENV['LIBREFM_PASSWORD'] %>
+journal = ~/.mpdscribble/librefm.journal

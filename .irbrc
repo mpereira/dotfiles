@@ -1,3 +1,9 @@
+# Add all gems in the global gemset to the $LOAD_PATH so they can be used even
+# in bundled ruby projects without declaring them in the Gemfile.
+if defined?(::Bundler)
+  $LOAD_PATH.concat(Dir.glob("#{ENV['rvm_ruby_global_gems_path']}/gems/*/lib"))
+end
+
 # Tab completion
 require 'irb/completion'
 
