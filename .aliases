@@ -1,19 +1,22 @@
 # System.
 alias :q='exit'
 alias :wq='exit'
-alias q='exit'
-alias quit='exit'
 alias c='clear'
-alias halt='sudo halt'
-alias reboot='sudo reboot'
 alias grep='grep --color=auto'
+alias h='history | grep -i'
+alias halt='sudo halt'
 alias psc="echo '%CPU %MEM   PID COMMAND' && ps hgaxo %cpu,%mem,pid,comm | sort -nrk1 | head -n 10"
 alias psm="echo '%CPU %MEM   PID COMMAND' && ps hgaxo %cpu,%mem,pid,comm | sort -nrk2 | head -n 10"
+alias q='exit'
+alias quit='exit'
+alias reboot='sudo reboot'
 alias sps='ps aux | grep -v grep | grep -i'
-alias h='history | grep -i'
+
+# Apps.
 alias t='tmux'
-alias vim='mvim -v'
 alias v='mvim -v'
+alias vg='valgrind --leak-check=full --show-possibly-lost=no --dsymutil=yes'
+alias vim='mvim -v'
 alias wallpaper='feh --bg-scale'
 
 # File management.
