@@ -1,0 +1,7 @@
+# ~/.tmuxinator/dotfiles.yml
+
+project_name: dotfiles
+project_root: ~/git/dotfiles
+tabs:
+  - shell: git remote update
+  - editor: vim

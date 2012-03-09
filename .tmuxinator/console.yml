@@ -1,0 +1,11 @@
+# ~/.tmuxinator/console.yml
+
+project_name: console
+project_root: ~/
+tabs:
+  - packages: yaoup --noconfirm
+  - temperature: sudo watch -n 0.5 /usr/bin/sensors
+  - domain: watch -n 100 whois procurodomestica.com.br
+  - network: wicd-curses
+  - log: sudo less +F /var/log/messages.log
+  - htop: htop
