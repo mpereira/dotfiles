@@ -24,5 +24,6 @@ setopt SHARE_HISTORY
 
 unsetopt CLOBBER
 
-[[ -s "$HOME/.aliases" ]] && . "$HOME/.aliases"
-[[ -s "$HOME/.functions" ]] && . "$HOME/.functions"
+[[ -s $HOME/.aliases ]]                       && . $HOME/.aliases
+[[ -s $HOME/.functions ]]                     && . $HOME/.functions
+[[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && . $HOME/.tmuxinator/scripts/tmuxinator
