@@ -1,0 +1,6 @@
+# ~/.tmuxinator/torrent.yml
+
+project_name: torrent
+project_root: ~/
+tabs:
+  - client: rtorrent

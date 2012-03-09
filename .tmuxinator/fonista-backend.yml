@@ -1,6 +1,6 @@
 # ~/.tmuxinator/fonista-backend.yml
 
-project_name: backend
+project_name: fonista-backend
 project_root: ~/umamao/fonista-backend
 pre: sudo /etc/rc.d/mysqld start
 tabs:

@@ -1,0 +1,6 @@
+# ~/.tmuxinator/music.yml
+
+project_name: music
+project_root: ~/
+tabs:
+  - client: pms

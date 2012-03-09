@@ -1,6 +1,6 @@
 # ~/.tmuxinator/fonista-mobile.yml
 
-project_name: mobile
+project_name: fonista-mobile
 project_root: ~/umamao/fonista-mobile
 tabs:
   - shell: git remote update
