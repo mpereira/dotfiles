@@ -2,14 +2,14 @@ require 'rake'
 require 'fileutils'
 require 'erb'
 
-desc 'Copy dotfiles to your home directory'
+desc 'Copy the dotfiles to your home directory'
 task :install do
   backup_old_dotfiles if backup?
   remove_old_dotfiles
   install_dotfiles
 end
 
-desc 'Copy dotfiles from your home directory back to this repo'
+desc 'Copy the dotfiles from your home directory back to this repo\'s directory'
 task :reverse_install do
   reverse_install_dotfiles
 end
