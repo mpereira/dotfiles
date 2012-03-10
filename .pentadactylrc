@@ -1,4 +1,5 @@
 set guioptions=s
+set hintkeys=asdfhjkl
 
 nnoremap J <C-p>
 nnoremap K <C-n>
