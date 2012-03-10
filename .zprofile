@@ -1,4 +1,4 @@
-export PATH=$PATH:/usr/local/bin
+export PATH=$PATH:$HOME/bin
 
 # Don't show the current directory as "~rvm_rvmrc_cwd".
 unsetopt auto_name_dirs
