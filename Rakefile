@@ -1,7 +1,6 @@
 require 'rake'
 require 'fileutils'
 require 'erb'
-require 'stringio'
 
 desc 'Copy dotfiles to your home directory'
 task :install do
