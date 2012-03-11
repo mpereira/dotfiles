@@ -1,0 +1,12 @@
+# ~/.tmuxinator/fonista-mobile.yml
+
+project_name: fonista-mobile
+project_root: ~/umamao/fonista-mobile
+tabs:
+  - shell: git remote update
+  - watcher:
+      layout: main-vertical
+      panes:
+        - make watch
+        - make server
+  - editor: vim -O2 src/{application.js,router.js} src/controllers/application.js src/views/content.js

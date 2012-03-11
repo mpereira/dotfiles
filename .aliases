@@ -29,24 +29,3 @@ alias mv='mv -i'
 alias cp='cp -iR'
 alias mkdir='mkdir -p'
 alias ducks='du -cksh * | sort -rh | head -11'
-
-# Pacman.
-alias pacman='sudo pacman'
-alias pacup='pacman -Syu'
-alias pacw='pacman -Qu'
-alias pacin='pacman -S'
-alias pacout='pacman -Rcsn'
-alias pacs="pacman -Sl | cut -d ' ' -f 2 | grep"
-alias pac='pacsearch'
-alias pacq='paclocalsearch'
-alias pacinfo='pacman -Si'
-
-# Yaourt.
-alias yaoup='yaourt -Syyu --aur'
-alias yaow='yaourt -Qu'
-alias yaoin='yaourt -S'
-alias yaout='yaourt -Rcsn'
-alias yaos="yaourt -Sl | cut -d ' ' -f 1 | grep"
-alias yao='yaourt -Ss'
-alias yaoq='yaourt -Qs'
-alias yaoinfo='yaourt -Si'

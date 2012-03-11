@@ -1,0 +1,12 @@
+# ~/.tmuxinator/fonista-recipes.yml
+
+project_name: fonista-recipes
+project_root: ~/umamao/fonista-recipes
+tabs:
+  - shell: git pull
+  - production:
+      layout: main-vertical
+      panes:
+        - ssh deploy@fonista.co
+        - ssh deploy@fonista.co
+  - editor: vim
