@@ -7,7 +7,7 @@ if [ -d "$ZSH" ]; then
   [[ -s "$ZSH/oh-my-zsh.sh" ]] && . "$ZSH/oh-my-zsh.sh"
 fi
 
-export EDITOR=vim
+export EDITOR='mvim -v'
 if [ -n "$DISPLAY" ]; then
   BROWSER=firefox
 else

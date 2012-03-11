@@ -2,10 +2,17 @@
 	name = Murilo Pereira
 	email = murilo@murilopereira.com
 [core]
-	editor = vim
+	editor = mvim -v
 	mergeoptions = --no-ff
 [merge]
-	tool=vimdiff
+	tool = mvimdiff
+[diff]
+	tool = mvimdiff
+[difftool]
+	tool = mvimdiff
+	prompt = false
+[difftool "mvimdiff"]
+	cmd = mvimdiff -dv $LOCAL $REMOTE
 [color]
 	ui = true
 	diff = auto
@@ -22,3 +29,4 @@
 	co = checkout
 	df = diff
 	lg = log -p
+	dt = difftool

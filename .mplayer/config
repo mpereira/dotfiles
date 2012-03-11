@@ -1,8 +1,8 @@
 # Video output
-vo=xv
+vo=corevideo
 
 # Audio output
-ao="alsa"
+ao=coreaudio
 
 # Double buffering
 double="yes"
@@ -33,3 +33,5 @@ subpos="95"
 # Unicode for fonts
 unicode=yes
 utf8=yes
+
+ass-font-scale=1.5
