@@ -19,7 +19,7 @@ URxvt*termName: screen-256color
 
 ! geometry and font
 URxvt*geometry: 80×25
-URxvt*font:     xft:Monaco:pixelsize=13
+URxvt*font:     xft:Monaco for Powerline:pixelsize=13
 
 ! enabling clickable urls on the terminal
 URxvt*perl-ext-common: default,matcher
