@@ -1,7 +1,17 @@
-# Add all gems in the global gemset to the $LOAD_PATH so they can be used even
-# in bundled ruby projects without declaring them in the Gemfile.
+# Add all gems in the global gemset of the current ruby to the $LOAD_PATH so
+# they can be used even in bundled ruby projects without declaring them in the
+# Gemfile.
 if defined?(::Bundler)
-  $LOAD_PATH.concat(Dir.glob("#{ENV['rvm_ruby_global_gems_path']}/gems/*/lib"))
+  global_gemset_path = ENV['GEM_PATH'].
+                         split(':').
+                         grep(/ruby-#{RUBY_VERSION}-p#{RUBY_PATCHLEVEL}@global/).
+                         first
+
+  if global_gemset_path
+    $LOAD_PATH.concat(Dir.glob("#{global_gemset_path}/gems/*/lib"))
+  else
+    STDERR.puts 'Could not load gems from the current ruby\'s global gemset'
+  end
 end
 
 # Tab completion
