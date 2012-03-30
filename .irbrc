@@ -79,9 +79,9 @@ def clear; system 'clear'; end
 alias c clear
 
 class Object
-  # Lists all methods that are exclusive to the object
+  # Lists all methods that are exclusive to the object.
   def local_methods
-    self.methods - (self.class.superclass.instance_methods + Object.methods)
+    (methods - (self.class.superclass.instance_methods + Object.methods)).sort
   end
 end
 
