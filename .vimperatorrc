@@ -1,0 +1,14 @@
+set hintchars=asdfhjkl
+
+map <C-g> :pageinfo<CR>
+
+let mapleader = ","
+
+nnoremap <leader>tm :tabmove<space>
+nnoremap <leader>td :tabduplicate<CR>
+
+nnoremap J <C-p>
+nnoremap K <C-n>
+
+nnoremap j 3<C-e>
+nnoremap k 3<C-y>
