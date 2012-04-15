@@ -41,7 +41,11 @@ setopt HIST_REDUCE_BLANKS
 setopt INC_APPEND_HISTORY
 setopt SHARE_HISTORY
 
+
 unsetopt CLOBBER
+
+# Incremental backwards search for vi-mode.
+bindkey -M vicmd '?' history-incremental-search-backward
 
 [[ -s $HOME/.aliases ]]                       && . $HOME/.aliases
 [[ -s $HOME/.functions ]]                     && . $HOME/.functions
