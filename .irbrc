@@ -25,7 +25,7 @@ IRB.conf[:HISTORY_FILE] = "#{ENV['HOME']}/.irb_history"
 # Minimalist command prompt
 IRB.conf[:PROMPT_MODE] = :SIMPLE
 
-%w[rubygems interactive_editor what_methods].each do |gem|
+%w[rubygems irbtools irbtools/more].each do |gem|
   begin
     require gem
   rescue LoadError
@@ -33,46 +33,7 @@ IRB.conf[:PROMPT_MODE] = :SIMPLE
   end
 end
 
-# Loading awesome print
-begin
-  require 'ap'
-rescue LoadError
-  STDERR.puts $!
-else
-  IRB::Irb.class_eval do
-    # Making awesome_print the default outputter
-    def output_value
-      ap @context.last_value
-    end
-  end
-end
-
-# Loading bond
-begin
-  require 'bond'
-rescue LoadError
-  STDERR.puts $!
-else
-  Bond.start
-end
-
-# Loading wirble
-begin
-  require 'wirble'
-rescue LoadError
-  STDERR.puts $!
-else
-  %w[init colorize].each { |m| Wirble.send(m) }
-end
-
-# Loading hirb
-begin
-  require 'hirb'
-rescue LoadError
-  STDERR.puts $!
-else
-  Hirb.enable
-end
+Irbtools.welcome_message = ''
 
 # Method to clear the screen
 def clear; system 'clear'; end
