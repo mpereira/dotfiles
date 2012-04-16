@@ -1,6 +1,13 @@
 set guioptions=s
 set hintkeys=asdfhjkl
 
+map <C-g> :pageinfo<CR>
+
+set mapleader=,
+
+nnoremap <leader>tm :tabmove
+nnoremap <leader>td :tabduplicate<CR>
+
 nnoremap J <C-p>
 nnoremap K <C-n>
 
