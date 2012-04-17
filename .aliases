@@ -18,6 +18,8 @@ alias t='tmux'
 alias v='vim'
 alias vg='valgrind --leak-check=full --show-possibly-lost=no --dsymutil=yes'
 alias wallpaper='feh --bg-scale'
+alias ack='ack-grep'
+alias a='ack-grep'
 
 # File management.
 alias ..='cd ..'
