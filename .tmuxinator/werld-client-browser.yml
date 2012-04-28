@@ -1,0 +1,12 @@
+# ~/.tmuxinator/werld-client-browser.yml
+
+project_name: werld-client-browser
+project_root: ~/git/werld-client-browser
+tabs:
+  - shell: git remote update
+  - servers:
+      layout: main-vertical
+      panes:
+        - make watch
+        - make server
+  - editor: vim

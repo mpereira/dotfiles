@@ -1,7 +1,7 @@
-# ~/.tmuxinator/werld.yml
+# ~/.tmuxinator/meleva-web.yml
 
-project_name: werld
-project_root: ~/git/werld-client-browser
+project_name: meleva-web
+project_root: ~/meleva/web
 tabs:
   - shell: git remote update
   - watcher:

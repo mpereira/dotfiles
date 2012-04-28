@@ -1,0 +1,7 @@
+# ~/.tmuxinator/bootstrap.yml
+
+project_name: bootstrap
+project_root: ~/
+tabs:
+  - shell: git remote update
+  - editor: vim
