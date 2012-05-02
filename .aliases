@@ -19,8 +19,7 @@ alias v='mvim -v'
 alias vg='valgrind --leak-check=full --show-possibly-lost=no --dsymutil=yes'
 alias vim='mvim -v'
 alias wallpaper='feh --bg-scale'
-alias ack='ack-grep'
-alias a='ack-grep'
+alias a='ack'
 
 # File management.
 alias ..='cd ..'
