@@ -5,15 +5,16 @@ project_root: ~/meleva/admin
 tabs:
   - shell: git remote update
   - servers:
-      layout: main-vertical
+      layout: 552f,173x40,0,0{86x40,0,0[86x20,0,0,86x19,0,21],86x40,87,0}
       panes:
-        - make watch
-        - make server
+          - make server
+          - make faye
+          - make watch
   - editor: vim
   - web-shell: cd vendor/meleva-web && git remote update
   - web-servers:
-      layout: main-vertical
+      layout: even-horizontal
       panes:
-        - cd vendor/meleva-web && make watch
-        - cd vendor/meleva-web && make server
+          - cd vendor/meleva-web && make watch
+          - cd vendor/meleva-web && make server
   - web-editor: cd vendor/meleva-web && vim
