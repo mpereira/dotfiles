@@ -21,7 +21,7 @@ if [ -d "$ZSH" ]; then
   # Uncomment following line if you want red dots to be displayed while waiting for completion
   # COMPLETION_WAITING_DOTS="true"
 
-  plugins=(autojump cap command-not-found compleat debian extract gem git history-substring-search jake knife lol npm nyan rake redis-cli sprunge ssh-agent vagrant vi-mode)
+  plugins=(autojump cap compleat extract gem git history-substring-search jake knife lol npm nyan rake redis-cli sprunge ssh-agent vagrant vi-mode)
 
   . $ZSH/oh-my-zsh.sh
 fi
