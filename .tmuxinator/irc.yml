@@ -1,0 +1,6 @@
+# ~/.tmuxinator/irc.yml
+
+project_name: irc
+project_root: ~/
+tabs:
+  - irssi: irssi
