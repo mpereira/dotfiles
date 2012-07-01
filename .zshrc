@@ -10,7 +10,7 @@ if [ -d "$ZSH" ]; then
   # CASE_SENSITIVE="true"
 
   # Comment this out to disable weekly auto-update checks
-  # DISABLE_AUTO_UPDATE="true"
+  DISABLE_AUTO_UPDATE="true"
 
   # Uncomment following line if you want to disable colors in ls
   # DISABLE_LS_COLORS="true"
@@ -52,5 +52,4 @@ bindkey -M vicmd '?' history-incremental-search-backward
 [[ -s $HOME/.aliases ]]                       && . $HOME/.aliases
 [[ -s $HOME/.functions ]]                     && . $HOME/.functions
 [[ -s $HOME/.rvm/scripts/rvm ]]               && . $HOME/.rvm/scripts/rvm
-[[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && . $HOME/.tmuxinator/scripts/tmuxinator
 [[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && . $HOME/.tmuxinator/scripts/tmuxinator
