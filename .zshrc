@@ -33,6 +33,8 @@ else
   BROWSER=$(which lynx)
 fi
 
+export PATH=$PATH:$HOME/bin:$HOME/.local/bin
+
 # History.
 setopt APPEND_HISTORY
 setopt EXTENDED_HISTORY
