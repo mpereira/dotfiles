@@ -41,12 +41,16 @@ setopt HIST_REDUCE_BLANKS
 setopt INC_APPEND_HISTORY
 setopt SHARE_HISTORY
 
-
 unsetopt CLOBBER
+
+# Don't show the current directory as "~rvm_rvmrc_cwd".
+unsetopt auto_name_dirs
 
 # Incremental backwards search for vi-mode.
 bindkey -M vicmd '?' history-incremental-search-backward
 
 [[ -s $HOME/.aliases ]]                       && . $HOME/.aliases
 [[ -s $HOME/.functions ]]                     && . $HOME/.functions
+[[ -s $HOME/.rvm/scripts/rvm ]]               && . $HOME/.rvm/scripts/rvm
+[[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && . $HOME/.tmuxinator/scripts/tmuxinator
 [[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && . $HOME/.tmuxinator/scripts/tmuxinator
