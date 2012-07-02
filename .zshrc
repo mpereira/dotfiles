@@ -10,7 +10,7 @@ if [ -d "$ZSH" ]; then
   # CASE_SENSITIVE="true"
 
   # Comment this out to disable weekly auto-update checks
-  # DISABLE_AUTO_UPDATE="true"
+  DISABLE_AUTO_UPDATE="true"
 
   # Uncomment following line if you want to disable colors in ls
   # DISABLE_LS_COLORS="true"
@@ -33,6 +33,17 @@ else
   BROWSER=$(which lynx)
 fi
 
+export PATH=$PATH:$HOME/bin:$HOME/.local/bin:/usr/local/sbin:$PATH:/usr/local/bin:$HOME/bin
+
+export LANG="en_US.UTF-8"
+export LC_COLLATE="en_US.UTF-8"
+export LC_CTYPE="en_US.UTF-8"
+export LC_MESSAGES="en_US.UTF-8"
+export LC_MONETARY="en_US.UTF-8"
+export LC_NUMERIC="en_US.UTF-8"
+export LC_TIME="en_US.UTF-8"
+export LC_ALL="en_US.UTF-8"
+
 # History.
 setopt APPEND_HISTORY
 setopt EXTENDED_HISTORY
@@ -41,12 +52,15 @@ setopt HIST_REDUCE_BLANKS
 setopt INC_APPEND_HISTORY
 setopt SHARE_HISTORY
 
-
 unsetopt CLOBBER
+
+# Don't show the current directory as "~rvm_rvmrc_cwd".
+unsetopt auto_name_dirs
 
 # Incremental backwards search for vi-mode.
 bindkey -M vicmd '?' history-incremental-search-backward
 
 [[ -s $HOME/.aliases ]]                       && . $HOME/.aliases
 [[ -s $HOME/.functions ]]                     && . $HOME/.functions
+[[ -s $HOME/.rvm/scripts/rvm ]]               && . $HOME/.rvm/scripts/rvm
 [[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && . $HOME/.tmuxinator/scripts/tmuxinator
