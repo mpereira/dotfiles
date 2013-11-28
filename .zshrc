@@ -1,27 +1,33 @@
 export ZSH=$HOME/.oh-my-zsh
+export ECLIPSE_HOME=$HOME/.eclipse
 
 if [ -d "$ZSH" ]; then
-  # Path to your oh-my-zsh configuration.
   ZSH=$HOME/.oh-my-zsh
 
-  ZSH_THEME="robbyrussell"
+  ZSH_THEME="mpereira"
 
-  # Set to this to use case-sensitive completion
-  # CASE_SENSITIVE="true"
-
-  # Comment this out to disable weekly auto-update checks
+  CASE_SENSITIVE="true"
   DISABLE_AUTO_UPDATE="true"
 
-  # Uncomment following line if you want to disable colors in ls
-  # DISABLE_LS_COLORS="true"
-
-  # Uncomment following line if you want to disable autosetting terminal title.
-  # DISABLE_AUTO_TITLE="true"
-
-  # Uncomment following line if you want red dots to be displayed while waiting for completion
-  # COMPLETION_WAITING_DOTS="true"
-
-  plugins=(autojump cap command-not-found compleat debian extract gem git history-substring-search jake knife lol npm nyan rake redis-cli sprunge ssh-agent vagrant vi-mode)
+  plugins=(
+    autojump
+    command-not-found
+    compleat
+    cp
+    debian
+    docker
+    extract
+    gem
+    git
+    git-extras
+    npm
+    rake
+    scala
+    ssh-agent
+    vagrant
+    vi-mode
+    zsh-syntax-highlighting
+  )
 
   . $ZSH/oh-my-zsh.sh
 fi
@@ -33,7 +39,7 @@ else
   BROWSER=$(which lynx)
 fi
 
-export PATH=$PATH:$HOME/bin:$HOME/.local/bin
+export PATH=$PATH:$HOME/bin:$HOME/.local/bin:$ECLIPSE_HOME
 
 # History.
 setopt APPEND_HISTORY
@@ -51,7 +57,20 @@ unsetopt auto_name_dirs
 # Incremental backwards search for vi-mode.
 bindkey -M vicmd '?' history-incremental-search-backward
 
+# vi-mode stuff.
+bindkey -a 'gg' beginning-of-buffer-or-history
+bindkey -a G end-of-buffer-or-history
+bindkey -a u undo
+bindkey -a '^R' redo
+bindkey '^?' backward-delete-char
+bindkey '^H' backward-delete-char
+
+# 10ms delay to normal mode.
+KEYTIMEOUT=1
+
 [[ -s $HOME/.aliases ]]                       && . $HOME/.aliases
 [[ -s $HOME/.functions ]]                     && . $HOME/.functions
 [[ -s $HOME/.rvm/scripts/rvm ]]               && . $HOME/.rvm/scripts/rvm
 [[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && . $HOME/.tmuxinator/scripts/tmuxinator
+
+which vault > /dev/null && . "$(vault --initpath)"
