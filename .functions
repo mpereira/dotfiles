@@ -1,46 +1,8 @@
-# Pacman.
-pacsearch() {
-  echo -e "$(pacman -Ss $@ | sed \
-  -e 's#core/.*#\\e[0;31m&\\e[m#' \
-  -e 's#extra/.*#\\e[0;32m&\\e[m#' \
-  -e 's#community/.*#\\e[0;33m&\\e[m#' \
-  -e 's#^.*/.* [0-9].*#\\e[0;35m&\\e[m#' )"
-}
-
-paclocalsearch() {
-  echo -e "$(pacman -Qs $@ | sed \
-  -e 's#core/.*#\\e[0;31m&\\e[m#' \
-  -e 's#extra/.*#\\e[0;32m&\\e[m#' \
-  -e 's#community/.*#\\e[0;33m&\\e[m#' \
-  -e 's#^.*/.* [0-9].*#\\e[0;35m&\\e[m#' )"
-}
-
 # Makes directory then moves into it.
 # Usage: mkcdr <directory>
-function mkcdr {
+function mkcdr() {
   mkdir -p -v $1
   cd $1
-}
-
-# Shows terminal colors.
-function showcolors() {
-  T='gYw'
-
-  echo -e "\n            \
-     40m     41m     42m     43m\
-     44m     45m     46m     47m";
-
-  for FGs in '    m' '   1m' '  30m' '1;30m' '  31m' '1;31m' '  32m' \
-  '1;32m' '  33m' '1;33m' '  34m' '1;34m' '  35m' '1;35m' \
-  '  36m' '1;36m' '  37m' '1;37m';
-  do FG=${FGs// /}
-    echo -en " $FGs \033[$FG  $T  "
-    for BG in 40m 41m 42m 43m 44m 45m 46m 47m;
-    do echo -en "$EINS \033[$FG\033[$BG  $T  \033[0m";
-    done
-    echo;
-  done
-  echo
 }
 
 # Creates an archive from given directory.
@@ -64,80 +26,6 @@ function remindme() {
   ( { sleep $delay; zenity --info --text "$*" &> /dev/null } & )
 }
 
-# Shows running daemons.
-daemons() {
-  ls /var/run/daemons/
-}
-
-# Shows available and running daemons.
-services() {
-  echo "Available"
-  find /etc/rc.d -executable -type f | cut -d '/' -f 4 | sort | column -x
-  echo "\nRunning"
-  daemons
-}
-
-# Recursively fix directory and file permissions on given directory.
-# Usage: fix <directory>
-fix() {
-  if [ -d $1 ]; then
-    find $1 -type d -exec chmod 755 {} \;
-    find $1 -type f -exec chmod 644 {} \;
-  else
-    echo "$1 is not a directory."
-  fi
-}
-
-# Send public key to remote server.
-# Usage: sendkey <user@remotehost>
-sendkey() {
-  if [ $# -ne 1 ]; then
-    ssh $1 'cat >> ~/.ssh/authorized_keys' < ~/.ssh/id_dsa.pub
-  fi
-}
-
-# Start, stop, restart, reload - simple service management.
-# Usage: {start,stop,restart,reload} <service>
-start() {
-  for arg in $*; do
-    sudo /etc/rc.d/$arg start
-  done
-}
-
-stop() {
-  for arg in $*; do
-    sudo /etc/rc.d/$arg stop
-  done
-}
-
-restart() {
-  for arg in $*; do
-    sudo /etc/rc.d/$arg restart
-  done
-}
-
-reload() {
-  for arg in $*; do
-    sudo /etc/rc.d/$arg reload
-  done
-}
-
 # Goes to the directory where the file/directory is located.
 # Usage: cdf <file | directory>
 cdf() { cd "$(dirname "$(locate -b "\\$1" | head -n 1)")" ; }
-
-# Find file names with given content.
-# Usage: findc <directory> <content>
-findc() {
-  if [ -n "$2" ]; then
-    find "$1" -type f -exec grep -qI "$2" {} \; -print
-  else
-    find "./" -type f -exec grep -qI "$1" {} \; -print
-  fi
-}
-
-# Find file names matching the given pattern.
-# Usage: f <directory> <pattern>
-f() {
-  find $1 | grep -i $2
-}
