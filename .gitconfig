@@ -4,8 +4,11 @@
 [core]
 	editor = vim
 	mergeoptions = --no-ff
+	excludesfile = ~/.gitignore
 [merge]
 	tool=vimdiff
+[push]
+	default = simple
 [color]
 	ui = true
 	diff = auto
@@ -22,3 +25,4 @@
 	df = diff
 	lg = log -p
 	l  = log --graph --pretty=format:'%Cred%h%Creset %C(cyan)%an%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+	rbr = for-each-ref --sort=-committerdate refs/heads/
