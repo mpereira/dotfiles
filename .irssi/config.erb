@@ -1,30 +1,51 @@
 servers = (
   {
-    address = "irc.freenode.net";
-    port = "7000";
-    chatnet = "freenode";
-    nick = "mpereira";
-    password = "<%= ENV['IRC_FREENODE_PASSWORD'] || 'deadbeef' %>";
-    use_ssl = "yes";
+    address     = "irc.ircrelay.com";
+    chatnet     = "IRCRelay";
+    port        = "6697";
+    password    = "<%= ENV['IRC_IRCRELAY_PASSWORD'] || 'deadbeef' %>";
+    use_ssl     = "yes";
+    ssl_verify  = "yes";
+    autoconnect = "yes";
+  },
+  {
+    address     = "irc.sa2s.us";
+    port        = "7778";
+    chatnet     = "sonian";
+    password    = "<%= ENV['IRC_SONIAN_PASSWORD'] || 'deadbeef' %>";
+    use_ssl     = "yes";
     autoconnect = "yes";
   }
 );
 
 channels = (
-  { name = "##linux"; chatnet = "freenode"; autojoin = "Yes"; },
-  { name = "#security"; chatnet = "freenode"; autojoin = "Yes"; },
-  { name = "##posix"; chatnet = "freenode"; autojoin = "Yes"; },
-  { name = "##c"; chatnet = "freenode"; autojoin = "Yes"; },
-  { name = "#ruby"; chatnet = "freenode"; autojoin = "Yes"; },
-  { name = "##javascript"; chatnet = "freenode"; autojoin = "Yes"; },
-  { name = "#documentcloud"; chatnet = "freenode"; autojoin = "Yes"; },
-  { name = "#erlang"; chatnet = "freenode"; autojoin = "Yes"; },
-  { name = "#bbg"; chatnet = "freenode"; autojoin = "Yes"; },
+  { name = "#labs";          chatnet = "sonian";   autojoin = "Yes"; },
+  { name = "##c";            chatnet = "IRCRelay"; autojoin = "Yes"; },
+  { name = "#ruby";          chatnet = "IRCRelay"; autojoin = "Yes"; },
+  { name = "##javascript";   chatnet = "IRCRelay"; autojoin = "Yes"; },
+  { name = "#clojure";       chatnet = "IRCRelay"; autojoin = "Yes"; },
+  { name = "#erlang";        chatnet = "IRCRelay"; autojoin = "Yes"; },
+  { name = "#documentcloud"; chatnet = "IRCRelay"; autojoin = "Yes"; },
+  { name = "#riak";          chatnet = "IRCRelay"; autojoin = "Yes"; },
+  { name = "#bbg";           chatnet = "IRCRelay"; autojoin = "Yes"; },
+  { name = "#digitalocean";  chatnet = "IRCRelay"; autojoin = "Yes"; },
+  { name = "#ansible";       chatnet = "IRCRelay"; autojoin = "Yes"; },
+  { name = "#vagrant";       chatnet = "IRCRelay"; autojoin = "Yes"; },
+  { name = "#docker";        chatnet = "IRCRelay"; autojoin = "Yes"; },
+  { name = "##cs";           chatnet = "IRCRelay"; autojoin = "Yes"; },
+  { name = "##statistics";   chatnet = "IRCRelay"; autojoin = "Yes"; },
 );
 
 settings = {
-  core = { real_name = "Murilo Pereira"; user_name = "mpereira"; nick = "mpereira"; };
+  core = {
+    real_name = "Murilo Pereira";
+    user_name = "mpereira";
+    nick      = "mpereira";
+  };
   "fe-text" = { actlist_sort = "refnum"; scroll_page_count = "/1"; };
 };
 
-chatnets = { freenode = { type = "IRC"; }; sonian = { type = "IRC"; }; };
+chatnets = {
+  IRCRelay = { type = "IRC"; username = "<%= ENV['IRC_IRCRELAY_USERNAME'] || 'deadbeef' %>"; };
+  sonian   = { type = "IRC"; username = "<%= ENV['IRC_SONIAN_USERNAME'] || 'deadbeef' %>"; };
+};
