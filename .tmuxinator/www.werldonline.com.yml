@@ -1,8 +1,8 @@
-# ~/.tmuxinator/www.werldonline.com.yml
-
-project_name: www.werldonline.com
-project_root: ~/git/www.werldonline.com
-tabs:
+---
+name: www.werldonline.com
+root: ~/git/www.werldonline.com
+tmux_options: -2
+windows:
   - shell: git remote update
   - editor: vim
   - werld-client-browser: cd vendor/werld-client-browser && vim

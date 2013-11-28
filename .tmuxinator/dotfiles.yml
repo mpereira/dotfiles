@@ -1,7 +1,7 @@
-# ~/.tmuxinator/dotfiles.yml
-
-project_name: dotfiles
-project_root: ~/git/dotfiles
-tabs:
+---
+name: dotfiles
+root: ~/git/dotfiles
+tmux_options: -2
+windows:
   - shell: git remote update
   - editor: vim

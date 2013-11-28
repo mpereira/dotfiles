@@ -1,8 +1,8 @@
-# ~/.tmuxinator/werld-client-browser.yml
-
-project_name: werld-client-browser
-project_root: ~/git/werld-client-browser
-tabs:
+---
+name: werld-client-browser
+root: ~/git/werld-client-browser
+tmux_options: -2
+windows:
   - shell: git remote update
   - servers:
       layout: main-vertical

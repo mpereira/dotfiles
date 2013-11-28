@@ -1,0 +1,11 @@
+---
+name: sa-labs-analyzer
+root: ~/sonian/labs/analyzer
+pre: sudo service postgresql start
+tmux_options: -2
+windows:
+  - shell: git remote update
+  - server: bundle exec rails s
+  - ssh: 'ssh ec2-54-225-35-242.compute-1.amazonaws.com'
+  - repl: bundle exec rails c
+  - editor: vim

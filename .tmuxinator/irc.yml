@@ -1,6 +1,6 @@
-# ~/.tmuxinator/irc.yml
-
-project_name: irc
-project_root: ~/
-tabs:
+---
+name: irc
+root: ~/
+tmux_options: -2
+windows:
   - irssi: irssi
