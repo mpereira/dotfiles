@@ -1,15 +1,33 @@
 set guioptions=s
 set hintkeys=asdfhjkl
 
-map <C-g> :pageinfo<CR>
+" http://code.google.com/p/dactyl/issues/detail?id=972
+set scs=1
 
-set mapleader=,
+map <C-h> <noop>
+map <C-j> <noop>
+map <C-k> <noop>
 
-nnoremap <leader>tm :tabmove
-nnoremap <leader>td :tabduplicate<CR>
+" ; -> :
+nmap -builtin ; :
 
-nnoremap J <C-p>
-nnoremap K <C-n>
+" Highlight all search matches, not just the first.
+set hlfind
 
-nnoremap j 3<C-e>
-nnoremap k 3<C-y>
+" Clear search highlighting and normal highlighting.
+nmap -builtin <C-l> <esc>:noh<CR>
+
+" Toggle console.
+nmap -builtin <leader>c <C-S-k><esc>
+imap -builtin <leader>c <esc><C-S-k><esc>
+
+map , <leader>
+
+nmap -builtin <leader>tm :tabmove 
+nmap -builtin <leader>td :tabduplicate<CR>
+
+nmap -builtin J <C-p>
+nmap -builtin K <C-n>
+
+nmap -builtin j 3<C-e>
+nmap -builtin k 3<C-y>
