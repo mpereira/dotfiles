@@ -14,7 +14,6 @@
 	interactive = auto
 [github]
 	user = mpereira
-	token = <%= ENV['GITHUB_TOKEN'] || 'deadbeef' %>
 [alias]
 	st = status
 	ci = commit
@@ -22,4 +21,4 @@
 	co = checkout
 	df = diff
 	lg = log -p
-  l  = log --graph --pretty=format:'%Cred%h%Creset %C(cyan)%an%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+	l  = log --graph --pretty=format:'%Cred%h%Creset %C(cyan)%an%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
