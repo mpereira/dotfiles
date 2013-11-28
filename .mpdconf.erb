@@ -1,18 +1,20 @@
-music_directory "<%= "#{ENV['EXTERNAL_DRIVE_PATH']}/music" || '/path/to/music/dir' %>"
+music_directory    "~/Music"
 playlist_directory "~/.mpd/playlists"
-db_file "~/.mpd/database"
-log_file "syslog"
-state_file "~/.mpd/state"
-auto_update "yes"
+db_file            "~/.mpd/database"
+state_file         "~/.mpd/state"
+log_file           "syslog"
+auto_update        "yes"
+bind_to_address    "0.0.0.0"
 
 audio_output {
-  type "alsa"
-  name "ALSA"
+  type       "alsa"
+  name       "ALSA"
+  mixer_type "software"
 }
 
 audio_output {
   type        "httpd"
-  name        "Murilo's HTTP Stream"
+  name        "mpereira\"s HTTP Stream"
   port        "6666"
   bitrate     "128"
   max_clients "0"
