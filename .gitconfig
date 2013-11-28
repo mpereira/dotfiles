@@ -24,5 +24,10 @@
 	co = checkout
 	df = diff
 	lg = log -p
+	pl = pull
+	ps = push
 	l = log --graph --pretty=format:'%Cred%h%Creset %C(cyan)%an%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
 	rbr = for-each-ref --sort=-committerdate refs/heads/
+	amend = commit --amend
+	changes = log --pretty=format:\"%h %cr %cn %Cgreen%s%Creset\" --name-status
+	changelog = log --pretty=format:\" * %s\"
