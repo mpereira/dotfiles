@@ -1,5 +1,7 @@
 # dotfiles
 
+[mpereira](https://github.com/mpereira)'s configuration files.
+
 ## Installation
     $ git clone git://github.com/mpereira/dotfiles ~/.dotfiles
     $ cd ~/.dotfiles
@@ -15,3 +17,9 @@
 If you pass `BACKUP=no` your dotfiles will be overwritten. Anything other than
 that will create a `.dotfiles.bak` directory with your dotfiles under your
 home directory.
+
+## Author
+  [Murilo Pereira](http://murilopereira.com)
+
+## License
+  [MIT](http://opensource.org/licenses/MIT)
