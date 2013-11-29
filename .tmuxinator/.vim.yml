@@ -1,0 +1,7 @@
+---
+name: .vim
+root: ~/.vim
+tmux_options: -2
+windows:
+  - shell: git remote update
+  - vim: vim vimrc
