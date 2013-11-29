@@ -1,6 +1,7 @@
 # Applications.
 alias a='ack-grep'
 alias ack='ack-grep'
+alias b='bundle'
 alias bundle='nocorrect bundle'
 alias gem='nocorrect gem'
 alias git='nocorrect git'
