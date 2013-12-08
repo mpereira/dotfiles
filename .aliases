@@ -2,6 +2,9 @@
 alias a='ag'
 alias b='bundle'
 alias bundle='nocorrect bundle'
+if [ "$(uname -s)" = 'Darwin' ]; then
+  alias htop='sudo htop'
+fi
 alias gem='nocorrect gem'
 alias git='nocorrect git'
 alias m='mpc'
