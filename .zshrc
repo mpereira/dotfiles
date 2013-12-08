@@ -39,7 +39,9 @@ else
   BROWSER=$(which lynx)
 fi
 
-export PATH=$PATH:$HOME/bin:$HOME/.local/bin:$ECLIPSE_HOME
+export PATH=$PATH:$HOME/bin
+export PATH=$PATH:$ECLIPSE_HOME
+export PATH=$PATH:$HOME/.gem/ruby/*/bin
 
 # History.
 setopt APPEND_HISTORY
