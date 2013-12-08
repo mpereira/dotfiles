@@ -51,10 +51,10 @@ alias cp='cp -ai'
 alias ducks='du -cksh * | sort -rh | head -11'
 alias la='ls -A'
 alias ll='ls -l'
-if [ '$(uname -s)' = 'Darwin' ]; then
+if [ "$(uname -s)" = 'Darwin' ]; then
   alias ls='ls -FG'
 fi
-if [ '$(uname -s)' = 'Linux' ]; then
+if [ "$(uname -s)" = 'Linux' ]; then
   alias ls='ls --color=auto -F --group-directories-first'
 fi
 alias mkdir='nocorrect mkdir -p'
