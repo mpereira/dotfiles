@@ -72,6 +72,6 @@ KEYTIMEOUT=1
 [[ -s $HOME/.functions ]]                     && . $HOME/.functions
 [[ -s $HOME/.rvm/scripts/rvm ]]               && . $HOME/.rvm/scripts/rvm
 
-. $HOME/.rvm/gems/ruby-2.0.0-p247/gems/tmuxinator-0.6.6/completion/tmuxinator.zsh
+. $HOME/.gem/ruby/*/gems/tmuxinator-*/completion/tmuxinator.zsh
 
 which vault > /dev/null && . "$(vault --initpath)"
