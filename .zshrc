@@ -41,7 +41,7 @@ fi
 
 export PATH=$PATH:$HOME/bin
 export PATH=$PATH:$ECLIPSE_HOME
-export PATH=$PATH:$HOME/.gem/ruby/*/bin
+export PATH=$PATH:$HOME/.gem/ruby/2.0.0/bin
 
 # History.
 setopt APPEND_HISTORY
@@ -72,7 +72,6 @@ KEYTIMEOUT=1
 
 [[ -s $HOME/.aliases ]]                       && . $HOME/.aliases
 [[ -s $HOME/.functions ]]                     && . $HOME/.functions
-[[ -s $HOME/.rvm/scripts/rvm ]]               && . $HOME/.rvm/scripts/rvm
 
 . $HOME/.gem/ruby/*/gems/tmuxinator-*/completion/tmuxinator.zsh
 
