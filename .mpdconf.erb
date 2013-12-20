@@ -6,11 +6,21 @@ log_file           "syslog"
 auto_update        "yes"
 bind_to_address    "0.0.0.0"
 
-audio_output {
-  type       "alsa"
-  name       "ALSA"
-  mixer_type "software"
-}
+<% if RUBY_PLATFORM =~ /darwin/ %>
+  audio_output {
+    type       "osx"
+    name       "CoreAudio"
+    mixer_type "software"
+  }
+<% end %>
+
+<% if RUBY_PLATFORM =~ /linux/ %>
+  audio_output {
+    type       "alsa"
+    name       "ALSA"
+    mixer_type "software"
+  }
+<% end %>
 
 audio_output {
   type        "httpd"
