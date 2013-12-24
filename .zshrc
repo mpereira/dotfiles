@@ -14,7 +14,6 @@ if [ -d "$ZSH" ]; then
     command-not-found
     compleat
     cp
-    debian
     docker
     extract
     gem
@@ -28,6 +27,10 @@ if [ -d "$ZSH" ]; then
     vi-mode
     zsh-syntax-highlighting
   )
+
+  if [ -f /etc/lsb-release ]; then
+    plugins+=debian
+  fi
 
   . $ZSH/oh-my-zsh.sh
 fi
