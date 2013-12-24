@@ -73,9 +73,8 @@ bindkey '^H' backward-delete-char
 # 10ms delay to normal mode.
 KEYTIMEOUT=1
 
-[[ -s $HOME/.aliases ]]                       && . $HOME/.aliases
-[[ -s $HOME/.functions ]]                     && . $HOME/.functions
-
-. $HOME/.gem/ruby/*/gems/tmuxinator-*/completion/tmuxinator.zsh
+[[ -s $HOME/.aliases ]] && . $HOME/.aliases
+[[ -s $HOME/.functions ]] && . $HOME/.functions
+[[ -s $HOME/.gem/ruby/*/gems/tmuxinator-*/completion/tmuxinator.zsh ]] && . $HOME/.gem/ruby/*/gems/tmuxinator-*/completion/tmuxinator.zsh
 
 which vault > /dev/null && . "$(vault --initpath)"
