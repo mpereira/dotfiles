@@ -46,6 +46,10 @@ export PATH=$PATH:$HOME/bin
 export PATH=$PATH:$ECLIPSE_HOME
 export PATH=$PATH:$HOME/.gem/ruby/2.0.0/bin
 
+if [ "$(uname -s)" = 'Darwin' ]; then
+  export PATH=$PATH:/opt/local/bin
+fi
+
 # History.
 setopt APPEND_HISTORY
 setopt EXTENDED_HISTORY
