@@ -3,4 +3,4 @@ name: music
 root: ~/
 tmux_options: -2
 windows:
-  - pms: pms
+  - vimpc: vimpc
