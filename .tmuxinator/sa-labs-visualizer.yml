@@ -4,5 +4,5 @@ root: ~/sonian/labs/visualizer
 tmux_options: -2
 windows:
   - shell: git remote update
-  - server: ./run.sh
-  - editor: vim -c 'NERDTree'
+  - server: make server
+  - editor: vim
