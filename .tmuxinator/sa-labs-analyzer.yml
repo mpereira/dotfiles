@@ -2,6 +2,7 @@
 name: sa-labs-analyzer
 root: ~/sonian/labs/analyzer
 tmux_options: -2
+pre: vagrant up
 windows:
   - shell: git remote update
   - vm:
