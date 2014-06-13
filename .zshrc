@@ -1,5 +1,6 @@
 export ZSH=$HOME/.oh-my-zsh
 export ECLIPSE_HOME=$HOME/.eclipse
+export DOCKER_HOST=tcp://$(boot2docker ip 2>/dev/null):2375
 
 if [ -d "$ZSH" ]; then
   ZSH=$HOME/.oh-my-zsh
