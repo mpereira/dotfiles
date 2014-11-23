@@ -1,0 +1,14 @@
+---
+name: glimpse
+root: ~/sonian/glimpse
+tmux_options: -2
+pre: vagrant up
+windows:
+  - shell: git remote update
+  - vm:
+      layout: even-vertical
+      panes:
+        - foreman: vagrant ssh -- -t 'cd /vagrant && bash -i -l -o vi -c "bundle exec foreman start"'
+        - console: vagrant ssh -- -t 'cd /vagrant && bash -i -l -o vi -c "bundle exec rails c"'
+        - shell:   vagrant ssh -- -t 'cd /vagrant && bash -i -l -o vi'
+  - editor: vim

@@ -5,4 +5,4 @@ tmux_options: -2
 windows:
   - shell: git remote update
   - server: make server
-  - editor: vim
+  - editor: vim -c 'NERDTree'

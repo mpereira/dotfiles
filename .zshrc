@@ -46,6 +46,7 @@ fi
 export PATH=$PATH:$HOME/bin
 export PATH=$PATH:$ECLIPSE_HOME
 export PATH=$PATH:$HOME/.gem/ruby/2.0.0/bin
+export PATH=$PATH:/usr/local/Cellar/vimpc/HEAD/bin
 
 if [ "$(uname -s)" = 'Darwin' ]; then
   export PATH=$PATH:/opt/local/bin

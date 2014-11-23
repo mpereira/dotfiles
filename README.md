@@ -7,8 +7,8 @@
     $ cd ~/.dotfiles
     $ rake install \
       [BACKUP=yes|no] \
-      [IRC_IRCRELAY_USERNAME='username'] \
-      [IRC_IRCRELAY_PASSWORD='password'] \
+      [IRC_FREENODE_USERNAME='username'] \
+      [IRC_FREENODE_PASSWORD='password'] \
       [IRC_SONIAN_USERNAME='username'] \
       [IRC_SONIAN_PASSWORD='password'] \
       [LASTFM_PASSWORD='password'] \

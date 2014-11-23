@@ -42,3 +42,7 @@ function remindme() {
 # Goes to the directory where the file/directory is located.
 # Usage: cdf <file | directory>
 cdf() { cd "$(dirname "$(locate -b "\\$1" | head -n 1)")" ; }
+
+function portowner() {
+  sudo lsof -n -i4TCP:"$1" | grep LISTEN
+}
