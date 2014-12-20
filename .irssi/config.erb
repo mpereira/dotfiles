@@ -24,23 +24,13 @@ chatnets = {
 };
 
 channels = (
-  { name = "#core";            chatnet = "sonian";   autojoin = "Yes"; },
-  { name = "#dashboard";       chatnet = "sonian";   autojoin = "Yes"; },
-  { name = "#labs";            chatnet = "sonian";   autojoin = "Yes"; },
-  { name = "#arcadiaunity";    chatnet = "freenode"; autojoin = "Yes"; },
-  { name = "#bbg";             chatnet = "freenode"; autojoin = "Yes"; },
-  { name = "#clojure";         chatnet = "freenode"; autojoin = "Yes"; },
-  { name = "#clojurescript";   chatnet = "freenode"; autojoin = "Yes"; },
-  { name = "#reactjs";         chatnet = "freenode"; autojoin = "Yes"; },
-  { name = "#ansible";         chatnet = "freenode"; autojoin = "Yes"; },
-  { name = "#vagrant";         chatnet = "freenode"; autojoin = "Yes"; },
-  { name = "#docker";          chatnet = "freenode"; autojoin = "Yes"; },
-  { name = "#apache-spark";    chatnet = "freenode"; autojoin = "Yes"; },
-  { name = "##statistics";     chatnet = "freenode"; autojoin = "Yes"; },
-  { name = "#machinelearning"; chatnet = "freenode"; autojoin = "Yes"; },
-  { name = "##nlp";            chatnet = "freenode"; autojoin = "Yes"; },
-  { name = "##cs";             chatnet = "freenode"; autojoin = "Yes"; },
-  { name = "##ai";             chatnet = "freenode"; autojoin = "Yes"; }
+  { name = "#devs";          chatnet = "sonian";   autojoin = "Yes"; },
+  { name = "#dashboard";     chatnet = "sonian";   autojoin = "Yes"; },
+  { name = "#core";          chatnet = "sonian";   autojoin = "Yes"; },
+  { name = "#clojure";       chatnet = "freenode"; autojoin = "Yes"; },
+  { name = "#clojurescript"; chatnet = "freenode"; autojoin = "Yes"; },
+  { name = "#haskell";       chatnet = "freenode"; autojoin = "Yes"; },
+  { name = "#apache-spark";  chatnet = "freenode"; autojoin = "Yes"; }
 );
 
 statusbar = {
@@ -67,20 +57,6 @@ statusbar = {
       items     = { window = { }; window_empty = { }; };
     };
 
-    prompt = {
-      type      = "root";
-      placement = "bottom";
-      position  = "100";
-      visible   = "always";
-
-      items = {
-        time         = { };
-        user         = { };
-        prompt       = { priority = "-1"; };
-        prompt_empty = { priority = "-1"; };
-        input        = { priority = "10"; };
-      };
-    };
 
     topic = {
       type      = "root";
@@ -90,10 +66,26 @@ statusbar = {
       items     = { topic = { }; topic_empty = { }; };
     };
 
+    prompt = {
+      items = {
+        uberprompt = { priority = "-1"; };
+        input      = { priority = "10"; };
+      };
+      position = "100";
+    };
+
     awl_0 = {
       items = {
         barstart = { priority = "100"; };
         awl_0    = { };
+        barend   = { priority = "100"; alignment = "right"; };
+      };
+    };
+
+    awl_1 = {
+      items = {
+        barstart = { priority = "100"; };
+        awl_1    = { };
         barend   = { priority = "100"; alignment = "right"; };
       };
     };
@@ -130,9 +122,10 @@ settings = {
     neat_left_actions      = "no";
     neat_maxlength         = "15";
     notifier_on_regex      = "mpereira";
-    notifier_channel_regex = "(dashboard|arcadiaunity)";
-    notifier_on_privmsg    = 1;
+    notifier_channel_regex = "(devs|dashboard|core)";
+    notifier_on_privmsg    = "1";
   };
 };
 
 ignores = ( { level = "JOINS PARTS QUITS NICKS"; } );
+logs = { };
