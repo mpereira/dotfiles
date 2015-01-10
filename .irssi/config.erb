@@ -115,17 +115,19 @@ settings = {
   };
 
   "perl/core/scripts" = {
-    awl_display_key        = "(%w$N $H$C$S)";
-    awl_maxlines           = "3";
-    awl_position           = "0";
-    awl_sbar_maxlength     = "no";
-    hilightwin_showprivmsg = "no";
-    lt_in_queries          = "yes";
-    neat_left_actions      = "no";
-    neat_maxlength         = "15";
-    notifier_on_regex      = "mpereira";
-    notifier_channel_regex = "(devs|dashboard|core)";
-    notifier_on_privmsg    = "1";
+    awl_display_key                    = "(%w$N $H$C$S)";
+    awl_maxlines                       = "3";
+    awl_position                       = "0";
+    awl_sbar_maxlength                 = "no";
+    hilightwin_showprivmsg             = "no";
+    lt_in_queries                      = "yes";
+    neat_left_actions                  = "no";
+    neat_maxlength                     = "15";
+    notifier_on_regex                  = "mpereira";
+    notifier_on_privmsg                = "1";
+    notifier_channel_regex             = "<%= ENV['IRC_NOTIFIER_CHANNEL_REGEX'] %>";
+    irssinotifier_api_token            = "<%= ENV['IRC_IRSSINOTIFIER_API_TOKEN'] %>";
+    irssinotifier_screen_detached_only = "ON";
   };
 };
 

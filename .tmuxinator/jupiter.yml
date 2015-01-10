@@ -1,0 +1,14 @@
+---
+name: jupiter
+root: ~/sonian/jupiter
+tmux_options: -2
+pre: vagrant up
+windows:
+  - shell: git remote update
+  - vm:
+      layout: even-vertical
+      panes:
+        - htop: vagrant ssh -- -t 'cd /vagrant && bash -i -l -o vi -c "htop"'
+        - server: vagrant ssh -- -t 'cd /vagrant && bash -i -l -o vi -c "./bin/run-tarball-server.sh"'
+        - repl: vagrant ssh -- -t 'cd /vagrant && bash -i -l -o vi -c "lein repl :start :host 0.0.0.0 :port 50000"'
+  - editor: echo -n 'Vim waiting nREPL' && while ! nc -z 192.168.100.100 50000 &>/dev/null; do echo -n .; sleep 1; done; vim -c 'Connect nrepl://192.168.100.100:50000' project.clj
