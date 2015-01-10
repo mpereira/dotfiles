@@ -3,7 +3,7 @@ servers = (
     address     = "irc.freenode.net";
     chatnet     = "freenode";
     port        = "7000";
-    password    = "<%= ENV['IRC_FREENODE_PASSWORD'] || 'deadbeef' %>";
+    password    = "<%= ENV['IRC_FREENODE_PASSWORD'] %>";
     use_ssl     = "yes";
     ssl_verify  = "yes";
     autoconnect = "yes";
@@ -12,15 +12,15 @@ servers = (
     address     = "irc.sa2s.us";
     port        = "7778";
     chatnet     = "sonian";
-    password    = "<%= ENV['IRC_SONIAN_PASSWORD'] || 'deadbeef' %>";
+    password    = "<%= ENV['IRC_SONIAN_PASSWORD'] %>";
     use_ssl     = "yes";
     autoconnect = "yes";
   }
 );
 
 chatnets = {
-  freenode = { type = "IRC"; username = "<%= ENV['IRC_FREENODE_USERNAME'] || 'deadbeef' %>"; };
-  sonian   = { type = "IRC"; username = "<%= ENV['IRC_SONIAN_USERNAME'] || 'deadbeef' %>"; };
+  freenode = { type = "IRC"; username = "<%= ENV['IRC_FREENODE_USERNAME'] %>"; };
+  sonian   = { type = "IRC"; username = "<%= ENV['IRC_SONIAN_USERNAME'] %>"; };
 };
 
 channels = (
@@ -127,9 +127,9 @@ settings = {
     notifier_on_privmsg                = "1";
     notifier_channel_regex             = "<%= ENV['IRC_NOTIFIER_CHANNEL_REGEX'] %>";
     irssinotifier_api_token            = "<%= ENV['IRC_IRSSINOTIFIER_API_TOKEN'] %>";
-    irssinotifier_screen_detached_only = "ON";
+    irssinotifier_require_idle_seconds = "300"
   };
 };
 
 ignores = ( { level = "JOINS PARTS QUITS NICKS"; } );
-logs = { };
+logs i { };
