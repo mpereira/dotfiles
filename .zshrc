@@ -81,6 +81,8 @@ bindkey '^H' backward-delete-char
 # 10ms delay to normal mode.
 KEYTIMEOUT=1
 
+ZLE_RPROMPT_INDENT=0
+
 [[ -s $HOME/.aliases ]] && . $HOME/.aliases
 [[ -s $HOME/.functions ]] && . $HOME/.functions
 
