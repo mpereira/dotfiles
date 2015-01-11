@@ -19,6 +19,7 @@ alias vi='vim'
 alias tig='git log -p'
 alias gcm='git ci -m'
 alias gs='git st'
+alias gpo='git push origin'
 alias gpom='git push origin master'
 alias wip='git add -A && git commit -m "wip"'
 
