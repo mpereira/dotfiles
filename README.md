@@ -10,6 +10,8 @@
       [IRC_FREENODE_USERNAME='username'] \
       [IRC_FREENODE_PASSWORD='password'] \
       [IRC_SONIAN_USERNAME='username'] \
+      [IRC_NOTIFIER_CHANNEL_REGEX='(channel1|channel2)'] \
+      [IRC_IRSSINOTIFIER_API_TOKEN='token'] \
       [IRC_SONIAN_PASSWORD='password'] \
       [LASTFM_PASSWORD='password'] \
       [LIBREFM_PASSWORD='password']
