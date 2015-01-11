@@ -20,6 +20,7 @@ alias tig='git log -p'
 alias gcm='git ci -m'
 alias gs='git st'
 alias gpom='git push origin master'
+alias wip='git add -A && git commit -m "wip"'
 
 # Focus/unfocus.
 alias focus="sudo sh -c 'echo \"127.0.0.1 www.facebook.com twitter.com getprismatic.com www.reddit.com news.ycombinator.com www.linkedin.com myaccount.mercadolivre.com.br www.youtube.com clients6.google.com # aab6de513ab5de9359809f3cdb62d352\" >> /etc/hosts'"
