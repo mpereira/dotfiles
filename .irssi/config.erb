@@ -107,29 +107,37 @@ settings = {
   "fe-common/core" = {
     emphasis             = "OFF";
     theme                = "mpereira";
-    beep_msg_level       = "NOTICE MSGS HILIGHT";
-    bell_beeps           = "no";
-    hilight_nick_matches = "no";
+    beep_msg_level       = "NOTICE MSGS HILIGHT INVITES";
+    bell_beeps           = "OFF";
+    hilight_nick_matches = "ON";
     autolog_path         = "~/.irssi/logs/$tag/$0.log";
-    autolog              = "yes";
+    autolog              = "ON";
   };
 
   "perl/core/scripts" = {
     awl_display_key                    = "(%w$N $H$C$S)";
     awl_maxlines                       = "3";
     awl_position                       = "0";
-    awl_sbar_maxlength                 = "no";
-    hilightwin_showprivmsg             = "no";
-    lt_in_queries                      = "yes";
-    neat_left_actions                  = "no";
+    awl_sbar_maxlength                 = "OFF";
+    hilightwin_showprivmsg             = "ON";
+    lt_in_queries                      = "ON";
+    neat_left_actions                  = "OFF";
     neat_maxlength                     = "15";
-    notifier_on_regex                  = "mpereira";
+    notifier_on_regex                  = "(mpereira)";
     notifier_on_privmsg                = "1";
     notifier_channel_regex             = "<%= ENV['IRC_NOTIFIER_CHANNEL_REGEX'] %>";
     irssinotifier_api_token            = "<%= ENV['IRC_IRSSINOTIFIER_API_TOKEN'] %>";
-    irssinotifier_require_idle_seconds = "300"
+    irssinotifier_require_idle_seconds = "300";
   };
 };
 
-ignores = ( { level = "JOINS PARTS QUITS NICKS"; } );
-logs i { };
+ignores = ({ level = "JOINS PARTS QUITS NICKS"; });
+hilights = ({ text = "mpereira"; nick = "yes"; word = "yes"; });
+windows = {
+  1 = { immortal = "yes"; name = "(status)"; level = "ALL"; };
+  2 = { name = "hilight"; sticky = "yes"; };
+};
+mainwindows = {
+  1 = { first_line = "8"; lines = "59"; };
+  2 = { first_line = "1"; lines = "7"; };
+};
