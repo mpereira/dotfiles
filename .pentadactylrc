@@ -10,12 +10,10 @@ map <C-k> <noop>
 
 " ; -> :
 nmap -builtin ; :
+nmap -builtin : ;
 
 " Highlight all search matches, not just the first.
 set hlfind
-
-" Clear search highlighting and normal highlighting.
-nmap -builtin <C-l> <esc>:noh<CR>
 
 " Toggle console.
 nmap -builtin <leader>c <C-S-k><esc>
@@ -52,15 +50,13 @@ highlight Find   background: #d6c149; color: #000;
 set runtimepath=/Users/mpereira/.pentadactyl
 set editor='/usr/bin/vim -f +<line> <file>'
 set followhints=1
+" Only show the tab bar if there are more than 1 tabs.
 set showtabline=multitab
 set showstatuslinks=command
 
 " Inspect element toggle
 nmap -builtin <c-s> <m-a-i>
 imap -builtin <c-s> <esc><m-a-i>
-
-" Shift is hard.
-nmap -builtin ; :
 
 " YES YES YES REMOVE THE IDIOCY
 nmap -builtin <bs> <nop>
@@ -70,3 +66,21 @@ set hlfind
 
 " Shut up.
 javascript dactyl.beep = function() { return false; }
+
+" Fix completion list so search engines don't kill tabbing.
+set complete=lS
+
+" Show up to 35 items in the completion list.
+set maxitems=35
+
+" Don't close tab on "d".
+nmap -builtin d <silent> <nop>
+
+" Close tab.
+nmap -builtin <leader>q <silent> :quit<cr>
+
+" Don't clear highlighting on "<c-l>".
+nmap -builtin <c-l> <nop>
+
+" Clear search and normal highlighting.
+nmap -builtin <leader>cl <esc>:noh<CR>
