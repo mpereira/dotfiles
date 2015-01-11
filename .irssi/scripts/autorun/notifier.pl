@@ -2,10 +2,10 @@
 # Simple script for irssi to trigger Mac OS X 10.8's Notification Center
 #
 # == WHO
-# Patrick Kontschak 2012
-# 
+# Patrick Kontschak 2012, Murilo Pereira 2015
+#
 # Forked from Nate Murray's irssi-growl: https://github.com/jashmenn/irssi-growl
-# 
+#
 # == CONFIG
 #   /SET notifier_on_regex [regex]
 #   /SET notifier_channel_regex [regex]
@@ -23,120 +23,147 @@
 #
 #   only notifier things for mychannel1 and mychannel2
 #   /SET notifier_channel_regex (mychannel1|mychannel2)
-# 
+#
 # == INSTALL
 # Place notifier.pl in `~/.irssi/scripts/`.
 # /script load notifier.pl
-#
 
 use strict;
 use Irssi;
 use vars qw($VERSION %IRSSI);
-# use Config;
 
-# Dev. info ^_^
-$VERSION = "0.0";
+$VERSION = '0.1';
 %IRSSI = (
-  authors     => "Patrick Kontschak",
-  contact     => "patrick.kontschak\@gmail.com",
-  name        => "Notifier",
-  description => "Simple script that will trigger Mac OS X 10.8's Notification Center",
-  license     => "GPL",
-  url         => "http://www.codinggoat.com",
-  changed     => "Wed  8 Aug 2012 14:40:15 EDT"
+  authors     => 'Patrick Kontschak, Murilo Pereira',
+  contact     => 'patrick.kontschak\@gmail.com, murilo\@murilopereira.com',
+  name        => 'Notifier',
+  description => 'Simple script that will trigger Mac OS X 10.8\'s Notification Center',
+  license     => 'GPL',
+  url         => 'http://www.codinggoat.com',
+  changed     => 'Sun  11 Jan 2015 00:00:00 EDT'
 );
 
-# All the works
-sub do_notifier {
-  my ($server, $title, $data) = @_;
-    $data =~ s/["';]//g;
-    system("terminal-notifier -message '$data' -title '$title' >> /dev/null 2>&1");
-    return 1
+sub notify {
+  my ($server, $title, $subtitle, $message) = @_;
+  $message =~ s/["';]//g;
+
+  my $app_icon = Irssi::settings_get_str('notifier_app_icon');
+  my $sound    = Irssi::settings_get_str('notifier_sound');
+
+  my $command = "terminal-notifier -message '$message' -title '$title'";
+  $command = $command . " -subtitle '$subtitle'" if $subtitle;
+  $command = $command . " -appIcon  '$app_icon'" if $app_icon;
+  $command = $command . " -sound    '$sound'"    if $sound   ;
+  $command = $command . " >> /dev/null 2>&1";
+  system($command);
+
+  return 1;
 }
 
-sub notifier_it {
-  my ($server, $title, $data, $channel, $nick) = @_;
+sub notify_if_regex {
+  my ($server, $title, $message, $channel, $nick) = @_;
 
-    my $filter = Irssi::settings_get_str('notifier_on_regex');
-    my $channel_filter = Irssi::settings_get_str('notifier_channel_regex');
-    my $notifier_on_nick = Irssi::settings_get_str('notifier_on_nick');
+  my $filter = Irssi::settings_get_str('notifier_on_regex');
 
-    my $current_nick = $server->{nick};
-    if($filter) {
-      return 0 if $data !~ /$filter/;
-    }
-    if($channel_filter && $server->ischannel($channel)) {
-      return 0 if $channel !~ /$channel_filter/;
-    }
+  if ($filter && $message !~ /$filter/) {
+    return 0;
+  }
 
-    $title = $title . " " . $channel;
-    do_notifier($server, $title, $data);
+  my $subtitle = $channel;
+  notify($server, $title, $subtitle, $message);
 }
 
-# All the works
-sub notifier_message {
-  my ($server, $data, $nick, $mask, $target) = @_;
-    notifier_it($server, $nick, $data, $target, $nick);
-  Irssi::signal_continue($server, $data, $nick, $mask, $target);
+sub notify_if_channel_regex {
+  my ($server, $title, $message, $channel, $nick) = @_;
+
+  my $channel_name = $channel;
+  $channel_name =~ s/#//g;
+
+  my $channel_filter = Irssi::settings_get_str('notifier_channel_regex');
+
+  if ($channel_filter && $channel_name !~ /$channel_filter/) {
+    return 0;
+  }
+
+  my $subtitle = $channel;
+  notify($server, $title, $subtitle, $message);
 }
 
-sub notifier_join {
+sub notify_if_privmsg {
+  my ($server, $title, $message, $nick) = @_;
+
+  my $notifier_on_privmsg = Irssi::settings_get_str('notifier_on_privmsg');
+
+  if ($notifier_on_privmsg != 1) {
+    return 0;
+  }
+
+  notify($server, $title, undef, $message);
+}
+
+sub maybe_notify {
+  my ($server, $title, $message, $address, $nick) = @_;
+  return if notify_if_regex($server, $title, $message, $address, $nick);
+  notify_if_channel_regex($server, $title, $message, $address, $nick);
+}
+
+sub notify_message_public {
+  my ($server, $message, $nick, $address, $address) = @_;
+  my $title = $nick;
+  maybe_notify($server, $title, $message, $address, $nick);
+}
+
+sub notify_message_private {
+  my ($server, $message, $nick, $host) = @_;
+  notify_if_privmsg($server, $nick, $message, $nick);
+}
+
+sub notify_message_join {
   my ($server, $channel, $nick, $address) = @_;
-    notifier_it($server, "Join", "$nick has joined", $channel, $nick);
-  Irssi::signal_continue($server, $channel, $nick, $address);
+  my $title = 'Join';
+  my $message = "$nick has joined";
+  maybe_notify($server, $title, $message, $address, $nick);
 }
 
-sub notifier_part {
-  my ($server, $channel, $nick, $address) = @_;
-    notifier_it($server, "Part", "$nick has parted", $channel, $nick);
-  Irssi::signal_continue($server, $channel, $nick, $address);
+sub notify_message_part {
+  my ($server, $channel, $nick, $address, $reason) = @_;
+  my $title = 'Part';
+  my $message = "$nick has parted";
+  maybe_notify($server, $title, $message, $address, $nick);
 }
 
-sub notifier_quit {
+sub notify_message_quit {
   my ($server, $nick, $address, $reason) = @_;
-    notifier_it($server, "Quit", "$nick has quit: $reason", $server, $nick);
-  Irssi::signal_continue($server, $nick, $address, $reason);
+  my $title = 'Quit';
+  my $message = "$nick has quit: $reason";
+  maybe_notify($server, $title, $message, $address, $nick);
 }
 
-sub notifier_invite {
+sub notify_message_invite {
   my ($server, $channel, $nick, $address) = @_;
-    notifier_it($server, "Invite", "$nick has invited you on $channel", $channel, $nick);
-  Irssi::signal_continue($server, $channel, $address);
+  my $title = 'Invite';
+  my $message = "$nick has invited you on $channel";
+  maybe_notify($server, $title, $message, $address, $nick);
 }
 
-sub notifier_topic {
+sub notify_message_topic {
   my ($server, $channel, $topic, $nick, $address) = @_;
-    notifier_it($server, "Topic: $topic", "$nick has changed the topic to $topic on $channel", $channel, $nick);
-  Irssi::signal_continue($server, $channel, $topic, $nick, $address);
+  my $title = 'Topic: $topic';
+  my $message = "$nick has changed the topic to $topic on $channel";
+  maybe_notify($server, $title, $message, $address, $nick);
 }
 
-sub notifier_privmsg {
-  # $server = server record where the message came
-  # $data = the raw data received from server, with PRIVMSGs it is:
-  #         "target :text" where target is either your nick or #channel
-  # $nick = the nick who sent the message
-  # $host = host of the nick who sent the message
-  my ($server, $data, $nick, $host) = @_;
-    my ($target, $text) = split(/ :/, $data, 2);
-    # only notify if we're permitting notification on privmsg
-    if (Irssi::settings_get_str('notifier_on_privmsg') == 1) {
-        notifier_it($server, $nick, $data, $target, $nick); 
-    }
-  Irssi::signal_continue($server, $data, $nick, $host);
-}
+Irssi::settings_add_str('misc', 'notifier_on_regex',      0);
+Irssi::settings_add_str('misc', 'notifier_channel_regex', 0);
+Irssi::settings_add_str('misc', 'notifier_on_nick',       1);
+Irssi::settings_add_str('misc', 'notifier_on_privmsg',    0);
+Irssi::settings_add_str('misc', 'notifier_sound',         '');
+Irssi::settings_add_str('misc', 'notifier_app_icon',      '');
 
-# Hook me up
-Irssi::settings_add_str('misc', 'notifier_on_regex', 0);      # false
-Irssi::settings_add_str('misc', 'notifier_channel_regex', 0); # false
-Irssi::settings_add_str('misc', 'notifier_on_nick', 1);       # true
-Irssi::settings_add_str('misc', 'notifier_on_privmsg', 0);    # false
-Irssi::signal_add('message public', 'notifier_message');
-Irssi::signal_add('message private', 'notifier_message');
-Irssi::signal_add('message own_public', 'notifier_message');
-Irssi::signal_add('message own_private', 'notifier_message');
-Irssi::signal_add('message join', 'notifier_join');
-Irssi::signal_add('message part', 'notifier_part');
-Irssi::signal_add('message quit', 'notifier_quit');
-Irssi::signal_add('message invite', 'notifier_invite');
-Irssi::signal_add('message topic', 'notifier_topic');
-Irssi::signal_add('event privmsg', 'notifier_privmsg');
+Irssi::signal_add('message public',  'notify_message_public');
+Irssi::signal_add('message private', 'notify_message_private');
+Irssi::signal_add('message join',    'notify_message_join');
+Irssi::signal_add('message part',    'notify_message_part');
+Irssi::signal_add('message quit',    'notify_message_quit');
+Irssi::signal_add('message invite',  'notify_message_invite');
+Irssi::signal_add('message topic',   'notify_message_topic');
