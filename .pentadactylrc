@@ -84,3 +84,6 @@ nmap -builtin <c-l> <nop>
 
 " Clear search and normal highlighting.
 nmap -builtin <leader>cl <esc>:noh<CR>
+
+" Toggle between buffers.
+nmap -builtin <leader>, <c-^>
