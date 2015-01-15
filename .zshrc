@@ -83,6 +83,9 @@ KEYTIMEOUT=1
 
 ZLE_RPROMPT_INDENT=0
 
+# Display CPU usage stats for commands taking more than 10 seconds.
+REPORTTIME=10
+
 [[ -s $HOME/.aliases ]] && . $HOME/.aliases
 [[ -s $HOME/.functions ]] && . $HOME/.functions
 
