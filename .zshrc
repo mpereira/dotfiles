@@ -37,6 +37,8 @@ if [ -d "$ZSH" ]; then
   . $ZSH/oh-my-zsh.sh
 fi
 
+export OPSCODE_USER=sonian_devs
+
 export EDITOR=$(which vim)
 if [ -n "$DISPLAY" ]; then
   BROWSER=$(which firefox)
@@ -49,6 +51,7 @@ export PATH=$PATH:$ECLIPSE_HOME
 export PATH=$PATH:$HOME/.gem/ruby/2.0.0/bin
 export PATH=$PATH:$HOME/Library/Haskell/bin
 export PATH=$PATH:/usr/local/Cellar/vimpc/HEAD/bin
+export PATH=$PATH:$HOME/sonian/sa-chef-repo/bin
 
 if [ "$(uname -s)" = 'Darwin' ]; then
   export PATH=$PATH:/opt/local/bin
