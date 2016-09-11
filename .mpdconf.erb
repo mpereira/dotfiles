@@ -1,32 +1,29 @@
 music_directory    "/Volumes/music"
+# music_directory    "/Users/mpereira/Music"
 playlist_directory "~/.mpd/playlists"
 db_file            "~/.mpd/database"
 state_file         "~/.mpd/state"
+sticker_file       "~/.mpd/sticker"
+pid_file           "~/.mpd/pid"
 log_file           "syslog"
 auto_update        "yes"
 bind_to_address    "0.0.0.0"
-port               "6601"
+port               "6600"
 
-<% if RUBY_PLATFORM =~ /darwin/ %>
-  audio_output {
-    type       "osx"
-    name       "CoreAudio"
-    mixer_type "software"
-  }
-<% end %>
+audio_buffer_size "10240" # kB
+buffer_before_play "20%"
 
-<% if RUBY_PLATFORM =~ /linux/ %>
-  audio_output {
-    type       "alsa"
-    name       "ALSA"
-    mixer_type "software"
-  }
-<% end %>
+audio_output {
+  type       "osx"
+  name       "CoreAudio"
+  mixer_type "software"
+}
 
 audio_output {
   type        "httpd"
-  name        "mpereira\"s HTTP Stream"
+  name        "mpereira\"s music"
   port        "6666"
+  encoder     "lame"
   bitrate     "128"
-  max_clients "0"
+  max_clients "1"
 }

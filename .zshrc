@@ -1,8 +1,6 @@
 export ZSH=$HOME/.oh-my-zsh
 export ECLIPSE_HOME=$HOME/.eclipse
 
-$(boot2docker shellinit 2>&1 | grep export)
-
 if [ -d "$ZSH" ]; then
   ZSH=$HOME/.oh-my-zsh
 
@@ -21,13 +19,14 @@ if [ -d "$ZSH" ]; then
     gem
     git
     git-extras
+    zsh-syntax-highlighting # needs to load before history-substring-search.
+    history-substring-search
     npm
     rake
     scala
     ssh-agent
     vagrant
     vi-mode
-    zsh-syntax-highlighting
   )
 
   if [ -f /etc/lsb-release ]; then
@@ -37,9 +36,13 @@ if [ -d "$ZSH" ]; then
   . $ZSH/oh-my-zsh.sh
 fi
 
+# Sonian stuff.
 export OPSCODE_USER=sonian_devs
+export SONIAN_USER=murilo
+export PATH=$PATH:$HOME/sonian/sonian-chef/bin
+source ~/sonian/family-jewels/archiva.sh
 
-export EDITOR=$(which vim)
+export EDITOR="$(which mvim) -v"
 if [ -n "$DISPLAY" ]; then
   BROWSER=$(which firefox)
 else
@@ -49,10 +52,11 @@ fi
 export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.4/bin
 export PATH=$PATH:$HOME/bin
 export PATH=$PATH:$ECLIPSE_HOME
-export PATH=$PATH:$HOME/.gem/ruby/2.0.0/bin
 export PATH=$PATH:$HOME/Library/Haskell/bin
 export PATH=$PATH:/usr/local/Cellar/vimpc/HEAD/bin
-export PATH=$PATH:$HOME/sonian/sa-chef-repo/bin
+
+# https://momentum.spindance.com/2015/08/problems-ruby-openssl-mac-os-x-10-10/
+export SSL_CERT_FILE=/usr/local/etc/openssl/certs/cacert.pem
 
 if [ "$(uname -s)" = 'Darwin' ]; then
   export PATH=$PATH:/opt/local/bin
@@ -205,16 +209,11 @@ zle -N change-around
 # # shift + tab
 # bindkey '^[[Z' reverse-menu-complete
 # # VI MODE KEYBINDINGS (ins mode)
-# bindkey -M viins '^a' beginning-of-line
-# bindkey -M viins '^e' end-of-line
 # bindkey -M viins -s '^b' "←\n" # C-b move to previous directory (in history)
 # bindkey -M viins -s '^f' "→\n" # C-f move to next directory (in history)
 # bindkey -M viins '^k' kill-line
 # bindkey -M viins '^r' history-incremental-pattern-search-backward
 # bindkey -M viins '^s' history-incremental-pattern-search-forward
-# bindkey -M viins '^o' history-beginning-search-backward
-# bindkey -M viins '^p' history-beginning-search-backward
-# bindkey -M viins '^n' history-beginning-search-forward
 # bindkey -M viins '^y' yank
 # bindkey -M viins '^w' backward-kill-word
 # bindkey -M viins '^u' backward-kill-line
@@ -234,12 +233,9 @@ zle -N change-around
 # bindkey -M vicmd 'ga' what-cursor-position
 # bindkey -M vicmd 'gg' beginning-of-history
 # bindkey -M vicmd 'G ' end-of-history
-# bindkey -M vicmd '^a' beginning-of-line
-# bindkey -M vicmd '^e' end-of-line
 # bindkey -M vicmd '^k' kill-line
 # bindkey -M vicmd '^r' history-incremental-pattern-search-backward
 # bindkey -M vicmd '^s' history-incremental-pattern-search-forward
-# bindkey -M vicmd '^o' history-beginning-search-backward
 # bindkey -M vicmd '^p' history-beginning-search-backward
 # bindkey -M vicmd '^n' history-beginning-search-forward
 # bindkey -M vicmd '^y' yank
@@ -251,24 +247,26 @@ zle -N change-around
 # bindkey -M vicmd '\ef' forward-word # Alt-f
 # bindkey -M vicmd '\eb' backward-word # Alt-b
 # bindkey -M vicmd '\ed' kill-word # Alt-d
-# bindkey -M vicmd '\e[5~' history-beginning-search-backward # PageUp
-# bindkey -M vicmd '\e[6~' history-beginning-search-forward # PageDown
+# bindkey -M vicmd '^p' history-beginning-search-backward # PageUp
+# bindkey -M vicmd '^n' history-beginning-search-forward # PageDown
 
-# Incremental backwards search for vi-mode.
+bindkey -M viins '^p' history-beginning-search-backward
+bindkey -M viins '^n' history-beginning-search-forward
+bindkey -M viins '^k' history-substring-search-up
+bindkey -M viins '^j' history-substring-search-down
+
 bindkey -M vicmd '?' history-incremental-search-backward
 
 # vi-mode stuff.
 bindkey -a 'gg' beginning-of-buffer-or-history
 bindkey -a G end-of-buffer-or-history
 bindkey -a u undo
-bindkey -a '^R' redo
-bindkey '^?' backward-delete-char
-bindkey '^H' backward-delete-char
+bindkey -a '^r' redo
 
-# Edit command line.
+# Edit command with vim.
 autoload -U edit-command-line
 zle -N edit-command-line
-bindkey '\C-x\C-e' edit-command-line
+bindkey -a '^e' edit-command-line
 
 # 10ms delay to normal mode.
 KEYTIMEOUT=1
@@ -285,6 +283,6 @@ REPORTTIME=10
 [[ -s $HOME/.aliases ]] && . $HOME/.aliases
 [[ -s $HOME/.functions ]] && . $HOME/.functions
 
-. $HOME/.gem/ruby/*/gems/tmuxinator-*/completion/tmuxinator.zsh
-
+which mux > /dev/null 2>&1 && . $HOME/.gem/ruby/*/gems/tmuxinator-*/completion/tmuxinator.zsh
 which vault > /dev/null 2>&1 && . "$(vault --initpath)"
+which chruby-exec > /dev/null 2>&1 && . /usr/local/opt/chruby/share/chruby/chruby.sh && chruby 2.1.3
