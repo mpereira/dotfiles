@@ -285,4 +285,4 @@ REPORTTIME=10
 
 which mux > /dev/null 2>&1 && . $HOME/.gem/ruby/*/gems/tmuxinator-*/completion/tmuxinator.zsh
 which vault > /dev/null 2>&1 && . "$(vault --initpath)"
-which chruby-exec > /dev/null 2>&1 && . /usr/local/opt/chruby/share/chruby/chruby.sh && chruby 2.3.1
+which chruby-exec > /dev/null 2>&1 && . /usr/local/share/chruby/chruby.sh && chruby 2.3.1
