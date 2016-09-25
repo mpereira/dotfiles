@@ -54,6 +54,7 @@ export PATH=$PATH:$HOME/bin
 export PATH=$PATH:$ECLIPSE_HOME
 export PATH=$PATH:$HOME/Library/Haskell/bin
 export PATH=$PATH:/usr/local/Cellar/vimpc/HEAD/bin
+export PATH=$PATH:$HOME/Library/Python/2.7/bin
 
 # https://momentum.spindance.com/2015/08/problems-ruby-openssl-mac-os-x-10-10/
 export SSL_CERT_FILE=/usr/local/etc/openssl/certs/cacert.pem
