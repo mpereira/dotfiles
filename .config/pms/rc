@@ -1,4 +1,0 @@
-unbind home
-unbind end
-bind H move-home
-bind L move-end

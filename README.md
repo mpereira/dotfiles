@@ -5,16 +5,15 @@
 ## Installation
     $ git clone git://github.com/mpereira/dotfiles ~/.dotfiles
     $ cd ~/.dotfiles
-    $ rake install \
-      [BACKUP=yes|no] \
-      [IRC_FREENODE_USERNAME='username'] \
-      [IRC_FREENODE_PASSWORD='password'] \
-      [IRC_SONIAN_USERNAME='username'] \
-      [IRC_NOTIFIER_CHANNEL_REGEX='(channel1|channel2)'] \
-      [IRC_IRSSINOTIFIER_API_TOKEN='token'] \
-      [IRC_SONIAN_PASSWORD='password'] \
-      [LASTFM_PASSWORD='password'] \
-      [LIBREFM_PASSWORD='password']
+    $ export IRC_FREENODE_USERNAME='username'
+    $ export IRC_FREENODE_PASSWORD='password'
+    $ export IRC_SONIAN_USERNAME='username'
+    $ export IRC_NOTIFIER_CHANNEL_REGEX='(channel1|channel2)'
+    $ export IRC_IRSSINOTIFIER_API_TOKEN='token'
+    $ export IRC_SONIAN_PASSWORD='password'
+    $ export LASTFM_PASSWORD='password'
+    $ export LIBREFM_PASSWORD='password'
+    $ rake sync
 
 If you pass `BACKUP=no` your dotfiles will be overwritten. Anything other than
 that will create a `.dotfiles.bak` directory with your dotfiles under your

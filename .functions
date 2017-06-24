@@ -8,27 +8,11 @@ function g() {
   fi
 }
 
-# Complete g like git
-compdef g=git
-
-# Makes directory then moves into it.
-# Usage: mkcdr <directory>
-function mkcdr() {
-  mkdir -p -v $1
-  cd $1
-}
-
 # Creates an archive from given directory.
 # Usage: mkt{ar,gz,bz} <directory>
 mktar() { tar cvf  "${1%%/}.tar"     "${1%%/}/"; }
 mktgz() { tar cvzf "${1%%/}.tar.gz"  "${1%%/}/"; }
 mktbz() { tar cvjf "${1%%/}.tar.bz2" "${1%%/}/"; }
-
-# Search the vim reference manual for a keyword.
-# Usage: :h <keyword>
-function :h() {
-  vim --cmd ":silent help $@" --cmd "only"
-}
 
 # A simple reminder.
 # Usage: remindme <time> <text>
@@ -38,10 +22,6 @@ function remindme() {
   shift
   ( { sleep $delay; zenity --info --text "$*" &> /dev/null } & )
 }
-
-# Goes to the directory where the file/directory is located.
-# Usage: cdf <file | directory>
-cdf() { cd "$(dirname "$(locate -b "\\$1" | head -n 1)")" ; }
 
 function portowner() {
   sudo lsof -n -i4TCP:"$1" | grep LISTEN

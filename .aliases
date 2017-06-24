@@ -2,15 +2,12 @@
 alias a='ag'
 alias b='bundle'
 alias d='docker'
-if [ "$(uname -s)" = 'Darwin' ]; then
-  alias htop='sudo htop'
-fi
 alias m='mpc'
-alias mux='nocorrect mux start'
+alias mux='mux start'
 alias t='tmux'
-alias ta='nocorrect tmux attach -t'
-alias tmux='nocorrect tmux -2'
-alias ts='nocorrect tmux new-session -s'
+alias ta='tmux attach -t'
+alias tmux='tmux -2'
+alias ts='tmux new-session -s'
 alias v='mvim'
 alias va='vagrant'
 alias vg='valgrind --leak-check=full --show-possibly-lost=no --dsymutil=yes'
@@ -22,7 +19,6 @@ alias gcm='git ci -m'
 alias gpo='git push origin'
 alias gpom='git push origin master'
 alias gs='git st'
-alias tig='git log -p'
 alias wip='git add -A && git commit -m "wip"'
 
 # Emacs.
@@ -39,7 +35,7 @@ alias :q='exit'
 alias :wq='exit'
 alias c='clear'
 alias grep='grep --color=auto'
-alias h='nocorrect fc -li -99999999 | grep --color=always -i'
+alias h='fc -li -99999999 | grep --color=always -i'
 alias halt='sudo halt'
 alias less='less -R'
 alias psc='echo "%CPU %MEM   PID COMMAND" && ps hgaxo %cpu,%mem,pid,comm | sort -nrk1 | head -n 10'
@@ -47,7 +43,7 @@ alias psm='echo "%CPU %MEM   PID COMMAND" && ps hgaxo %cpu,%mem,pid,comm | sort 
 alias q='exit'
 alias quit='exit'
 alias reboot='sudo reboot'
-alias sps='nocorrect ps aux | grep --color=always -v grep | grep --color=always -i'
+alias sps='ps aux | grep --color=always -v grep | grep --color=always -i'
 
 # Utilities.
 alias httpdump='sudo tcpdump -i en0 -n -s 0 -w - | grep --color=always -a -o -E "Host\: .*|GET \/.*"'
@@ -68,18 +64,6 @@ fi
 if [ "$(uname -s)" = 'Linux' ]; then
   alias ls='ls --color=auto -F --group-directories-first'
 fi
-alias mkdir='nocorrect mkdir -p'
+alias mkdir='mkdir -p'
 alias mv='mv -i'
 alias rm='rm -i'
-
-# Fucking auto-correct.
-alias bundle='nocorrect bundle'
-alias gem='nocorrect gem'
-alias git='nocorrect git'
-alias killall='nocorrect killall'
-alias lein='nocorrect lein'
-alias mpc='nocorrect mpc'
-alias mpdscribble='nocorrect mpdscribble'
-alias rake='nocorrect rake'
-alias vim='nocorrect vim'
-alias which='nocorrect which'

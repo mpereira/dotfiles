@@ -2,107 +2,104 @@ require 'rake'
 require 'fileutils'
 require 'erb'
 
-desc 'Copy the dotfiles to your home directory'
-task :install do
-  backup_old_dotfiles if backup?
-  remove_old_dotfiles
-  install_dotfiles
+desc 'Syncs dotfiles to your home directory'
+task :sync do
+  dotfile_paths = dotfiles
+  template_paths = dotfile_paths.select { |path| erb?(path) }
+  bootstrap_directories(dotfile_paths)
+  compile_templates(template_paths)
+  link_dotfiles(drop_erb_suffixes(dotfile_paths))
 end
 
-desc 'Copy the dotfiles from your home directory back to this repo\'s directory'
-task :reverse_install do
-  reverse_install_dotfiles
+desc 'Removes symlinks from your home directory'
+task :remove_symlinks do
+  remove_symlinks(drop_erb_suffixes(dotfiles))
 end
 
 IGNORED_FILES = %w[.gitignore Rakefile README.md]
+GIT_FILES = `git ls-files`.split("\n")
 
-def backup?
-  ENV['BACKUP'] ? !(ENV['BACKUP'].downcase == 'no') : true
+def erb?(path)
+  File.file?(path) && File.extname(path) === '.erb'
 end
 
-def entries(options = {})
-  entries = `git ls-files`.split("\n") - IGNORED_FILES
-  if options[:remove_erb_suffix]
-    entries.map do |entry|
-      File.join(File.dirname(entry), File.basename(entry, '.erb'))
-    end
-  else
-    entries
+def drop_erb_suffix(path)
+  File.join(File.dirname(path), File.basename(path, '.erb'))
+end
+
+def drop_erb_suffixes(paths)
+  paths.map { |path| erb?(path) ? drop_erb_suffix(path) : path }
+end
+
+def prepend_repo_path(path)
+  File.join(Dir.pwd, path)
+end
+
+def prepend_home_path(path)
+  File.join(ENV['HOME'], path)
+end
+
+def dotfiles(options = {})
+  GIT_FILES - IGNORED_FILES
+end
+
+def compile_template(template_path)
+  dotfile_path = drop_erb_suffix(template_path)
+  puts "Compiling #{template_path} into #{dotfile_path}"
+  File.open(dotfile_path, 'w') do |file|
+    file.write(ERB.new(File.read(template_path), nil, '<>').result)
   end
 end
 
-def create_subdirectories(entries, options)
-  entries.select { |entry| File.split(entry).first != '.' }.each do |entry|
-    $stderr.puts("mkdir -p #{File.join(options[:path], File.split(entry).first)}")
-    FileUtils.mkdir_p(File.join(options[:path], File.split(entry).first))
-  end
+def compile_templates(template_paths)
+  template_paths.each { |template_path| compile_template(template_path) }
 end
 
-def backup_old_dotfiles
-  backup_dir_path =
-    "#{ENV['HOME']}/.dotfiles.bak-#{Time.now.strftime("%Y%m%d%k%M%S")}"
-  $stderr.puts("mkdir #{backup_dir_path}")
-  FileUtils.mkdir(backup_dir_path)
-  create_subdirectories(entries, :path => backup_dir_path)
-  entries(:remove_erb_suffix => true).each do |entry|
-    old_entry_path = File.join(ENV['HOME'], entry)
-    if File.exist?(old_entry_path)
-      $stderr.puts("cp -r #{old_entry_path} " <<
-                     "#{File.join(backup_dir_path, File.split(entry))}")
-      FileUtils.cp_r(old_entry_path, File.join(backup_dir_path, File.split(entry)))
-    end
-  end
-end
-
-def remove_old_dotfiles
-  entries(:remove_erb_suffix => true).each do |entry|
-    old_entry_path = File.join(ENV['HOME'], File.split(entry))
-    $stderr.puts("rm -rf #{old_entry_path}")
-    FileUtils.rm_rf(old_entry_path)
-  end
-end
-
-def install_dotfiles
-  create_subdirectories(entries, :path => ENV['HOME'])
-  entries.each do |entry|
-    if File.extname(entry) == '.erb'
-      compiled_template_path =
-        File.join(ENV['HOME'], File.dirname(entry), File.basename(entry, '.erb'))
-      $stderr.puts("generating #{compiled_template_path} from template")
-      File.open(compiled_template_path, 'w') do |file|
-        file.write(ERB.new(File.read(entry), nil, '<>').result)
+def link_dotfile(dotfile)
+  repo_path = prepend_repo_path(dotfile)
+  home_path = prepend_home_path(dotfile)
+  if File.exists?(home_path)
+    if File.symlink?(home_path)
+      current_symlink_target = File.readlink(home_path)
+      if current_symlink_target != repo_path
+        puts "#{home_path} exists but points to #{current_symlink_target} " +
+             "instead of #{repo_path}"
       end
     else
-      destination = File.join(ENV['HOME'], File.split(entry).first)
-      $stderr.puts("cp -r #{entry} #{destination}")
-      FileUtils.cp_r(entry, destination)
+      puts "#{home_path} exists but it's not a symlink"
     end
+  else
+    puts "ln -s #{repo_path} #{home_path}"
+    FileUtils.ln_s(repo_path, home_path)
   end
 end
 
-def reverse_install_dotfiles
-  entries.each do |entry|
-    source = File.join(ENV['HOME'],
-                       File.dirname(entry),
-                       File.basename(entry, '.erb'))
-    destination = entry
+def remove_symlink(dotfile)
+  path = prepend_home_path(dotfile)
+  if File.exists?(path)
+    puts "rm -r #{path}"
+    FileUtils.rm_r(path)
+  end
+end
 
-    unless File.exists?(source)
-      $stderr.puts("#{source} does not exist -- skipping")
-      next
-    end
+def remove_symlinks(dotfiles)
+  dotfiles.each { |dotfile| remove_symlink(dotfile) }
+end
 
-    if File.extname(entry) == '.erb'
-      compiled_template = ERB.new(File.read(entry), nil, '<>').result
+def link_dotfiles(dotfiles)
+  dotfiles.each { |dotfile| link_dotfile(dotfile) }
+end
 
-      if compiled_template == File.read(source)
-        $stderr.puts("#{source} and #{destination} " <<
-                       "are identical -- skipping")
-        next
+def bootstrap_directories(dotfiles)
+  dotfiles.each do |dotfile|
+    directory = File.dirname(prepend_home_path(dotfile))
+    if File.exists?(directory)
+      unless File.directory?(directory)
+        puts "#{directory} but it's not a directory"
       end
+    else
+      puts "mkdir -p #{directory}"
+      FileUtils.mkdir_p(directory)
     end
-
-    $stderr.puts("cp -r #{source} #{destination}")
-    FileUtils.cp_r(source, destination)
   end
 end
