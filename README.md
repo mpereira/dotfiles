@@ -15,10 +15,6 @@
     $ export LIBREFM_PASSWORD='password'
     $ rake sync
 
-If you pass `BACKUP=no` your dotfiles will be overwritten. Anything other than
-that will create a `.dotfiles.bak` directory with your dotfiles under your
-home directory.
-
 ## Author
   [Murilo Pereira](http://murilopereira.com)
 
