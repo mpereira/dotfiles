@@ -1,8 +1,0 @@
----
-name: sa-labs-visualizer
-root: ~/sonian/labs/visualizer
-tmux_options: -2
-windows:
-  - shell: git remote update
-  - server: make server
-  - editor: vim -c 'NERDTree'

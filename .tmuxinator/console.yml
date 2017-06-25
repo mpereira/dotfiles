@@ -1,6 +1,0 @@
----
-name: console
-root: ~/
-tmux_options: -2
-windows:
-  - htop: htop

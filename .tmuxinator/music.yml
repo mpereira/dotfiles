@@ -1,6 +1,0 @@
----
-name: music
-root: ~/
-tmux_options: -2
-windows:
-  - vimpc: vimpc -p 6600

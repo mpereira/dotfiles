@@ -1,7 +1,0 @@
----
-name: dotfiles
-root: ~/.dotfiles
-tmux_options: -2
-windows:
-  - shell: git remote update
-  - editor: vim
