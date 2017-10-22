@@ -7,10 +7,8 @@
     $ cd ~/.dotfiles
     $ export IRC_FREENODE_USERNAME='username'
     $ export IRC_FREENODE_PASSWORD='password'
-    $ export IRC_SONIAN_USERNAME='username'
     $ export IRC_NOTIFIER_CHANNEL_REGEX='(channel1|channel2)'
     $ export IRC_IRSSINOTIFIER_API_TOKEN='token'
-    $ export IRC_SONIAN_PASSWORD='password'
     $ export LASTFM_PASSWORD='password'
     $ export LIBREFM_PASSWORD='password'
     $ rake sync
