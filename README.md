@@ -2,6 +2,11 @@
 
 [mpereira](https://github.com/mpereira)'s configuration files.
 
+## TODO
+
+1. Template .authinfo
+1. Template .gitconfig
+
 ## Installation
     $ git clone git://github.com/mpereira/dotfiles ~/.dotfiles
     $ cd ~/.dotfiles

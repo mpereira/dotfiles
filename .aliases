@@ -1,39 +1,18 @@
+# -*-shell-script-*-
+
 # Applications.
-alias a='ag'
-alias b='bundle'
-alias d='docker'
-alias m='mpc'
-alias mux='mux start'
-alias t='tmux'
-alias ta='tmux attach -t'
-alias tmux='tmux -2'
-alias ts='tmux new-session -s'
-alias v='mvim'
-alias va='vagrant'
 alias vg='valgrind --leak-check=full --show-possibly-lost=no --dsymutil=yes'
 
-# Emacs.
-alias e='emacs'
-alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs'
-alias emacsclient='/Applications/Emacs.app/Contents/MacOS/bin/emacsclient'
+# Python.
+alias python='python3'
 
-# Focus/unfocus.
-alias focus="sudo sh -c 'echo \"127.0.0.1 www.facebook.com twitter.com www.reddit.com news.ycombinator.com www.youtube.com # aab6de513ab5de9359809f3cdb62d352\" >> /etc/hosts'"
-alias unfocus='sudo sed -i "" "/aab6de513ab5de9359809f3cdb62d352/d" /etc/hosts'
+# Emacs.
+alias emacs='/Applications/Emacs-26.1.app/Contents/MacOS/Emacs'
+alias emacsclient='/Applications/Emacs-26.1.app/Contents/MacOS/bin/emacsclient'
 
 # System.
-alias :q='exit'
-alias :wq='exit'
-alias c='clear'
-alias grep='grep --color=auto'
-alias h='fc -li -99999999 | grep --color=always -i'
-alias halt='sudo halt'
-alias less='less -R'
 alias psc='echo "%CPU %MEM   PID COMMAND" && ps hgaxo %cpu,%mem,pid,comm | sort -nrk1 | head -n 10'
 alias psm='echo "%CPU %MEM   PID COMMAND" && ps hgaxo %cpu,%mem,pid,comm | sort -nrk2 | head -n 10'
-alias q='exit'
-alias quit='exit'
-alias reboot='sudo reboot'
 alias sps='ps aux | grep --color=always -v grep | grep --color=always -i'
 
 # Utilities.
@@ -41,17 +20,4 @@ alias httpdump='sudo tcpdump -i en0 -n -s 0 -w - | grep --color=always -a -o -E 
 alias sniff='sudo ngrep -d "en0" -t "^(GET|POST) " "tcp and port 80"'
 
 # File management.
-alias ..='cd ..'
-alias cp='cp -ai'
 alias ducks='du -cksh * | sort -rh | head -11'
-alias la='ls -A'
-alias ll='ls -l'
-if [ "$(uname -s)" = 'Darwin' ]; then
-  alias ls='ls -FG'
-fi
-if [ "$(uname -s)" = 'Linux' ]; then
-  alias ls='ls --color=auto -F --group-directories-first'
-fi
-alias mkdir='mkdir -p'
-alias mv='mv -i'
-alias rm='rm -i'

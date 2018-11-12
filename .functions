@@ -2,9 +2,9 @@
 # Usage: remindme <time> <text>
 # Example: remindme 10m omg, the pizza
 function remindme() {
-  local delay=$1
+  local delay=${1}
   shift
-  ( { sleep $delay; zenity --info --text "$*" &> /dev/null } & )
+  (sleep ${delay}; zenity --info --text "${*}" &> /dev/null &)
 }
 
 function portowner() {
