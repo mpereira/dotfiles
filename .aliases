@@ -21,3 +21,7 @@ alias sniff='sudo ngrep -d "en0" -t "^(GET|POST) " "tcp and port 80"'
 
 # File management.
 alias ducks='du -cksh * | sort -rh | head -11'
+
+# BB.
+alias bbon='sudo launchctl load -F /Library/LaunchDaemons/com.diebold.warsaw.plist'
+alias bboff='sudo launchctl unload -F /Library/LaunchDaemons/com.diebold.warsaw.plist'

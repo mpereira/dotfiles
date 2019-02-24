@@ -22,6 +22,9 @@ export GOPATH="$HOME/.go"
 # Rust.
 export PATH="$PATH:$HOME/.cargo/bin"
 
+# MacVim.
+export PATH="$PATH:/Applications/MacVim.app/Contents/bin"
+
 # Mesosphere.
 export PATH="$PATH:$HOME/mesosphere/bin"
 
