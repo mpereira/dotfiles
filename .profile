@@ -11,8 +11,8 @@ POSTGRES_BIN="/Applications/Postgres.app/Contents/Versions/latest/bin"
 export PATH="$PATH:/Applications/CMake.app/Contents/bin"
 
 # Python.
-export PATH="$PATH:$HOME/Library/Python/3.6/bin" # from `pip install --user`.
-export PATH="$PATH:/Library/Frameworks/Python.framework/Versions/3.6/bin" # from `pip install`
+export PATH="$PATH:$HOME/Library/Python/3.7/bin" # from `pip install --user`.
+export PATH="$PATH:/Library/Frameworks/Python.framework/Versions/3.7/bin" # from `pip install`
 
 # Go.
 export PATH="$PATH:/usr/local/go/bin"
