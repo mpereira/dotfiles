@@ -27,6 +27,11 @@ export PATH="$PATH:$HOME/.cargo/bin"
 # MacVim.
 export PATH="$PATH:/Applications/MacVim.app/Contents/bin"
 
+# GraalVM.
+latest_graalvm_app="$(ls -drv /Applications/GraalVM-*.app | head -n1)"
+export GRAALVM_HOME="${latest_graalvm_app}/Contents/Home"
+export PATH="$PATH:$GRAALVM_HOME/bin"
+
 # Mesosphere.
 export PATH="$PATH:$HOME/mesosphere/bin"
 
