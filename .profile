@@ -10,9 +10,11 @@ POSTGRES_BIN="/Applications/Postgres.app/Contents/Versions/latest/bin"
 # CMake.
 export PATH="$PATH:/Applications/CMake.app/Contents/bin"
 
-# Python.
-export PATH="$PATH:$HOME/Library/Python/3.7/bin" # from `pip install --user`.
-export PATH="$PATH:/Library/Frameworks/Python.framework/Versions/3.7/bin" # from `pip install`
+# Python 3.
+latest_python3="$(ls -drv $HOME/Library/Python/3.* | head -n1)"
+latest_python3_framework="$(ls -drv /Library/Frameworks/Python.framework/Versions/3.* | head -n1)"
+export PATH="$PATH:${latest_python3}/bin"           # from `pip3 install --user $egg`
+export PATH="$PATH:${latest_python3_framework}/bin" # from `sudo pip3 install $egg`
 
 # Go.
 export PATH="$PATH:/usr/local/go/bin"
