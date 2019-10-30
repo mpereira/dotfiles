@@ -16,6 +16,10 @@ latest_python3_framework="$(ls -drv /Library/Frameworks/Python.framework/Version
 export PATH="$PATH:${latest_python3}/bin"           # from `pip3 install --user $egg`
 export PATH="$PATH:${latest_python3_framework}/bin" # from `sudo pip3 install $egg`
 
+# LLVM.
+latest_llvm="$(ls -drv /usr/local/Cellar/llvm/* | head -n1)"
+export PATH="$PATH:${latest_llvm}/bin"
+
 # Go.
 export GOROOT="/usr/local/go"
 export GOPATH="$HOME/go"
