@@ -17,9 +17,9 @@ export PATH="$PATH:${latest_python3}/bin"           # from `pip3 install --user 
 export PATH="$PATH:${latest_python3_framework}/bin" # from `sudo pip3 install $egg`
 
 # Go.
-export PATH="$PATH:/usr/local/go/bin"
-export PATH="$PATH:$HOME/go/bin"
+export GOROOT="/usr/local/go"
 export GOPATH="$HOME/go"
+export PATH="${GOPATH}/bin:${GOROOT}/bin:${PATH}"
 
 # Rust.
 export PATH="$PATH:$HOME/.cargo/bin"
