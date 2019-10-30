@@ -18,8 +18,8 @@ export PATH="$PATH:${latest_python3_framework}/bin" # from `sudo pip3 install $e
 
 # Go.
 export PATH="$PATH:/usr/local/go/bin"
-export PATH="$PATH:$HOME/.go/bin"
-export GOPATH="$HOME/.go"
+export PATH="$PATH:$HOME/go/bin"
+export GOPATH="$HOME/go"
 
 # Rust.
 export PATH="$PATH:$HOME/.cargo/bin"
