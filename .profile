@@ -51,9 +51,13 @@ export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
 
+# Completion.
 for completion_script in "$(brew --prefix)"/etc/bash_completion.d/*; do
   # shellcheck source=/dev/null
   [ -f "${completion_script}" ] && . "${completion_script}"
 done
 
+. /usr/local/git/contrib/completion/git-completion.bash
+
+# Aliases.
 [ -f .aliases ] && . .aliases
