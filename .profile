@@ -25,6 +25,9 @@ export GOROOT="/usr/local/go"
 export GOPATH="$HOME/go"
 export PATH="${GOPATH}/bin:${GOROOT}/bin:${PATH}"
 
+# Ghostscript.
+export PATH="$PATH:/usr/local/Cellar/ghostscript/9.26_1/bin/"
+
 # Rust.
 export PATH="$PATH:$HOME/.cargo/bin"
 
