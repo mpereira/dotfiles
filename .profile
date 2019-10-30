@@ -40,6 +40,12 @@ export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 export PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
 
+# gettext.
+export PATH="/usr/local/opt/gettext/bin:$PATH"
+# For compilers to find gettext these might need to be set:
+# export LDFLAGS="-L/usr/local/opt/gettext/lib"
+# export CPPFLAGS="-I/usr/local/opt/gettext/include"
+
 # Emacs ansi-term doesn't set locale env variables.
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
