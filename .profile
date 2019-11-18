@@ -53,6 +53,9 @@ export PATH="/usr/local/opt/gettext/bin:$PATH"
 # export LDFLAGS="-L/usr/local/opt/gettext/lib"
 # export CPPFLAGS="-I/usr/local/opt/gettext/include"
 
+# kubebuilder.
+export PATH="$PATH:/usr/local/kubebuilder/bin"
+
 # Emacs ansi-term doesn't set locale env variables.
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
@@ -68,3 +71,6 @@ done
 
 # Aliases.
 [ -f .aliases ] && . .aliases
+
+# Yarn.
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
