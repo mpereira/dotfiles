@@ -1,27 +1,3 @@
 # -*-shell-script-*-
 
-# Applications.
-alias vg='valgrind --leak-check=full --show-possibly-lost=no --dsymutil=yes'
-
-# Python.
-alias python='python3'
-
-# Emacs.
-alias emacs='/Applications/Emacs-26.1.app/Contents/MacOS/Emacs'
-alias emacsclient='/Applications/Emacs-26.1.app/Contents/MacOS/bin/emacsclient'
-
-# System.
-alias psc='echo "%CPU %MEM   PID COMMAND" && ps hgaxo %cpu,%mem,pid,comm | sort -nrk1 | head -n 10'
-alias psm='echo "%CPU %MEM   PID COMMAND" && ps hgaxo %cpu,%mem,pid,comm | sort -nrk2 | head -n 10'
-alias sps='ps aux | grep --color=always -v grep | grep --color=always -i'
-
-# Utilities.
-alias httpdump='sudo tcpdump -i en0 -n -s 0 -w - | grep --color=always -a -o -E "Host\: .*|GET \/.*"'
-alias sniff='sudo ngrep -d "en0" -t "^(GET|POST) " "tcp and port 80"'
-
-# File management.
-alias ducks='du -cksh * | sort -rh | head -11'
-
-# BB.
-alias bbon='sudo launchctl load -F /Library/LaunchDaemons/com.diebold.warsaw.plist'
-alias bboff='sudo launchctl unload -F /Library/LaunchDaemons/com.diebold.warsaw.plist'
+# Empty.
