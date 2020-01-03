@@ -10,6 +10,10 @@ POSTGRES_BIN="/Applications/Postgres.app/Contents/Versions/latest/bin"
 # CMake.
 export PATH="${PATH}:/Applications/CMake.app/Contents/bin"
 
+# Emacs.
+latest_emacs="$(ls -drv /Applications/Emacs-*.app | head -n1)"
+export PATH="${latest_emacs}/Contents/MacOS/bin:${PATH}"
+
 # Python 3.
 latest_python3="$(ls -drv ${HOME}/Library/Python/3.* | head -n1)"
 latest_python3_framework="$(ls -drv /Library/Frameworks/Python.framework/Versions/3.* | head -n1)"
