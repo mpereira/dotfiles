@@ -4,6 +4,7 @@
 [core]
 	mergeoptions = --no-ff
 	excludesfile = ~/.gitignore
+	ignorecase = false
 [merge]
 	tool = ediff
 [push]
