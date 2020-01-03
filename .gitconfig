@@ -2,7 +2,6 @@
 	name = Murilo Pereira
 	email = murilo@murilopereira.com
 [core]
-	editor = /Applications/Emacs-26.1.app/Contents/MacOS/bin/emacsclient
 	mergeoptions = --no-ff
 	excludesfile = ~/.gitignore
 [merge]
