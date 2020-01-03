@@ -60,6 +60,9 @@ export PATH="/usr/local/opt/gettext/bin:${PATH}"
 # kubebuilder.
 export PATH="${PATH}:/usr/local/kubebuilder/bin"
 
+# Krew.
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:${PATH}"
+
 # Emacs ansi-term doesn't set locale env variables.
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
