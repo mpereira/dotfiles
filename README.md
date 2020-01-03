@@ -2,6 +2,9 @@
 
 [mpereira](https://github.com/mpereira)'s configuration files.
 
+**Note**: this project will soon be merged into
+[macbook-playbook](https://github.com/mpereira/macbook-playbook).
+
 ## TODO
 
 1. Template .authinfo
