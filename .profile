@@ -1,3 +1,7 @@
+find_latest () {
+  find "${1}" -maxdepth 1 -iname "${2}" -print -quit 2>/dev/null
+}
+
 export PATH="${PATH}:/usr/local/bin"
 
 OPT_LOCAL_BIN="/opt/local/bin"
@@ -11,17 +15,21 @@ POSTGRES_BIN="/Applications/Postgres.app/Contents/Versions/latest/bin"
 export PATH="${PATH}:/Applications/CMake.app/Contents/bin"
 
 # Emacs.
-latest_emacs="$(ls -drv /Applications/Emacs-*.app | head -n1)"
+latest_emacs="$(find_latest /Applications Emacs-*.app)"
 export PATH="${latest_emacs}/Contents/MacOS/bin:${PATH}"
 
+# Ruby.
+latest_ruby="$(find_latest "${HOME}/.gem/ruby" *)"
+export PATH="${PATH}:${latest_ruby}/bin" # from `gem install --user-install $gem``
+
 # Python 3.
-latest_python3="$(ls -drv ${HOME}/Library/Python/3.* | head -n1)"
-latest_python3_framework="$(ls -drv /Library/Frameworks/Python.framework/Versions/3.* | head -n1)"
+latest_python3="$(find_latest ${HOME}/Library/Python "3.*")"
+latest_python3_framework="$(find_latest /Library/Frameworks/Python.framework/Versions "3.*")"
 export PATH="${PATH}:${latest_python3}/bin"           # from `pip3 install --user $egg`
 export PATH="${PATH}:${latest_python3_framework}/bin" # from `sudo pip3 install $egg`
 
 # LLVM.
-latest_llvm="$(ls -drv /usr/local/Cellar/llvm/* | head -n1)"
+latest_llvm="$(find_latest /usr/local/Cellar/llvm "*")"
 export PATH="${PATH}:${latest_llvm}/bin"
 
 # Go.
@@ -39,7 +47,7 @@ export PATH="${PATH}:${HOME}/.cargo/bin"
 export PATH="${PATH}:/Applications/MacVim.app/Contents/bin"
 
 # GraalVM.
-latest_graalvm_app="$(ls -drv /Applications/GraalVM-*.app | head -n1)"
+latest_graalvm_app="$(find_latest /Applications "GraalVM-*.app")"
 export GRAALVM_HOME="${latest_graalvm_app}/Contents/Home"
 export PATH="${PATH}:$GRAALVM_HOME/bin"
 
@@ -80,4 +88,4 @@ done
 [ -f .aliases ] && . .aliases
 
 # Yarn.
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export PATH="${HOME}/.yarn/bin:${HOME}/.config/yarn/global/node_modules/.bin:${PATH}"
