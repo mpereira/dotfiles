@@ -1,11 +1,14 @@
 find_latest () {
-  find "${1}" -maxdepth 1 -iname "${2}" -print -quit 2>/dev/null
+  find "${1}" -maxdepth 1 -iname "${2}" 2>/dev/null | sort -nr | head -1
 }
 
-export PATH="${PATH}:/usr/local/bin"
+# When prepending to PATH, later prepends will have higher priority.
 
 OPT_LOCAL_BIN="/opt/local/bin"
-[ -d "${OPT_LOCAL_BIN}" ] && export PATH="${PATH}:${OPT_LOCAL_BIN}"
+[ -d "${OPT_LOCAL_BIN}" ] && export PATH="${OPT_LOCAL_BIN}:${PATH}"
+
+USR_LOCAL_BIN="/usr/local/bin"
+[ -d "${USR_LOCAL_BIN}" ] && export PATH="${USR_LOCAL_BIN}:${PATH}"
 
 # Postgres.
 POSTGRES_BIN="/Applications/Postgres.app/Contents/Versions/latest/bin"
@@ -16,21 +19,24 @@ export PATH="${PATH}:/Applications/CMake.app/Contents/bin"
 
 # Emacs.
 latest_emacs="$(find_latest /Applications Emacs-*.app)"
-export PATH="${latest_emacs}/Contents/MacOS/bin:${PATH}"
+[ -d "${latest_emacs}" ] && export PATH="${latest_emacs}/Contents/MacOS/bin:${PATH}"
 
 # Ruby.
-latest_ruby="$(find_latest "${HOME}/.gem/ruby" *)"
-export PATH="${PATH}:${latest_ruby}/bin" # from `gem install --user-install $gem``
+latest_ruby="$(find_latest "${HOME}/.gem/ruby" "*")"
+[ -d "${latest_ruby}" ] && export PATH="${latest_ruby}/bin:${PATH}" # from `gem install --user-install $gem``
 
 # Python 3.
-latest_python3="$(find_latest ${HOME}/Library/Python "3.*")"
+# From `pip3 install --user` or `python3 -m pip install --user`.
+latest_python3="$(find_latest "${HOME}/Library/Python" "3.*")"
+[ -d "${latest_python3}" ] && export PATH="${latest_python3}/bin:${PATH}"
+
+# From `sudo pip3 install` or `python3 -m pip install`.
 latest_python3_framework="$(find_latest /Library/Frameworks/Python.framework/Versions "3.*")"
-export PATH="${PATH}:${latest_python3}/bin"           # from `pip3 install --user $egg`
-export PATH="${PATH}:${latest_python3_framework}/bin" # from `sudo pip3 install $egg`
+[ -d "${latest_python3_framework}" ] && export PATH="${latest_python3_framework}/bin:${PATH}"
 
 # LLVM.
 latest_llvm="$(find_latest /usr/local/Cellar/llvm "*")"
-export PATH="${PATH}:${latest_llvm}/bin"
+[ -d "${latest_llvm}" ] && export PATH="${latest_llvm}/bin:${PATH}"
 
 # Go.
 export GOROOT="/usr/local/go"
@@ -38,25 +44,23 @@ export GOPATH="${HOME}/go"
 export PATH="${GOPATH}/bin:${GOROOT}/bin:${PATH}"
 
 # Ghostscript.
-export PATH="${PATH}:/usr/local/Cellar/ghostscript/9.26_1/bin/"
+latest_ghostscript="$(find_latest /usr/local/Cellar/ghostscript/ "*")"
+[ -d "${latest_ghostscript}" ] && export PATH="${latest_ghostscript}/bin/:${PATH}"
 
 # Rust.
-export PATH="${PATH}:${HOME}/.cargo/bin"
+export PATH="${HOME}/.cargo/bin:${PATH}"
 
 # MacVim.
-export PATH="${PATH}:/Applications/MacVim.app/Contents/bin"
+export PATH="/Applications/MacVim.app/Contents/bin:${PATH}"
 
 # GraalVM.
 latest_graalvm_app="$(find_latest /Applications "GraalVM-*.app")"
-export GRAALVM_HOME="${latest_graalvm_app}/Contents/Home"
-export PATH="${PATH}:$GRAALVM_HOME/bin"
-
-# Mesosphere.
-export PATH="${PATH}:${HOME}/mesosphere/bin"
+[ -d "${latest_graalvm_app}" ] && export GRAALVM_HOME="${latest_graalvm_app}/Contents/Home"
+[ -d "${GRAALVM_HOME}" ] && export PATH="${GRAALVM_HOME}/bin:${PATH}"
 
 # GNU binaries without g prefix.
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:${PATH}"
-export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:${MANPATH}"
 export PATH="/usr/local/opt/gnu-getopt/bin:${PATH}"
 
 # gettext.
@@ -66,10 +70,10 @@ export PATH="/usr/local/opt/gettext/bin:${PATH}"
 # export CPPFLAGS="-I/usr/local/opt/gettext/include"
 
 # kubebuilder.
-export PATH="${PATH}:/usr/local/kubebuilder/bin"
+export PATH="/usr/local/kubebuilder/bin:${PATH}"
 
 # Krew.
-export PATH="${KREW_ROOT:-$HOME/.krew}/bin:${PATH}"
+export PATH="${KREW_ROOT:-${HOME}/.krew}/bin:${PATH}"
 
 # Emacs ansi-term doesn't set locale env variables.
 export LANG=en_US.UTF-8
