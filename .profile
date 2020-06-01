@@ -48,7 +48,7 @@ export GOPATH="${HOME}/go"
 export PATH="${GOPATH}/bin:${GOROOT}/bin:${PATH}"
 
 # Ghostscript.
-latest_ghostscript="$(find_latest /usr/local/Cellar/ghostscript/ "*")"
+latest_ghostscript="$(find_latest /usr/local/opt/ghostscript/ "*")"
 [ -d "${latest_ghostscript}" ] && export PATH="${latest_ghostscript}/bin/:${PATH}"
 
 # Rust.
