@@ -54,9 +54,6 @@ latest_ghostscript="$(find_latest /usr/local/opt/ghostscript/ "*")"
 # Rust.
 export PATH="${HOME}/.cargo/bin:${PATH}"
 
-# MacVim.
-export PATH="/Applications/MacVim.app/Contents/bin:${PATH}"
-
 # GraalVM.
 latest_graalvm_app="$(find_latest /Applications "GraalVM-*.app")"
 [ -d "${latest_graalvm_app}" ] && export GRAALVM_HOME="${latest_graalvm_app}/Contents/Home"
