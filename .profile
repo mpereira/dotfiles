@@ -35,8 +35,12 @@ latest_python3_framework="$(find_latest /Library/Frameworks/Python.framework/Ver
 [ -d "${latest_python3_framework}" ] && export PATH="${latest_python3_framework}/bin:${PATH}"
 
 # LLVM.
-latest_llvm="$(find_latest /usr/local/Cellar/llvm "*")"
-[ -d "${latest_llvm}" ] && export PATH="${latest_llvm}/bin:${PATH}"
+latest_llvm="$(find_latest /usr/local/opt/llvm "*")"
+if [ -d "${latest_llvm}" ]; then
+  export PATH="${latest_llvm}/bin:${PATH}"
+  export LDFLAGS="-L${latest_llvm}/lib -Wl,-rpath,${latest_llvm}/lib"
+  export CPPFLAGS="-I${latest_llvm}/include"
+fi
 
 # Go.
 export GOROOT="/usr/local/go"
