@@ -26,13 +26,13 @@ latest_ruby="$(find_latest "${HOME}/.gem/ruby" "*")"
 [ -d "${latest_ruby}" ] && export PATH="${latest_ruby}/bin:${PATH}" # from `gem install --user-install $gem``
 
 # Python 3.
-# From `pip3 install --user` or `python3 -m pip install --user`.
-latest_python3="$(find_latest "${HOME}/Library/Python" "3.*")"
-[ -d "${latest_python3}" ] && export PATH="${latest_python3}/bin:${PATH}"
-
 # From `sudo pip3 install` or `python3 -m pip install`.
 latest_python3_framework="$(find_latest /Library/Frameworks/Python.framework/Versions "3.*")"
 [ -d "${latest_python3_framework}" ] && export PATH="${latest_python3_framework}/bin:${PATH}"
+
+# From `pip3 install --user` or `python3 -m pip install --user`.
+latest_python3="$(find_latest "${HOME}/Library/Python" "3.*")"
+[ -d "${latest_python3}" ] && export PATH="${latest_python3}/bin:${PATH}"
 
 # LLVM.
 latest_llvm="$(find_latest /usr/local/opt/llvm "*")"
