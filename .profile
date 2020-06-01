@@ -56,7 +56,9 @@ export PATH="/Applications/MacVim.app/Contents/bin:${PATH}"
 # GraalVM.
 latest_graalvm_app="$(find_latest /Applications "GraalVM-*.app")"
 [ -d "${latest_graalvm_app}" ] && export GRAALVM_HOME="${latest_graalvm_app}/Contents/Home"
-[ -d "${GRAALVM_HOME}" ] && export PATH="${GRAALVM_HOME}/bin:${PATH}"
+# GraalVM has binaries like `node`, `npm`, `javac`, `jar`, so put it at the end
+# of $PATH so that they don't shadow other binaries.
+[ -d "${GRAALVM_HOME}" ] && export PATH="${PATH}:${GRAALVM_HOME}/bin"
 
 # GNU binaries without g prefix.
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:${PATH}"
