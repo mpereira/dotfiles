@@ -9,6 +9,8 @@
 	tool = ediff
 [push]
 	default = simple
+[rebase]
+	autoStash = true
 [color]
 	ui = true
 	diff = auto
@@ -31,5 +33,5 @@
 	amend = commit --amend
 	changes = log --pretty=format:\"%h %cr %cn %Cgreen%s%Creset\" --name-status
 	changelog = log --pretty=format:\" * %s\"
-[rebase]
-	autoStash = true
+[github "github.argo.ai/api"]
+	user = mpereira
