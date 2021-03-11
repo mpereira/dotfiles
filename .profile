@@ -1,43 +1,67 @@
+#!/usr/bin/env bash
+
 find_latest () {
   find "${1}" -maxdepth 1 -iname "${2}" 2>/dev/null | sort -nr | head -1
 }
 
+path_append () {
+  if [ -d "${1}" ] && [[ ":${PATH}:" != *":${1}:"* ]]; then
+    export PATH="${PATH:+"${PATH}"}:${1}"
+  fi
+}
+
+path_prepend () {
+  if [ -d "${1}" ] && [[ ":${PATH}:" != *":${1}:"* ]]; then
+    export PATH="${1}:${PATH:+"${PATH}"}"
+  fi
+}
+
+# This needs to run before our appends and prepends, otherwise it will mess
+# everything up.
+eval "$(/usr/libexec/path_helper)"
+
 # When prepending to PATH, later prepends will have higher priority.
 
-OPT_LOCAL_BIN="/opt/local/bin"
-[ -d "${OPT_LOCAL_BIN}" ] && export PATH="${OPT_LOCAL_BIN}:${PATH}"
-
-USR_LOCAL_BIN="/usr/local/bin"
-[ -d "${USR_LOCAL_BIN}" ] && export PATH="${USR_LOCAL_BIN}:${PATH}"
+path_append "/opt/local/bin" # What's using this?
+path_prepend "/usr/local/bin"
 
 # Postgres.
-POSTGRES_BIN="/Applications/Postgres.app/Contents/Versions/latest/bin"
-[ -d "${POSTGRES_BIN}" ] && export PATH="${PATH}:${POSTGRES_BIN}"
+path_append "/Applications/Postgres.app/Contents/Versions/latest/bin"
 
 # CMake.
-export PATH="${PATH}:/Applications/CMake.app/Contents/bin"
+path_prepend "/Applications/CMake.app/Contents/bin"
+
+# Make.
+path_prepend "$(brew --prefix)/opt/make/libexec/gnubin"
 
 # Emacs.
 latest_emacs="$(find_latest /Applications Emacs-*.app)"
-[ -d "${latest_emacs}" ] && export PATH="${latest_emacs}/Contents/MacOS/bin:${PATH}"
+path_prepend "${latest_emacs}/Contents/MacOS/bin"
+
+# Neovim.
+latest_neovim="$(find_latest /opt "nvim-*")"
+path_prepend "${latest_neovim}/bin"
+
+# MacVim.
+path_prepend "/Applications/MacVim.app/Contents/bin"
 
 # Ruby.
 latest_ruby="$(find_latest "${HOME}/.gem/ruby" "*")"
-[ -d "${latest_ruby}" ] && export PATH="${latest_ruby}/bin:${PATH}" # from `gem install --user-install $gem``
+path_prepend "${latest_ruby}/bin" # from `gem install --user-install $gem``
 
 # Python 3.
 # From `sudo pip3 install` or `python3 -m pip install`.
 latest_python3_framework="$(find_latest /Library/Frameworks/Python.framework/Versions "3.*")"
-[ -d "${latest_python3_framework}" ] && export PATH="${latest_python3_framework}/bin:${PATH}"
+path_prepend "${latest_python3_framework}/bin"
 
 # From `pip3 install --user` or `python3 -m pip install --user`.
 latest_python3="$(find_latest "${HOME}/Library/Python" "3.*")"
-[ -d "${latest_python3}" ] && export PATH="${latest_python3}/bin:${PATH}"
+path_prepend "${latest_python3}/bin"
 
 # LLVM.
 latest_llvm="$(find_latest /usr/local/opt/llvm "*")"
 if [ -d "${latest_llvm}" ]; then
-  export PATH="${latest_llvm}/bin:${PATH}"
+  path_prepend "${latest_llvm}/bin"
   export LDFLAGS="-L${latest_llvm}/lib -Wl,-rpath,${latest_llvm}/lib"
   export CPPFLAGS="-I${latest_llvm}/include"
 fi
@@ -45,38 +69,51 @@ fi
 # Go.
 export GOROOT="/usr/local/go"
 export GOPATH="${HOME}/go"
-export PATH="${GOPATH}/bin:${GOROOT}/bin:${PATH}"
+path_prepend "${GOPATH}/bin"
+path_prepend "${GOROOT}/bin"
 
 # Ghostscript.
 latest_ghostscript="$(find_latest /usr/local/opt/ghostscript/ "*")"
-[ -d "${latest_ghostscript}" ] && export PATH="${latest_ghostscript}/bin/:${PATH}"
+path_prepend "${latest_ghostscript}/bin"
 
 # Rust.
-export PATH="${HOME}/.cargo/bin:${PATH}"
+# shellcheck source=/dev/null
+[ -f "${HOME}/.cargo/env" ] && . "${HOME}/.cargo/env"
 
 # GraalVM.
 latest_graalvm_app="$(find_latest /Applications "GraalVM-*.app")"
-[ -d "${latest_graalvm_app}" ] && export GRAALVM_HOME="${latest_graalvm_app}/Contents/Home"
-# GraalVM has binaries like `node`, `npm`, `javac`, `jar`, so put it at the end
-# of $PATH so that they don't shadow other binaries.
-[ -d "${GRAALVM_HOME}" ] && export PATH="${PATH}:${GRAALVM_HOME}/bin"
+if [ -d "${latest_graalvm_app}" ]; then
+  export GRAALVM_HOME="${latest_graalvm_app}/Contents/Home"
+  # GraalVM has binaries like `node`, `npm`, `javac`, `jar`, so put it at the end
+  # of $PATH so that they don't shadow other binaries.
+  path_append "${GRAALVM_HOME}/bin"
+fi
+
+# Homebrew Cask: mactex-no-gui
+latest_texlive="$(find_latest /usr/local/texlive "*")"
+if [ -d "${latest_texlive}" ]; then
+  path_prepend "${latest_texlive}/bin/x86_64-darwin"
+fi
 
 # GNU binaries without g prefix.
-export PATH="/usr/local/opt/coreutils/libexec/gnubin:${PATH}"
-export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:${MANPATH}"
-export PATH="/usr/local/opt/gnu-getopt/bin:${PATH}"
+coreutils="/usr/local/opt/coreutils"
+path_prepend "${coreutils}/libexec/gnubin"
+coreutils_gnuman="${coreutils}/libexec/gnuman"
+[ -d "${coreutils_gnuman}" ] && export MANPATH="${coreutils_gnuman}:${MANPATH}"
+
+path_prepend "/usr/local/opt/gnu-getopt/bin"
 
 # gettext.
-export PATH="/usr/local/opt/gettext/bin:${PATH}"
+path_prepend "/usr/local/opt/gettext/bin"
 # For compilers to find gettext these might need to be set:
 # export LDFLAGS="-L/usr/local/opt/gettext/lib"
 # export CPPFLAGS="-I/usr/local/opt/gettext/include"
 
 # kubebuilder.
-export PATH="/usr/local/kubebuilder/bin:${PATH}"
+path_prepend "/usr/local/kubebuilder/bin"
 
 # Krew.
-export PATH="${KREW_ROOT:-${HOME}/.krew}/bin:${PATH}"
+path_prepend "${KREW_ROOT:-${HOME}/.krew}/bin"
 
 # Emacs ansi-term doesn't set locale env variables.
 export LANG=en_US.UTF-8
@@ -89,10 +126,14 @@ for completion_script in "$(brew --prefix)"/etc/bash_completion.d/*; do
   [ -f "${completion_script}" ] && . "${completion_script}"
 done
 
-. /usr/local/git/contrib/completion/git-completion.bash
+git_completions_bash="/usr/local/git/contrib/completion/git-completion.bash"
+# shellcheck source=/dev/null
+[ -f "${git_completions_bash}" ] && . "${git_completions_bash}"
 
 # Aliases.
+# shellcheck source=/dev/null
 [ -f .aliases ] && . .aliases
 
 # Yarn.
-export PATH="${HOME}/.yarn/bin:${HOME}/.config/yarn/global/node_modules/.bin:${PATH}"
+path_prepend "${HOME}/.yarn/bin"
+path_prepend "${HOME}/.config/yarn/global/node_modules/.bin"
