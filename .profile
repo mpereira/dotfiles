@@ -1,7 +1,25 @@
 #!/usr/bin/env bash
 
+################################################################################
+############################### IMPORTANT! #####################################
+################################################################################
+#
+# From `man bash`:
+#
+#   When bash is invoked as an interactive login shell, or as a non-interactive
+#   shell with the --login option, it first reads and executes commands from the
+#   file /etc/profile, if that file exists. After reading that file, it looks
+#   for ~/.bash_profile, ~/.bash_login, and ~/.profile, in that order, and reads
+#   and executes commands from the first one that exists and is readable. The
+#   --noprofile option may be used when the shell is started to inhibit this
+#   behavior.
+#
+################################################################################
+################################################################################
+################################################################################
+
 find_latest () {
-  find "${1}" -maxdepth 1 -iname "${2}" 2>/dev/null | sort -nr | head -1
+  find "${1}" -maxdepth 1 -iname "${2}" 2>/dev/null | sort -Vr | head -1
 }
 
 path_append () {
@@ -18,15 +36,17 @@ path_prepend () {
 
 # This needs to run before our appends and prepends, otherwise it will mess
 # everything up.
-eval "$(/usr/libexec/path_helper)"
+#
+# It sets up PATH based on /etc/paths and /etc/paths.d/*, and MANPATH based on
+# /etc/manpaths and /etc/manpaths.d/*.
+if [ -x /usr/libexec/path_helper ]; then
+  eval "$(/usr/libexec/path_helper -s)"
+fi
 
 # When prepending to PATH, later prepends will have higher priority.
 
 path_append "/opt/local/bin" # What's using this?
 path_prepend "/usr/local/bin"
-
-# Postgres.
-path_append "/Applications/Postgres.app/Contents/Versions/latest/bin"
 
 # CMake.
 path_prepend "/Applications/CMake.app/Contents/bin"
