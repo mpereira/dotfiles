@@ -18,6 +18,10 @@
 ################################################################################
 ################################################################################
 
+if command -v /opt/homebrew/bin/brew >/dev/null 2>&1; then
+  HOMEBREW_PREFIX="$(/opt/homebrew/bin/brew --prefix)"
+fi
+
 find_latest () {
   find "${1}" -maxdepth 1 -iname "${2}" 2>/dev/null | sort -Vr | head -1
 }
@@ -79,7 +83,7 @@ latest_python3="$(find_latest "${HOME}/Library/Python" "3.*")"
 path_prepend "${latest_python3}/bin"
 
 # LLVM.
-latest_llvm="$(find_latest /usr/local/opt/llvm "*")"
+latest_llvm="$(find_latest "${HOMEBREW_PREFIX}/opt/llvm" "*")"
 if [ -d "${latest_llvm}" ]; then
   path_prepend "${latest_llvm}/bin"
   export LDFLAGS="-L${latest_llvm}/lib -Wl,-rpath,${latest_llvm}/lib"
@@ -93,7 +97,7 @@ path_prepend "${GOPATH}/bin"
 path_prepend "${GOROOT}/bin"
 
 # Ghostscript.
-latest_ghostscript="$(find_latest /usr/local/opt/ghostscript/ "*")"
+latest_ghostscript="$(find_latest "${HOMEBREW_PREFIX}/opt/ghostscript/" "*")"
 path_prepend "${latest_ghostscript}/bin"
 
 # Rust.
@@ -116,18 +120,20 @@ if [ -d "${latest_texlive}" ]; then
 fi
 
 # GNU binaries without g prefix.
-coreutils="/usr/local/opt/coreutils"
+coreutils="${HOMEBREW_PREFIX}/opt/coreutils"
 path_prepend "${coreutils}/libexec/gnubin"
 coreutils_gnuman="${coreutils}/libexec/gnuman"
 [ -d "${coreutils_gnuman}" ] && export MANPATH="${coreutils_gnuman}:${MANPATH}"
 
-path_prepend "/usr/local/opt/gnu-getopt/bin"
+for gnu_program_directory in "${HOMEBREW_PREFIX}"/opt/gnu-*; do
+  path_prepend "${gnu_program_directory}/bin"
+done
 
 # gettext.
-path_prepend "/usr/local/opt/gettext/bin"
+path_prepend "${HOMEBREW_PREFIX}/opt/gettext/bin"
 # For compilers to find gettext these might need to be set:
-# export LDFLAGS="-L/usr/local/opt/gettext/lib"
-# export CPPFLAGS="-I/usr/local/opt/gettext/include"
+# export LDFLAGS="-L${HOMEBREW_PREFIX}/opt/gettext/lib"
+# export CPPFLAGS="-I${HOMEBREW_PREFIX}/opt/gettext/include"
 
 # kubebuilder.
 path_prepend "/usr/local/kubebuilder/bin"
@@ -157,3 +163,11 @@ git_completions_bash="/usr/local/git/contrib/completion/git-completion.bash"
 # Yarn.
 path_prepend "${HOME}/.yarn/bin"
 path_prepend "${HOME}/.config/yarn/global/node_modules/.bin"
+
+# .NET
+# export DOTNET_ROOT="/usr/local/share/dotnet/host"
+
+# This prepends the Homebrew binary path to $PATH, so running it last.
+if command -v /opt/homebrew/bin/brew >/dev/null 2>&1; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
