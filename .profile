@@ -49,7 +49,6 @@ fi
 
 # When prepending to PATH, later prepends will have higher priority.
 
-path_append "/opt/local/bin" # What's using this?
 path_prepend "/usr/local/bin"
 
 # CMake.
@@ -88,6 +87,12 @@ if [ -d "${latest_llvm}" ]; then
   path_prepend "${latest_llvm}/bin"
   export LDFLAGS="-L${latest_llvm}/lib -Wl,-rpath,${latest_llvm}/lib"
   export CPPFLAGS="-I${latest_llvm}/include"
+fi
+
+# curl.
+latest_curl="$(find_latest "${HOMEBREW_PREFIX}/opt/curl" "*")"
+if [ -d "${latest_curl}" ]; then
+  path_prepend "${latest_curl}/bin"
 fi
 
 # Go.
@@ -141,6 +146,9 @@ path_prepend "/usr/local/kubebuilder/bin"
 # Krew.
 path_prepend "${KREW_ROOT:-${HOME}/.krew}/bin"
 
+# Bun.
+path_prepend "${HOME}/.bun/bin"
+
 # Emacs ansi-term doesn't set locale env variables.
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
@@ -171,3 +179,8 @@ path_prepend "${HOME}/.config/yarn/global/node_modules/.bin"
 if command -v /opt/homebrew/bin/brew >/dev/null 2>&1; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
+
+# Mimic XDG base directory specification.
+# https://pkg.go.dev/os#UserCacheDir
+export XDG_CACHE_HOME="${HOME}/Library/Caches"
+export XDG_CONFIG_HOME="${HOME}/Library/Application Support"
